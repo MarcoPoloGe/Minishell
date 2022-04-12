@@ -14,17 +14,23 @@ int main(void)
 
 	str = readline("test: ");
 
-	rl_clear_history();
-	rl_replace_line(" efsefefsf", 1);
+	//rl_clear_history();
+	add_history(str);
+	add_history("BRICE DE NICE\ntest");
+	add_history("supra");
+
+//	rl_on_new_line();
 	rl_redisplay();
-	add_history("BRICE DE NICE");
+	rl_replace_line("replace",0);
+	rl_replace_line("replace",0);
+	rl_replace_line("replace",0);
 	rl_redisplay();
-	rl_on_new_line();
 
 
+//	printf( "%s\n",str);
 
-	printf( "%s\n",str);
-
+	str = readline("test: ");
+	str = readline("test: ");
 	str = readline("test: ");
 	return 0;
 }
