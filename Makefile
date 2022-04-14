@@ -1,6 +1,6 @@
 NAME = minishell
 
-SRC = main.c
+SRC = main.c display.c
 
 LIB = ./libft/libft.a
 LDIR = ./libft

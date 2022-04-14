@@ -7,9 +7,12 @@
 #include <unistd.h>
 #include <signal.h>
 #include <curses.h>
-#include <term.h>
+//#include <term.h>
 #include <readline/readline.h>
 #include <readline/history.h>
 #include <stdlib.h>
+
+void ft_display_two_way_table(char ***tab, int cell_size);
+
 
 #endif
