@@ -13,7 +13,7 @@
 #include "perso_marco.h"
 
 // is s1 the same as s2 ?
-int	ft_str_is(char *s1, char *s2)
+int	ft_str_same(char *s1, char *s2)
 {
 	int	i;
 

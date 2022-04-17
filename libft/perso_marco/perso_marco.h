@@ -38,7 +38,7 @@ int		ft_str_is_num(char *str);
 void	ft_stradd(char **s1, char *s2);
 long	ft_atoi_big(char *str);
 int		ft_tablen(void **tab);
-int		ft_str_is(char *s1, char *s2);
+int		ft_str_same(char *s1, char *s2);
 void	ft_free_tab(char **tab);
 void	ft_display_tab(char **tab);
 int		ft_int_too_big(char *str);

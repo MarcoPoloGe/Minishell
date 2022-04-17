@@ -1,18 +1,57 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minishell.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mbelarbi@student.42lausanne.ch             +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/17 16:14:09 by Marco Belarbi     #+#    #+#             */
+/*   Updated: 2022/04/17 16:15:20 by Marco Belarbi    ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef MINISHELL_H
-#define MINISHELL_H
+# define MINISHELL_H
 
-#include "libft/libft.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <signal.h>
-#include <curses.h>
+# include "libft/libft.h"
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <signal.h>
+# include <curses.h>
 //#include <term.h>
-#include <readline/readline.h>
-#include <readline/history.h>
-#include <stdlib.h>
+# include <readline/readline.h>
+# include <readline/history.h>
+# include <stdlib.h>
 
-void ft_display_two_way_table(char ***tab, int cell_size);
+typedef struct s_command
+{
+	char	*cmd;
+	char	**args;
+}	t_command;
 
+typedef struct s_command_table
+{
+	t_command	*command_array;
+	char		*io_in;
+	char		*io_out;
+	char		*io_err;
+}	t_command_table;
+
+//for testing (to be removed)
+void	ft_create_command_table(void);
+void	ft_create_command_table_realistic(void);
+
+// ----- Functions -----
+
+// --- Main ---
+// --- Lexer ---
+// --- Parser ---
+// --- Expander ---
+// --- Executor ---
+// --- Display ---
+void	ft_display_lexer_tokens(char **tokens_tab);
+void	ft_display_table(char **tab);
+void	ft_display_command_table(t_command_table *command_table);
 
 #endif
