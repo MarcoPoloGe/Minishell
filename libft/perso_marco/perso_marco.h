@@ -6,7 +6,7 @@
 /*   By: mbelarbi@student.42lausanne.ch             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 18:20:21 by Marco Belarbi     #+#    #+#             */
-/*   Updated: 2022/03/07 15:13:34 by Marco Belarbi    ###   ########.fr       */
+/*   Updated: 2022/04/18 14:33:59 by Marco Belarbi    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,6 @@ int		ft_int_too_big(char *str);
 void	ft_display_bits_int(int nb);
 int		ft_check_ext(char *file, char *ext);
 char	*ft_read_file(char *file_name, char *ext);
+int		ft_str_match(char *hay, char *needle);
 
 #endif

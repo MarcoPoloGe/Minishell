@@ -6,7 +6,7 @@
 /*   By: mbelarbi@student.42lausanne.ch             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/17 16:14:09 by Marco Belarbi     #+#    #+#             */
-/*   Updated: 2022/04/17 16:15:20 by Marco Belarbi    ###   ########.fr       */
+/*   Updated: 2022/04/18 15:08:34 by Marco Belarbi    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct s_command_table
 //for testing (to be removed)
 void	ft_create_command_table(void);
 void	ft_create_command_table_realistic(void);
+void ft_launch_app(char *program_path,char **args, char **envp);
 
 // ----- Functions -----
 

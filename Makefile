@@ -1,6 +1,6 @@
 NAME = minishell
 
-SRC = main.c display.c
+SRC = main.c display.c executor_testing.c
 
 LIB = ./libft/libft.a
 LDIR = ./libft

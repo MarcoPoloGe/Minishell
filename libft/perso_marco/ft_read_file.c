@@ -13,7 +13,7 @@
 #include "perso_marco.h"
 
 //permet de lire le fichier en entier et de verifier si le fichier est de la
-//bonne extention.
+//bonne extension.
 char	*ft_read_file(char *file_name, char *ext)
 {
 	char	*file;
