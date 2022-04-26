@@ -47,6 +47,7 @@ void ft_launch_app(char *program_path,char **args, char **envp);
 
 // --- Main ---
 // --- Lexer ---
+char	**ft_lexer(char *str);
 // --- Parser ---
 // --- Expander ---
 // --- Executor ---

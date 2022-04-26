@@ -17,8 +17,10 @@ char	**ft_lexer(char *str)
 	int		str_len;
 	char 	c;
 	char	*tokens;
+	char	**rtn;
 
 	i = 0;
+	tokens = NULL;
 	str_len = ft_strlen(str);
 	while (i <= str_len)
 	{
@@ -61,8 +63,9 @@ char	**ft_lexer(char *str)
 		}
 		i++;
 	}
-	ft_printf("tokens : %s\n", tokens);
-	return(NULL);
+	rtn = ft_split(tokens, ',');
+	free(tokens);
+	return(rtn);
 }
 
 int	main(void)
@@ -73,11 +76,16 @@ int	main(void)
 
 	i = 0;
 	rtn = ft_lexer(str);
-	//ft_printf("%s\n", rtn[0]);
-	/*while (rtn[i])
+	while (rtn[i])
 	{
 		ft_printf("%s\n", rtn[i]);	
 		i++;
-	}*/
+	}
+	while (i >= 0)
+	{
+		free(rtn[i]);
+		i--;
+	}
+	free(rtn);
 	return(0);
 }
