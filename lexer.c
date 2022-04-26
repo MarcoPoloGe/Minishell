@@ -51,15 +51,21 @@ char	**ft_lexer(char *str)
 		else if (str[i] == '"' || str[i] == '\'')
 		{
 			c = str[i++];
-			ft_stradd(&tokens, "WORD,");
 			while (str[i] != c)
-				i++;		
+			{
+				tokens = ft_strcombine_char(tokens, str[i]);
+				i++;
+			}
+			tokens = ft_strcombine_char(tokens, ',');
 		}
 		else if (ft_isalnum(str[i]) == 1 || str[i] == '*' || str[i] == '.' || str[i] == '_')
 		{
-			ft_stradd(&tokens, "WORD,");
 			while (ft_isalnum(str[i]) == 1 || str[i] == '*' || str[i] == '.' || str[i] == '_')
+			{
+				tokens = ft_strcombine_char(tokens, str[i]);
 				i++;
+			}
+			tokens = ft_strcombine_char(tokens, ',');
 		}
 		i++;
 	}
@@ -70,7 +76,7 @@ char	**ft_lexer(char *str)
 
 int	main(void)
 {
-	char	*str = "ls |grep \"salut bobet\" < test.txt >> 1_A.txt\0";
+	char	*str = "ls |grep \"salut bobet\" bonjour < test.txt >> 1_A.txt\0";
 	char	**rtn;
 	int		i;
 

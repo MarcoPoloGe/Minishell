@@ -51,6 +51,7 @@ char	**ft_lexer(char *str);
 // --- Parser ---
 // --- Expander ---
 // --- Executor ---
+// --- Builtins ---
 // --- Display ---
 void	ft_display_lexer_tokens(char **tokens_tab);
 void	ft_display_table(char **tab);
