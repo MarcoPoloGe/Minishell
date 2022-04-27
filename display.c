@@ -88,7 +88,7 @@ void	ft_display_lexer_tokens(char **tokens_tab)
 	ft_putstr("--- token_table_end ---\n");
 }
 
-void ft_create_command_table(void)
+t_command_table ft_create_command_table(void)
 {
 	t_command_table command_table;
 	t_command *command_array;
@@ -103,9 +103,10 @@ void ft_create_command_table(void)
 	command_array[2].args = NULL;
 
 	ft_display_command_table(&command_table);
+	return (command_table);
 }
 
-void ft_create_command_table_realistic(void)
+t_command_table	ft_create_command_table_realistic(void)
 {
 	t_command_table command_table;
 	t_command *command_array;
@@ -120,5 +121,6 @@ void ft_create_command_table_realistic(void)
 	command_array[2].args = NULL;
 
 	ft_display_command_table(&command_table);
+	return (command_table);
 }
 

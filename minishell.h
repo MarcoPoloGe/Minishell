@@ -39,8 +39,8 @@ typedef struct s_command_table
 }	t_command_table;
 
 //for testing (to be removed)
-void	ft_create_command_table(void);
-void	ft_create_command_table_realistic(void);
+t_command_table ft_create_command_table(void);
+t_command_table ft_create_command_table_realistic(void);
 void ft_launch_app(char *program_path,char **args, char **envp);
 
 // ----- Functions -----

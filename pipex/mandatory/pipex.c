@@ -6,7 +6,7 @@
 /*   By: bcaffere <bcaffere@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 14:47:01 by bcaffere          #+#    #+#             */
-/*   Updated: 2022/04/18 17:19:06 by Marco Belarbi    ###   ########.fr       */
+/*   Updated: 2022/04/24 14:09:38 by Marco Belarbi    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	main(int argc, char *argv[], char *envp[])
 	if (pipex.infile < 0)
 		msg_error(ERR_INFILE);
 
-	pipex.outfile = open(argv[argc - 1], O_TRUNC | O_CREAT | O_RDWR, 0000644);
+	pipex.outfile = open(argv[4], O_TRUNC | O_CREAT | O_RDWR, 0000644);
 	if (pipex.outfile < 0)
 		msg_error(ERR_OUTFILE);
 
@@ -49,11 +49,11 @@ int	main(int argc, char *argv[], char *envp[])
 
 	pipex.pid1 = fork();
 	if (pipex.pid1 == 0)
-		first_child(pipex, argv, envp);
+		child(pipex, argv[2], envp, 0);
 
 	pipex.pid2 = fork();
 	if (pipex.pid2 == 0)
-		second_child(pipex, argv, envp);
+		child(pipex, argv[3], envp, 1);
 
 	close_pipes(&pipex);
 	waitpid(pipex.pid1, NULL, 0);
