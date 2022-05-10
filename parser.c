@@ -19,14 +19,18 @@ void	ft_update_io(t_command_table *table, char *str, char *file)
 {
 	char	*tmp;
 
-	if (ft_str_same(str, "GREAT"))
+	if (ft_str_same(str, "GREAT") || ft_str_same(str, "GREATGREAT"))
 	{
+		if (ft_str_same(str, "GREATGREAT"))
+			table->io_insertion = 1;
 		tmp = table->io_out;
 		table->io_out = ft_strdup(file);
 		//free(tmp);
 	}
 	else
 	{
+		if (ft_str_same(str, "LESSLESS"))
+			table->io_extraction = 1;
 		tmp = table->io_in;
 		table->io_in = ft_strdup(file);
 		//free(tmp);
@@ -55,6 +59,8 @@ void	ft_init_table(t_command_table *table, int nb_cmd)
 	table->io_err = "default\0";
 	table->io_in = "default\0";
 	table->io_out = "default\0";
+	table->io_extraction = 0;
+	table->io_insertion = 0;
 }
 
 int	ft_nb_cmd(char **tokens)
@@ -93,7 +99,8 @@ t_command_table ft_parser(char **tokens)
 				table.command_array[i].args[0] = ft_strdup(tokens[j]);
 				j++;
 			}
-			else if (ft_str_same(tokens[j], "GREAT") || ft_str_same(tokens[j], "LESS"))
+			else if (ft_str_same(tokens[j], "GREAT") || ft_str_same(tokens[j], "LESS") 
+				|| ft_str_same(tokens[j], "GREATGREAT") || ft_str_same(tokens[j], "LESSLESS"))
 			{
 				ft_update_io(&table, tokens[j], tokens[j + 1]);
 				j += 2;

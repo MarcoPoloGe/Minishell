@@ -33,6 +33,8 @@ typedef struct s_command
 typedef struct s_command_table
 {
 	t_command	*command_array;
+	int			io_extraction;
+	int			io_insertion;
 	char		*io_in;
 	char		*io_out;
 	char		*io_err;
