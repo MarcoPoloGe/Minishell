@@ -25,7 +25,6 @@ void	ft_update_io(t_command_table *table, char *str, char *file)
 			table->io_insertion = 1;
 		tmp = table->io_out;
 		table->io_out = ft_strdup(file);
-		//free(tmp);
 	}
 	else
 	{
@@ -33,8 +32,22 @@ void	ft_update_io(t_command_table *table, char *str, char *file)
 			table->io_extraction = 1;
 		tmp = table->io_in;
 		table->io_in = ft_strdup(file);
-		//free(tmp);
 	}
+}
+
+void	ft_manage_token(t_command_table *table, char **tokens, int *j, int i)
+{
+	if (*tokens[*j] == '-')
+		table->command_array[i].args[0] = ft_strdup(tokens[*j]);
+	else if (ft_str_same(tokens[*j], "GREAT") || ft_str_same(tokens[*j], "LESS")
+		|| ft_str_same(tokens[*j], "GREATGREAT")
+		|| ft_str_same(tokens[*j], "LESSLESS"))
+	{
+		ft_update_io(table, tokens[*j], tokens[*j + 1]);
+		j++;
+	}
+	else
+		table->command_array[i].args[1] = ft_strdup(tokens[*j]);
 }
 
 void	ft_init_table(t_command_table *table, int nb_cmd)
@@ -43,9 +56,6 @@ void	ft_init_table(t_command_table *table, int nb_cmd)
 	int			i;
 
 	i = 0;
-	table->io_err = ft_calloc(8, sizeof(char));
-	table->io_in = ft_calloc(8, sizeof(char));
-	table->io_out = ft_calloc(8, sizeof(char));
 	table->command_array = ft_calloc(nb_cmd + 1, sizeof(t_command));
 	cmd = table->command_array;
 	while (i <= nb_cmd)
@@ -56,16 +66,18 @@ void	ft_init_table(t_command_table *table, int nb_cmd)
 		cmd[i].args[1] = NULL;
 		i++;
 	}
-	table->io_err = "default\0";
-	table->io_in = "default\0";
-	table->io_out = "default\0";
+	cmd->fd_in = 0;
+	cmd->fd_out = 0;
+	table->io_err = NULL;
+	table->io_in = NULL;
+	table->io_out = NULL;
 	table->io_extraction = 0;
 	table->io_insertion = 0;
 }
 
 int	ft_nb_cmd(char **tokens)
 {
-	int i;
+	int	i;
 
 	i = 1;
 	while (*tokens)
@@ -77,9 +89,9 @@ int	ft_nb_cmd(char **tokens)
 	return (i);
 }
 
-t_command_table ft_parser(char **tokens)
+t_command_table	ft_parser(char **tokens)
 {
-	t_command_table table;
+	t_command_table	table;
 	int				nb_cmd;
 	int				i;
 	int				j;
@@ -88,35 +100,21 @@ t_command_table ft_parser(char **tokens)
 	j = 0;
 	nb_cmd = ft_nb_cmd(tokens);
 	ft_init_table(&table, nb_cmd);
-	while(i < nb_cmd)
+	while (i < nb_cmd)
 	{
-		table.command_array[i].cmd = ft_strdup(tokens[j]);
-		j++;
-		while (tokens[j]  && !ft_str_same(tokens[j], "PIPE"))
+		table.command_array[i].cmd = ft_strdup(tokens[j++]);
+		while (tokens[j] && !ft_str_same(tokens[j], "PIPE"))
 		{
-			if(*tokens[j] == '-')
-			{
-				table.command_array[i].args[0] = ft_strdup(tokens[j]);
-				j++;
-			}
-			else if (ft_str_same(tokens[j], "GREAT") || ft_str_same(tokens[j], "LESS") 
-				|| ft_str_same(tokens[j], "GREATGREAT") || ft_str_same(tokens[j], "LESSLESS"))
-			{
-				ft_update_io(&table, tokens[j], tokens[j + 1]);
-				j += 2;
-			}
-			else
-			{
-				table.command_array[i].args[1] = ft_strdup(tokens[j]);
-				j++;
-			}
+			ft_manage_token(&table, tokens, &j, i);
+			j++;
 		}
 		j++;
 		i++;
 	}
-	return(table);
+	return (table);
 }
 
+/*
 int	main(void)
 {
 	char	**tokens;
@@ -146,3 +144,4 @@ int	main(void)
 	ft_printf("|_______________________________|\n");
 	return (0);
 }
+*/

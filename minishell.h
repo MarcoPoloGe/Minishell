@@ -26,6 +26,8 @@
 
 typedef struct s_command
 {
+	int		fd_in;
+	int		fd_out;
 	char	*cmd;
 	char	**args;
 }	t_command;
