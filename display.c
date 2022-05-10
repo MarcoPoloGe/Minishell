@@ -111,7 +111,7 @@ t_command_table	ft_create_command_table_realistic(void)
 	t_command_table command_table;
 	t_command *command_array;
 
-	command_table.command_array = ft_calloc(3, sizeof(t_command_table));
+	command_table.command_array = ft_calloc(3, sizeof(t_command));
 	command_array = command_table.command_array;
 	command_array[0].cmd = ft_strdup("ls");
 	command_array[0].args = ft_split("libft rendu",' ');

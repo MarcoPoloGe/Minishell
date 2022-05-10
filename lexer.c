@@ -51,16 +51,18 @@ char	**ft_lexer(char *str)
 		else if (str[i] == '"' || str[i] == '\'')
 		{
 			c = str[i++];
+			tokens = ft_strcombine_char(tokens, c);
 			while (str[i] != c)
 			{
 				tokens = ft_strcombine_char(tokens, str[i]);
 				i++;
 			}
+			tokens = ft_strcombine_char(tokens, c);
 			tokens = ft_strcombine_char(tokens, ',');
 		}
-		else if (ft_isalnum(str[i]) == 1 || str[i] == '*' || str[i] == '.' || str[i] == '_')
+		else if (ft_isalnum(str[i]) == 1 || str[i] == '*' || str[i] == '.' || str[i] == '_' || str[i] == '-' || str[i] == '$')
 		{
-			while (ft_isalnum(str[i]) == 1 || str[i] == '*' || str[i] == '.' || str[i] == '_')
+			while (ft_isalnum(str[i]) == 1 || str[i] == '*' || str[i] == '.' || str[i] == '_' || str[i] == '-' || str[i] == '$')
 			{
 				tokens = ft_strcombine_char(tokens, str[i]);
 				i++;
@@ -74,9 +76,10 @@ char	**ft_lexer(char *str)
 	return(rtn);
 }
 
+/*
 int	main(void)
 {
-	char	*str = "ls |grep \"salut bobet\" bonjour < test.txt >> 1_A.txt\0";
+	char	*str = "ls -l|grep \"salut bobet\" < test.txt >> 1_A.txt\0";
 	char	**rtn;
 	int		i;
 
@@ -84,7 +87,7 @@ int	main(void)
 	rtn = ft_lexer(str);
 	while (rtn[i])
 	{
-		ft_printf("%s\n", rtn[i]);	
+		ft_printf("%s|", rtn[i]);	
 		i++;
 	}
 	while (i >= 0)
@@ -94,4 +97,4 @@ int	main(void)
 	}
 	free(rtn);
 	return(0);
-}
+}*/

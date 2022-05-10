@@ -49,9 +49,13 @@ void ft_launch_app(char *program_path,char **args, char **envp);
 // --- Lexer ---
 char	**ft_lexer(char *str);
 // --- Parser ---
+t_command_table ft_parser(char **tokens);
 // --- Expander ---
 // --- Executor ---
 // --- Builtins ---
+void	ft_echo(char *str, int nl, char **env);
+void	ft_display_env(char **env);
+void	ft_display_pwd(char **env);
 // --- Display ---
 void	ft_display_lexer_tokens(char **tokens_tab);
 void	ft_display_table(char **tab);
