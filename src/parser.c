@@ -6,7 +6,7 @@
 /*   By: facolomb <facolomb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 15:14:10 by facolomb          #+#    #+#             */
-/*   Updated: 2022/05/16 15:07:43 by Marco Belarbi    ###   ########.fr       */
+/*   Updated: 2022/05/16 15:08:37 by Marco Belarbi    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,12 +62,11 @@ void	ft_init_table(t_cmd_table *table, int nb_cmd)
 	{
 		cmd[i].args = ft_calloc(2, sizeof(char *));
 		cmd[i].cmd = NULL;
-		cmd[i].args[0] = NULL;
-		cmd[i].args[1] = NULL;
+		cmd[i].fd_in = 0;
+		cmd[i].fd_out = 0;
 		i++;
 	}
-	cmd->fd_in = 0;
-	cmd->fd_out = 0;
+	table->cmd_count = nb_cmd;
 	table->io_in = NULL;
 	table->io_out = NULL;
 	table->io_extraction = 0;

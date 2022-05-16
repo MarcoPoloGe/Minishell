@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: facolomb <facolomb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbelarbi@student.42lausanne.ch             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/28 14:43:12 by facolomb          #+#    #+#             */
-/*   Updated: 2022/04/28 14:43:12 by facolomb         ###   ########.fr       */
+/*   Created: 2022/05/16 15:23:54 by Marco Belarbi     #+#    #+#             */
+/*   Updated: 2022/05/16 15:23:54 by Marco Belarbi    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../src/minishell.h"
 
-void	ft_display_env(char **env)
+#include "minishell.h"
+
+int ft_cmd_array_len(t_cmd *cmd_array)
 {
-	while (*env)
-	{
-		ft_putstr(*env);
-		ft_putchar('\n');
-		env++;
-	}
+	int count;
+
+	count = 0;
+	while (cmd_array[count].cmd != NULL)
+		count ++;
+	return count;
 }
-/*
-int	main(int argc, char **argv, char **env)
-{
-	ft_display_env(env);
-	return(0);
-}*/

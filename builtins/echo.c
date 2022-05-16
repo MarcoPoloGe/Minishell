@@ -9,7 +9,7 @@
 /*   Updated: 2022/04/26 11:28:49 by facolomb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../minishell.h"
+#include "../src/minishell.h"
 
 void	ft_display_env(char **env, int i, int y)
 {
