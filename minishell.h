@@ -19,41 +19,44 @@
 # include <unistd.h>
 # include <signal.h>
 # include <curses.h>
+#include <dirent.h>
 //#include <term.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <stdlib.h>
 
-typedef struct s_command
+typedef struct s_cmd
 {
 	int		fd_in;
-	int		fd_out;
 	char	*cmd;
 	char	**args;
-}	t_command;
+	int		fd_out;
+}	t_cmd;
 
-typedef struct s_command_table
+typedef struct s_cmd_table
 {
-	t_command	*command_array;
-	int			io_extraction;
-	int			io_insertion;
-	char		*io_in;
-	char		*io_out;
-	char		*io_err;
-}	t_command_table;
+	t_cmd	*cmd_array;
+	int		cmd_count;
+	int		io_extraction;
+	char	*io_in;
+	char	*io_out;
+	int 	io_insertion;
+}	t_cmd_table;
 
 //for testing (to be removed)
-t_command_table ft_create_command_table(void);
-t_command_table ft_create_command_table_realistic(void);
-void ft_launch_app(char *program_path,char **args, char **envp);
+t_cmd_table ft_create_cmd_table(void);
+t_cmd_table ft_create_cmd_table_realistic(void);
+void ft_exe_tester(void);
 
 // ----- Functions -----
-
 // --- Main ---
+// --- Get_cmd_path ---
+char *ft_get_cmd_path(char **env, char *name);
 // --- Lexer ---
 char	**ft_lexer(char *str);
 // --- Parser ---
-t_command_table ft_parser(char **tokens);
+// --- Parser ---
+t_cmd_table ft_parser(char **tokens);
 // --- Expander ---
 // --- Executor ---
 // --- Builtins ---
@@ -63,6 +66,6 @@ void	ft_display_pwd(char **env);
 // --- Display ---
 void	ft_display_lexer_tokens(char **tokens_tab);
 void	ft_display_table(char **tab);
-void	ft_display_command_table(t_command_table *command_table);
+void	ft_display_cmd_table(t_cmd_table *cmd_table);
 
 #endif

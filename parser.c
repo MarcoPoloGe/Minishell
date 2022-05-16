@@ -6,7 +6,7 @@
 /*   By: facolomb <facolomb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 15:14:10 by facolomb          #+#    #+#             */
-/*   Updated: 2022/04/28 15:14:10 by facolomb         ###   ########.fr       */
+/*   Updated: 2022/05/16 15:07:43 by Marco Belarbi    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 //tokens exemple : ls|PIPE|grep|"salut bobet"|LESS|test.txt|GREATGREAT|1_A.txt
 //					cmd|PIPE|cmd|arg[1]|LESS|infile|GREATGREAT|outfile
 
-void	ft_update_io(t_command_table *table, char *str, char *file)
+void	ft_update_io(t_cmd_table *table, char *str, char *file)
 {
 	char	*tmp;
 
@@ -35,10 +35,10 @@ void	ft_update_io(t_command_table *table, char *str, char *file)
 	}
 }
 
-void	ft_manage_token(t_command_table *table, char **tokens, int *j, int i)
+void	ft_manage_token(t_cmd_table *table, char **tokens, int *j, int i)
 {
 	if (*tokens[*j] == '-')
-		table->command_array[i].args[0] = ft_strdup(tokens[*j]);
+		table->cmd_array[i].args[0] = ft_strdup(tokens[*j]);
 	else if (ft_str_same(tokens[*j], "GREAT") || ft_str_same(tokens[*j], "LESS")
 		|| ft_str_same(tokens[*j], "GREATGREAT")
 		|| ft_str_same(tokens[*j], "LESSLESS"))
@@ -47,17 +47,17 @@ void	ft_manage_token(t_command_table *table, char **tokens, int *j, int i)
 		j++;
 	}
 	else
-		table->command_array[i].args[1] = ft_strdup(tokens[*j]);
+		table->cmd_array[i].args[1] = ft_strdup(tokens[*j]);
 }
 
-void	ft_init_table(t_command_table *table, int nb_cmd)
+void	ft_init_table(t_cmd_table *table, int nb_cmd)
 {
-	t_command	*cmd;
+	t_cmd	*cmd;
 	int			i;
 
 	i = 0;
-	table->command_array = ft_calloc(nb_cmd + 1, sizeof(t_command));
-	cmd = table->command_array;
+	table->cmd_array = ft_calloc(nb_cmd + 1, sizeof(t_cmd));
+	cmd = table->cmd_array;
 	while (i <= nb_cmd)
 	{
 		cmd[i].args = ft_calloc(2, sizeof(char *));
@@ -68,7 +68,6 @@ void	ft_init_table(t_command_table *table, int nb_cmd)
 	}
 	cmd->fd_in = 0;
 	cmd->fd_out = 0;
-	table->io_err = NULL;
 	table->io_in = NULL;
 	table->io_out = NULL;
 	table->io_extraction = 0;
@@ -89,9 +88,9 @@ int	ft_nb_cmd(char **tokens)
 	return (i);
 }
 
-t_command_table	ft_parser(char **tokens)
+t_cmd_table	ft_parser(char **tokens)
 {
-	t_command_table	table;
+	t_cmd_table	table;
 	int				nb_cmd;
 	int				i;
 	int				j;
@@ -102,7 +101,7 @@ t_command_table	ft_parser(char **tokens)
 	ft_init_table(&table, nb_cmd);
 	while (i < nb_cmd)
 	{
-		table.command_array[i].cmd = ft_strdup(tokens[j++]);
+		table.cmd_array[i].cmd = ft_strdup(tokens[j++]);
 		while (tokens[j] && !ft_str_same(tokens[j], "PIPE"))
 		{
 			ft_manage_token(&table, tokens, &j, i);
@@ -118,7 +117,7 @@ t_command_table	ft_parser(char **tokens)
 int	main(void)
 {
 	char	**tokens;
-	t_command_table table;
+	t_cmd_table table;
 	int	i;
 
 	tokens = malloc(sizeof(char *) * 8);
@@ -132,11 +131,11 @@ int	main(void)
 	tokens[7] = NULL;
 	table = ft_parser(tokens);
 	i = 0;
-	while(table.command_array[i].cmd)
+	while(table.cmd_array[i].cmd)
 	{
 		ft_printf("|-------------------------------|\n");
-		ft_printf("|		%s		|\n", table.command_array[i].cmd);
-		ft_printf("|option : %s |arg : %s	|\n", table.command_array[i].args[0],table.command_array[i].args[1]);
+		ft_printf("|		%s		|\n", table.cmd_array[i].cmd);
+		ft_printf("|option : %s |arg : %s	|\n", table.cmd_array[i].args[0],table.cmd_array[i].args[1]);
 		i++;
 	}
 	ft_printf("|	--------IO--------	|\n");
