@@ -15,7 +15,7 @@ char	**ft_lexer(char *str)
 {
 	int		i;
 	int		str_len;
-	char 	c;
+	char	c;
 	char	*tokens;
 	char	**rtn;
 
@@ -73,7 +73,7 @@ char	**ft_lexer(char *str)
 	}
 	rtn = ft_split(tokens, ',');
 	free(tokens);
-	return(rtn);
+	return (rtn);
 }
 
 /*

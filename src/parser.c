@@ -6,7 +6,7 @@
 /*   By: facolomb <facolomb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 15:14:10 by facolomb          #+#    #+#             */
-/*   Updated: 2022/05/16 15:08:37 by Marco Belarbi    ###   ########.fr       */
+/*   Updated: 2022/05/16 15:52:56 by Marco Belarbi    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	ft_manage_token(t_cmd_table *table, char **tokens, int *j, int i)
 
 void	ft_init_table(t_cmd_table *table, int nb_cmd)
 {
-	t_cmd	*cmd;
+	t_cmd		*cmd;
 	int			i;
 
 	i = 0;
@@ -89,7 +89,7 @@ int	ft_nb_cmd(char **tokens)
 
 t_cmd_table	ft_parser(char **tokens)
 {
-	t_cmd_table	table;
+	t_cmd_table		table;
 	int				nb_cmd;
 	int				i;
 	int				j;
