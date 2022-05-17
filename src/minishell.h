@@ -55,7 +55,7 @@ char		*ft_get_cmd_path(char **env, char *name);
 // --- Lexer ---
 char		**ft_lexer(char *str);
 // --- Parser ---
-t_cmd_table	ft_parser(char **tokens);
+t_cmd_table	ft_parser(char **tokens, char **env);
 // --- Expander ---
 void		ft_expander(t_cmd_table *cmd_table);
 // --- Pipe ---
