@@ -46,5 +46,7 @@ void	ft_display_bits_int(int nb);
 int		ft_check_ext(char *file, char *ext);
 char	*ft_read_file(char *file_name, char *ext);
 int		ft_str_match(char *hay, char *needle);
+void	ft_tabcpy(char** dst, char** tab);
+void	ft_tabadd(char ***tab, char *str);
 
 #endif
