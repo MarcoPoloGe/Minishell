@@ -6,7 +6,7 @@
 /*   By: mbelarbi@student.42lausanne.ch             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 16:22:03 by Marco Belarbi     #+#    #+#             */
-/*   Updated: 2022/05/16 16:22:34 by Marco Belarbi    ###   ########.fr       */
+/*   Updated: 2022/05/17 15:45:47 by Marco Belarbi    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,14 @@ int	main(int argc, char **argv, char **env)
 
 	(void)argc;
 	(void)argv;
-	input = readline("minishell% ");
-	token_tab = ft_lexer(input);
-	cmd_table = ft_parser(token_tab);
-	ft_expander(&cmd_table);
-	ft_executor(&cmd_table, env);
-//	cmd_path =ft_get_cmd_path(env, "echo");
-//	ft_printf("%s\n",cmd_path);
-//	execve(cmd_path, argv, env);
+
+	while(1)//todo temp que pas ctrl-/ ect.
+	{
+		input = readline("minishell%");
+		token_tab = ft_lexer(input);
+		cmd_table = ft_parser(token_tab);
+		ft_expander(&cmd_table);
+		ft_executor(&cmd_table, env);
+	}
 	return (0);
 }
