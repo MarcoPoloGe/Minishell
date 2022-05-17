@@ -37,17 +37,15 @@ void	ft_update_io(t_cmd_table *table, char *str, char *file)
 
 void	ft_manage_token(t_cmd_table *table, char **tokens, int *j, int i)
 {
-	if (*tokens[*j] == '-')
-		table->cmd_array[i].args[0] = ft_strdup(tokens[*j]);
-	else if (ft_str_same(tokens[*j], "GREAT") || ft_str_same(tokens[*j], "LESS")
+	if (ft_str_same(tokens[*j], "GREAT") || ft_str_same(tokens[*j], "LESS")
 		|| ft_str_same(tokens[*j], "GREATGREAT")
 		|| ft_str_same(tokens[*j], "LESSLESS"))
 	{
 		ft_update_io(table, tokens[*j], tokens[*j + 1]);
-		j++;
+		(*j)++;
 	}
 	else
-		table->cmd_array[i].args[1] = ft_strdup(tokens[*j]);
+		table->cmd_array[i].args[0] = ft_strcombine(table->cmd_array[i].args[0], tokens[*j]);
 }
 
 void	ft_init_table(t_cmd_table *table, int nb_cmd)
@@ -60,7 +58,7 @@ void	ft_init_table(t_cmd_table *table, int nb_cmd)
 	cmd = table->cmd_array;
 	while (i <= nb_cmd)
 	{
-		cmd[i].args = ft_calloc(2, sizeof(char *));
+		cmd[i].args = ft_calloc(1, sizeof(char *));
 		cmd[i].cmd = NULL;
 		cmd[i].fd_in = 0;
 		cmd[i].fd_out = 0;
@@ -87,7 +85,7 @@ int	ft_nb_cmd(char **tokens)
 	return (i);
 }
 
-t_cmd_table	ft_parser(char **tokens)
+t_cmd_table	ft_parser(char **tokens, char **env)
 {
 	t_cmd_table		table;
 	int				nb_cmd;
@@ -100,12 +98,17 @@ t_cmd_table	ft_parser(char **tokens)
 	ft_init_table(&table, nb_cmd);
 	while (i < nb_cmd)
 	{
-		table.cmd_array[i].cmd = ft_strdup(tokens[j++]);
-		while (tokens[j] && !ft_str_same(tokens[j], "PIPE"))
+		table.cmd_array[i].cmd = ft_get_cmd_path(env, tokens[j++]);
+		if (table.cmd_array[i].cmd != NULL)
 		{
-			ft_manage_token(&table, tokens, &j, i);
-			j++;
+			while (tokens[j] && !ft_str_same(tokens[j], "PIPE"))
+			{
+				ft_manage_token(&table, tokens, &j, i);
+				j++;
+			}
 		}
+		else
+			; //TO DO : ERROR incorrect cmd
 		j++;
 		i++;
 	}
@@ -113,8 +116,10 @@ t_cmd_table	ft_parser(char **tokens)
 }
 
 /*
-int	main(void)
+int	main(int argc, char **argv, char **env)
 {
+	(void)argc;
+	(void)argv;
 	char	**tokens;
 	t_cmd_table table;
 	int	i;
@@ -128,18 +133,17 @@ int	main(void)
 	tokens[5] = "GREAT";
 	tokens[6] = "test.txt";
 	tokens[7] = NULL;
-	table = ft_parser(tokens);
+	table = ft_parser(tokens, env);
 	i = 0;
 	while(table.cmd_array[i].cmd)
 	{
 		ft_printf("|-------------------------------|\n");
 		ft_printf("|		%s		|\n", table.cmd_array[i].cmd);
-		ft_printf("|option : %s |arg : %s	|\n", table.cmd_array[i].args[0],table.cmd_array[i].args[1]);
+		ft_printf("|arg : %s	|\n", table.cmd_array[i].args[0]);
 		i++;
 	}
 	ft_printf("|	--------IO--------	|\n");
-	ft_printf("|	in : %s		|\n|	out : %s		|\n|	err : %s		|\n", table.io_in, table.io_out, table.io_err);
+	ft_printf("|	in : %s		|\n|	out : %s		|\n", table.io_in, table.io_out);
 	ft_printf("|_______________________________|\n");
 	return (0);
-}
-*/
+}*/
