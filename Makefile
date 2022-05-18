@@ -1,6 +1,6 @@
 NAME = minishell
 
-SRC = src/main.c src/display.c src/lexer.c src/parser.c src/executor.c src/expander.c src/get_cmd_path.c src/pipe.c src/utils.c src/check_env.c src/init_struct.c
+SRC = src/main.c src/display.c src/lexer.c src/parser.c src/executor.c src/expander.c src/get_cmd_path.c src/pipe.c src/utils.c src/check_env.c src/init_struct.c src/prompt.c
 
 LIB = ./libft/libft.a
 LDIR = ./libft

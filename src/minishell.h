@@ -51,6 +51,8 @@ void		ft_exe_tester(void);
 
 // ----- Functions -----
 // --- Main ---
+// --- Prompt ---
+char	*ft_prompt(void);
 // --- Get_cmd_path ---
 char		*ft_get_cmd_path(char **env, char *name);
 // --- Lexer ---
@@ -74,6 +76,5 @@ void		ft_display_lexer_tokens(char **tokens_tab);
 void		ft_display_table(char **tab);
 void		ft_display_cmd_table(t_cmd_table *cmd_table);
 // --- Utils ---
-int			ft_cmd_array_len(t_cmd *cmd_array);
 
 #endif

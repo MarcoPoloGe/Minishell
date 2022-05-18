@@ -20,7 +20,7 @@ int	ft_open_io(char *io, int flags)
 	{
 		fd = open(io, flags);
 		if (fd < 0)
-			ft_printf("Error : file opening or creation.");
+			ft_printf("Error : file opening or creation."); //todo better
 	}
 	else
 		return (0);
@@ -69,7 +69,7 @@ void	ft_init_cmd_in_out(t_cmd_table *cmd_table)
 	cmd_array[i].fd_out = ft_init_output(cmd_table);
 }
 
-//À pour but de créer les pipes et l'entrée et sortie pour les assignés à
+//À pour but de créer les pipes et l'entrée et sortie pour les assigner à
 //chaque process.
 void	ft_expander(t_cmd_table *cmd_table)
 {

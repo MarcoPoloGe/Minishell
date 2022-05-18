@@ -1,33 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbelarbi@student.42lausanne.ch             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/16 16:22:03 by Marco Belarbi     #+#    #+#             */
-/*   Updated: 2022/05/17 15:49:26 by Marco Belarbi    ###   ########.fr       */
+/*   Created: 2022/05/18 14:06:26 by Marco Belarbi     #+#    #+#             */
+/*   Updated: 2022/05/18 14:24:09 by Marco Belarbi    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(int argc, char **argv, char **env)
+char	*ft_prompt(void)
 {
-	char		*input;
-	char		**token_tab;
-	t_cmd_table	cmd_table;
+	char	*input;
 
-	(void)argc;
-	(void)argv;
-
-	while(1)//todo temp que pas ctrl-/ ect.
-	{
-		input = ft_prompt();
-		token_tab = ft_lexer(input);
-		cmd_table = ft_parser(token_tab, env);
-		ft_expander(&cmd_table);
-		ft_executor(&cmd_table);
-	}
-	return (0);
+	input = readline("minishell%");
+	add_history(input);
+	return (input);
 }
