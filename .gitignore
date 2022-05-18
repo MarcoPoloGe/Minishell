@@ -58,3 +58,4 @@ dkms.conf
 cmake-build-debug
 CMakeLists.txt
 .idea
+minishell
