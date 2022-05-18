@@ -41,6 +41,7 @@ typedef struct s_cmd_table
 	char	*io_in;
 	char	*io_out;
 	int		io_insertion;
+	char	**env;
 }	t_cmd_table;
 
 //for testing (to be removed)
@@ -56,14 +57,16 @@ char		*ft_get_cmd_path(char **env, char *name);
 char		**ft_lexer(char *str);
 // --- Parser ---
 t_cmd_table	ft_parser(char **tokens, char **env);
+char		*ft_check_str(char *str, char **env);
+void		ft_init_table(t_cmd_table *table, int nb_cmd, char **env);
 // --- Expander ---
 void		ft_expander(t_cmd_table *cmd_table);
 // --- Pipe ---
 int			**ft_make_pipe_list(int nb);
 // --- Executor ---
-void		ft_executor(t_cmd_table *cmd_table, char **env);
+void		ft_executor(t_cmd_table *cmd_table);
 // --- Builtins ---
-void		ft_echo(char *str, int nl, char **env);
+void		ft_echo(char *str, int nl);
 void		ft_display_env(char **env);
 void		ft_display_pwd(char **env);
 // --- Display ---

@@ -27,7 +27,7 @@ int	main(int argc, char **argv, char **env)
 		token_tab = ft_lexer(input);
 		cmd_table = ft_parser(token_tab, env);
 		ft_expander(&cmd_table);
-		ft_executor(&cmd_table, env);
+		ft_executor(&cmd_table);
 	}
 	return (0);
 }

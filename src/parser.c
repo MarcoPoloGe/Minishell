@@ -37,7 +37,7 @@ void	ft_update_io(t_cmd_table *table, char *str, char *file)
 
 void	ft_manage_token(t_cmd_table *table, char **tokens, int *j, int i)
 {
-	char	*s;
+	char	*arg;
 
 	if (ft_str_same(tokens[*j], "GREAT") || ft_str_same(tokens[*j], "LESS")
 		|| ft_str_same(tokens[*j], "GREATGREAT")
@@ -48,32 +48,9 @@ void	ft_manage_token(t_cmd_table *table, char **tokens, int *j, int i)
 	}
 	else
 	{
-		s = table->cmd_array[i].args[0];
-		table->cmd_array[i].args[0] = ft_strcombine(s, tokens[*j]);
+		arg = ft_check_str(tokens[*j], table->env);
+		ft_tabadd(&table->cmd_array[i].args, arg);
 	}
-}
-
-void	ft_init_table(t_cmd_table *table, int nb_cmd)
-{
-	t_cmd		*cmd;
-	int			i;
-
-	i = 0;
-	table->cmd_array = ft_calloc(nb_cmd + 1, sizeof(t_cmd));
-	cmd = table->cmd_array;
-	while (i <= nb_cmd)
-	{
-		cmd[i].args = ft_calloc(1, sizeof(char *));
-		cmd[i].cmd = NULL;
-		cmd[i].fd_in = 0;
-		cmd[i].fd_out = 0;
-		i++;
-	}
-	table->cmd_count = nb_cmd;
-	table->io_in = NULL;
-	table->io_out = NULL;
-	table->io_extraction = 0;
-	table->io_insertion = 0;
 }
 
 int	ft_nb_cmd(char **tokens)
@@ -100,7 +77,7 @@ t_cmd_table	ft_parser(char **tokens, char **env)
 	i = 0;
 	j = 0;
 	nb_cmd = ft_nb_cmd(tokens);
-	ft_init_table(&table, nb_cmd);
+	ft_init_table(&table, nb_cmd, env);
 	while (i < nb_cmd)
 	{
 		table.cmd_array[i].cmd = ft_get_cmd_path(env, tokens[j++]);
@@ -127,6 +104,7 @@ int	main(int argc, char **argv, char **env)
 	char	**tokens;
 	t_cmd_table table;
 	int	i;
+	int x;
 
 	tokens = malloc(sizeof(char *) * 8);
 	tokens[0] = "ls";
@@ -143,11 +121,22 @@ int	main(int argc, char **argv, char **env)
 	{
 		ft_printf("|-------------------------------|\n");
 		ft_printf("|	%s		|\n", table.cmd_array[i].cmd);
-		ft_printf("|arg : %s		|\n", table.cmd_array[i].args[0]);
+		ft_printf("|	--------ARG--------	|\n");
+		x = 0;
+		while (table.cmd_array[i].args[x])
+		{
+			ft_printf("|	%s		|\n", table.cmd_array[i].args[x]);
+			x++;
+		}
 		i++;
 	}
 	ft_printf("|	--------IO--------	|\n");
 	ft_printf("|	in : %s		|\n|	out : %s		|\n", table.io_in, table.io_out);
 	ft_printf("|_______________________________|\n");
+	while (table.env[i])
+	{
+		ft_printf("%s\n",table.env[i]);
+		i++;
+	}
 	return (0);
 }*/

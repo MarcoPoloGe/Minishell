@@ -18,7 +18,7 @@ void	ft_child(t_cmd *cmd, char **env)
 	execve(cmd->cmd, cmd->args, env);
 }
 
-void	ft_executor(t_cmd_table *cmd_table, char **env)
+void	ft_executor(t_cmd_table *cmd_table)
 {
 	int	i;
 
@@ -27,7 +27,7 @@ void	ft_executor(t_cmd_table *cmd_table, char **env)
 	{
 		if (fork() == 0)
 		{
-			ft_child((cmd_table->cmd_array + i), env);
+			ft_child((cmd_table->cmd_array + i), cmd_table->env);
 		}
 		else
 		{
