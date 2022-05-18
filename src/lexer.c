@@ -76,7 +76,7 @@ char	**ft_lexer(char *str)
 	return (rtn);
 }
 
-/*
+
 int	main(void)
 {
 	char	*str = "ls -l|grep \"salut bobet\" < test.txt >> 1_A.txt\0";
@@ -97,4 +97,4 @@ int	main(void)
 	}
 	free(rtn);
 	return(0);
-}*/
+}

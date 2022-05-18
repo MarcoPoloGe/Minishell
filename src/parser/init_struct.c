@@ -38,7 +38,7 @@ void	ft_init_table(t_cmd_table *table, int nb_cmd, char **env)
 	table->cmd_count = nb_cmd;
 	table->io_in = NULL;
 	table->io_out = NULL;
-	table->io_extraction = 0;
-	table->io_insertion = 0;
+	table->io_extract_fd = -1;
+	table->io_insert_flag = -1;
 	ft_init_env(table, env);
 }

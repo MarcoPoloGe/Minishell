@@ -22,16 +22,19 @@ void	ft_update_io(t_cmd_table *table, char *str, char *file)
 	if (ft_str_same(str, "GREAT") || ft_str_same(str, "GREATGREAT"))
 	{
 		if (ft_str_same(str, "GREATGREAT"))
-			table->io_insertion = 1;
+			table->io_insert_flag = 1;
 		tmp = table->io_out;
 		table->io_out = ft_strdup(file);
 	}
 	else
 	{
 		if (ft_str_same(str, "LESSLESS"))
-			table->io_extraction = 1;
-		tmp = table->io_in;
-		table->io_in = ft_strdup(file);
+			table->io_extract_fd = ft_extra(file);
+		else if (ft_str_same(str, "LESS"))
+		{
+			tmp = table->io_in;
+			table->io_in = ft_strdup(file);
+		}
 	}
 }
 

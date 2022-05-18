@@ -31,7 +31,7 @@ int	ft_init_input(t_cmd_table *cmd_table)
 {
 	if (cmd_table->io_in == NULL)
 		return (0);
-	if (cmd_table->io_extraction)
+	if (cmd_table->io_extract_fd)
 	{
 		//todo not sure if extraction should happen here or in the parser.
 		return (0);
@@ -44,7 +44,7 @@ int	ft_init_output(t_cmd_table *cmd_table)
 {
 	if (cmd_table->io_out == NULL)
 		return (1);
-	if (cmd_table->io_insertion)
+	if (cmd_table->io_insert_flag)
 		return (ft_open_io(cmd_table->io_out, O_WRONLY | O_APPEND));
 	else
 		return (ft_open_io(cmd_table->io_out, O_WRONLY));
