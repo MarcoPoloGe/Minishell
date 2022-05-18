@@ -37,6 +37,8 @@ void	ft_update_io(t_cmd_table *table, char *str, char *file)
 
 void	ft_manage_token(t_cmd_table *table, char **tokens, int *j, int i)
 {
+	char	*s;
+
 	if (ft_str_same(tokens[*j], "GREAT") || ft_str_same(tokens[*j], "LESS")
 		|| ft_str_same(tokens[*j], "GREATGREAT")
 		|| ft_str_same(tokens[*j], "LESSLESS"))
@@ -45,7 +47,10 @@ void	ft_manage_token(t_cmd_table *table, char **tokens, int *j, int i)
 		(*j)++;
 	}
 	else
-		table->cmd_array[i].args[0] = ft_strcombine(table->cmd_array[i].args[0], tokens[*j]);
+	{
+		s = table->cmd_array[i].args[0];
+		table->cmd_array[i].args[0] = ft_strcombine(s, tokens[*j]);
+	}
 }
 
 void	ft_init_table(t_cmd_table *table, int nb_cmd)
@@ -108,13 +113,12 @@ t_cmd_table	ft_parser(char **tokens, char **env)
 			}
 		}
 		else
-			; //TO DO : ERROR incorrect cmd
+			;	//TO DO error incorrect cmd
 		j++;
 		i++;
 	}
 	return (table);
 }
-
 /*
 int	main(int argc, char **argv, char **env)
 {
@@ -138,8 +142,8 @@ int	main(int argc, char **argv, char **env)
 	while(table.cmd_array[i].cmd)
 	{
 		ft_printf("|-------------------------------|\n");
-		ft_printf("|		%s		|\n", table.cmd_array[i].cmd);
-		ft_printf("|arg : %s	|\n", table.cmd_array[i].args[0]);
+		ft_printf("|	%s		|\n", table.cmd_array[i].cmd);
+		ft_printf("|arg : %s		|\n", table.cmd_array[i].args[0]);
 		i++;
 	}
 	ft_printf("|	--------IO--------	|\n");

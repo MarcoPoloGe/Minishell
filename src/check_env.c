@@ -11,15 +11,12 @@
 /* ************************************************************************** */
 #include "minishell.h"
 
-char	*ft_check_env(char *str, char **env, int *i)
+char	*ft_while_env(char **env, char *str, int *i, int y)
 {
-	int		x;
-	int		y;
 	int		str_len;
+	int		x;
 	char	*tmp;
 	char	*s;
-
-	y = 0;
 
 	str_len = 0;
 	while (str[str_len + *i] != ' ')
@@ -40,6 +37,18 @@ char	*ft_check_env(char *str, char **env, int *i)
 		}
 		y++;
 	}
+	return (NULL);
+}
+
+char	*ft_check_env(char *str, char **env, int *i)
+{
+	int		y;
+	char	*s;
+
+	y = 0;
+	s = ft_while_env(env, str, i, y);
+	if (s)
+		return (s);
 	while ((ft_isalnum(str[*i]) == 1 || str[*i] == '_'))
 		(*i)++;
 	(*i)++;
@@ -65,16 +74,16 @@ char	*ft_check_str(char *str, char **env)
 	}
 	return (env_var);
 }
-
+/*
 int	main(int argc, char **argv, char **env)
 {
 	(void) argc;
 	(void) argv;
-	char	*str = "test $PATH_FA bonjour";
+	char	*str = "test $PATH bonjour";
 	char	*ret;
 
 	ret = ft_check_str(str, env);
 	ft_printf("str : %s\n", ret);
 	free(ret);
 	return (0);
-}
+}*/

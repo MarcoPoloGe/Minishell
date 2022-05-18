@@ -25,7 +25,7 @@ int	main(int argc, char **argv, char **env)
 	{
 		input = readline("minishell%");
 		token_tab = ft_lexer(input);
-		cmd_table = ft_parser(token_tab);
+		cmd_table = ft_parser(token_tab, env);
 		ft_expander(&cmd_table);
 		ft_executor(&cmd_table, env);
 	}
