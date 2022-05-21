@@ -37,7 +37,7 @@ char	*ft_strcombine_char(char *s1, char c);
 int		ft_str_is_num(char *str);
 void	ft_stradd(char **s1, char *s2);
 long	ft_atoi_big(char *str);
-int		ft_tablen(void **tab);
+int		ft_tablen(char **tab);
 int		ft_str_same(char *s1, char *s2);
 void	ft_free_tab(char **tab);
 void	ft_display_tab(char **tab);
@@ -46,7 +46,12 @@ void	ft_display_bits_int(int nb);
 int		ft_check_ext(char *file, char *ext);
 char	*ft_read_file(char *file_name, char *ext);
 int		ft_str_match(char *hay, char *needle);
-void	ft_tabcpy(char** dst, char** tab);
+void	ft_tabcpy(char **dst, char **tab);
 void	ft_tabadd(char ***tab, char *str);
+int		ft_isspace(char c);
+void	ft_stradd_len(char **s1, char *s2, int s2_len);
+void	ft_tabadd_len(char ***tab, char *str, int str_len);
+int		ft_skip_spaces(char *str, int i);
+char	***ft_read_two_way_tab_file(char *config_file, char *ext, char sep);
 
 #endif

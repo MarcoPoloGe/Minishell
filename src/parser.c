@@ -29,7 +29,7 @@ void	ft_update_io(t_cmd_table *table, char *str, char *file)
 	else
 	{
 		if (ft_str_same(str, "LESSLESS"))
-			table->io_extract_fd = ft_extra(file);
+			table->io_extract_fd = 1; // todo ft_extract(file);
 		else if (ft_str_same(str, "LESS"))
 		{
 			tmp = table->io_in;

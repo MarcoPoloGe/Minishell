@@ -20,9 +20,10 @@ void	ft_display_table(char **tab)
 	{
 		if (x != 0)
 			ft_putstr(", ");
-		ft_printf("<%s>", tab[x]);
+		ft_printf("#%s#", tab[x]);
 		x++;
 	}
+	ft_putchar('\n');
 }
 
 void	ft_display_two_way_table(char ***tab)
@@ -32,11 +33,11 @@ void	ft_display_two_way_table(char ***tab)
 	if (!tab)
 		return ;
 	y = 0;
-	ft_putstr("--- Start ---");
-	y++;
+	ft_putstr("--- Start ---\n");
 	while (tab[y])
 	{
 		ft_display_table(tab[y]);
+		ft_putchar('\n');
 		y++;
 	}
 	ft_putstr("--- End ---");

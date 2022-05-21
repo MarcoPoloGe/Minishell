@@ -27,3 +27,7 @@ fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
+
+
+test: $(SRC) $(LIB) $(INCL)
+	$(CC) -lreadline -L ./readline/8.1.2/lib -I ./readline/8.1.2/include $(SRC) $(LIB) -o $(NAME)

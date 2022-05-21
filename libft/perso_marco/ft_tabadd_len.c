@@ -12,20 +12,20 @@
 
 #include "perso_marco.h"
 
-void	ft_tabadd(char ***tab, char *str)
+void	ft_tabadd_len(char ***tab, char *str, int str_len)
 {
-	int		len;
+	int		tab_len;
 	char	**old_tab;
 
-	if (str == NULL)
+	if (str == NULL || str_len <= 0)
 		return ;
-	len = ft_tablen((*tab));
+	tab_len = ft_tablen((*tab));
 	old_tab = *tab;
-	*tab = ft_calloc(len + 2, sizeof(char *));
+	*tab = ft_calloc(tab_len + 2, sizeof(char *));
 	if (*tab == NULL)
 		return ;
 	ft_tabcpy(*tab, old_tab);
-	(*tab)[len] = ft_strdup(str);
+	(*tab)[tab_len] = ft_strndup(str, str_len);
 	if (old_tab)
 		ft_free_tab(old_tab);
 }

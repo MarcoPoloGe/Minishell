@@ -9,7 +9,7 @@
 /*   Updated: 2022/05/18 11:54:20 by facolomb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "minishell.h"
+#include "../minishell.h"
 
 void	ft_init_env(t_cmd_table *table, char **env)
 {

@@ -1,23 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tablen.c                                        :+:      :+:    :+:   */
+/*   ft_isspace.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbelarbi <marvin@42lausanne.ch>            +#+  +:+       +#+        */
+/*   By: Marco Belarbi <mbelarbi@42lausanne.ch>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/13 16:18:25 by mbelarbi          #+#    #+#             */
-/*   Updated: 2022/02/13 16:18:31 by mbelarbi         ###   ########.fr       */
+/*   Created: 2022/02/19 11:52:42 by Marco Belarbi     #+#    #+#             */
+/*   Updated: 2022/02/19 11:52:42 by Marco Belarbi    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "perso_marco.h"
 
-int	ft_tablen(char **tab)
+int	ft_isspace(char c)
 {
-	int	count;
-
-	count = 0;
-	while (tab && (*tab) && tab[count] != NULL)
-		count++;
-	return (count);
+	if (c == '\t' || c == '\n' || c == '\v' || c == '\f' || c == '\r'
+		|| c == ' ')
+		return (1);
+	return (0);
 }
