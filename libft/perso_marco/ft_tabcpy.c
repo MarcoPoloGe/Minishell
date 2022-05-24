@@ -17,7 +17,7 @@ void	ft_tabcpy(char **dst, char **tab)
 	int	i;
 	int	tablen;
 
-	tablen = ft_tablen((void **)tab);
+	tablen = ft_tablen(tab);
 	i = 0;
 	while (i < tablen)
 	{

@@ -9,7 +9,7 @@
 /*   Updated: 2022/05/12 14:26:51 by facolomb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "minishell.h"
+#include "../minishell.h"
 
 char	*ft_while_env(char **env, char *str, int *i, int y)
 {

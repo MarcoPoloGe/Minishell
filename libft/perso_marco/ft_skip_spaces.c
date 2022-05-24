@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tablen.c                                        :+:      :+:    :+:   */
+/*   ft_isspace.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbelarbi <marvin@42lausanne.ch>            +#+  +:+       +#+        */
+/*   By: Marco Belarbi <mbelarbi@42lausanne.ch>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/13 16:18:25 by mbelarbi          #+#    #+#             */
-/*   Updated: 2022/02/13 16:18:31 by mbelarbi         ###   ########.fr       */
+/*   Created: 2022/02/19 11:52:42 by Marco Belarbi     #+#    #+#             */
+/*   Updated: 2022/02/19 11:52:42 by Marco Belarbi    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "perso_marco.h"
 
-int	ft_tablen(char **tab)
+int	ft_skip_spaces(char *str, int i)
 {
-	int	count;
-
-	count = 0;
-	while (tab && (*tab) && tab[count] != NULL)
-		count++;
-	return (count);
+	if (str == NULL)
+		return (0);
+	while (str[i])
+	{
+		if (ft_isspace(str[i]))
+			i++;
+		else
+			break ;
+	}
+	return (i);
 }

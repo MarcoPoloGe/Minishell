@@ -24,7 +24,7 @@ int	main(int argc, char **argv, char **env)
 	while(1)//todo temp que pas ctrl-/ ect.
 	{
 		input = ft_prompt();
-		token_tab = ft_lexer(input);
+		token_tab = ft_lexer(input, "./config_files/lexer_meta.txt");
 		cmd_table = ft_parser(token_tab, env);
 		ft_expander(&cmd_table);
 		ft_executor(&cmd_table);
