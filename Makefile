@@ -1,7 +1,7 @@
 NAME = minishell
 
 SRC = main.c display.c lexer.c parser.c executor.c expander.c prompt.c utils.c
-SRC_PARSER_UTILS = get_cmd_path.c check_env.c init_struct.c
+SRC_PARSER_UTILS = get_cmd_path.c check_env.c init_struct.c extract_fd.c
 SRC_EXPANDER_UTILS = pipe.c
 
 SRC_PATH := $(foreach wrd,$(SRC),./src/$(wrd)) $(foreach wrd,$(SRC_EXPANDER_UTILS),src/expander_utils/$(wrd)) $(foreach wrd,$(SRC_PARSER_UTILS),src/parser_utils/$(wrd))

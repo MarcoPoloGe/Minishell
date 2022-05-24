@@ -6,7 +6,7 @@
 /*   By: mbelarbi@student.42lausanne.ch             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/17 16:14:09 by Marco Belarbi     #+#    #+#             */
-/*   Updated: 2022/05/16 16:20:56 by Marco Belarbi    ###   ########.fr       */
+/*   Updated: 2022/05/24 15:19:25 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ char		**ft_lexer(char *str, char *lexer_meta_file);
 t_cmd_table	ft_parser(char **tokens, char **env);
 char		*ft_check_str(char *str, char **env);
 void		ft_init_table(t_cmd_table *table, int nb_cmd, char **env);
-int	ft_extract_fd(char *str);
+int			ft_extract_fd(char *str);
 // --- Expander ---
 void		ft_expander(t_cmd_table *cmd_table);
 // --- Pipe ---
