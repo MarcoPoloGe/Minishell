@@ -1,6 +1,10 @@
 NAME = minishell
 
-SRC = src/main.c src/display.c src/lexer.c src/parser.c src/executor.c src/expander.c src/parser_utils/get_cmd_path.c src/expander_utils/pipe.c src/utils.c src/parser_utils/check_env.c src/parser_utils/init_struct.c src/prompt.c
+SRC = main.c display.c lexer.c parser.c executor.c expander.c prompt.c utils.c
+SRC_PARSER_UTILS = get_cmd_path.c check_env.c init_struct.c
+SRC_EXPANDER_UTILS = pipe.c
+
+SRC_PATH := $(foreach wrd,$(SRC),./src/$(wrd)) $(foreach wrd,$(SRC_EXPANDER_UTILS),src/expander_utils/$(wrd)) $(foreach wrd,$(SRC_PARSER_UTILS),src/parser_utils/$(wrd))
 
 LIB = ./libft/libft.a
 LDIR = ./libft
@@ -13,8 +17,8 @@ CFLAGS = -Wall -Wextra -Werror  -lreadline -L ./readline/8.1.2/lib -I ./readline
 
 all: $(NAME)
 
-$(NAME): $(SRC) $(LIB) $(INCL)
-	$(CC) $(CFLAGS) $(SRC) $(LIB) -o $(NAME)
+$(NAME): $(SRC_PATH) $(LIB) $(INCL)
+	$(CC) $(CFLAGS) $(SRC_PATH) $(LIB) -o $(NAME)
 
 $(LIB): $(LDIR)
 	make -C $(LDIR)
@@ -28,6 +32,5 @@ fclean: clean
 
 re: fclean all
 
-
-test: $(SRC) $(LIB) $(INCL)
-	$(CC) -lreadline -L ./readline/8.1.2/lib -I ./readline/8.1.2/include $(SRC) $(LIB) -o $(NAME)
+test: $(SRC_PATH) $(LIB) $(INCL)
+	$(CC) -lreadline -L ./readline/8.1.2/lib -I ./readline/8.1.2/include $(SRC_PATH) $(LIB) -o $(NAME)
