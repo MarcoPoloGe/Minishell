@@ -61,6 +61,7 @@ char		**ft_lexer(char *str);
 t_cmd_table	ft_parser(char **tokens, char **env);
 char		*ft_check_str(char *str, char **env);
 void		ft_init_table(t_cmd_table *table, int nb_cmd, char **env);
+int	ft_extract_fd(char *str);
 // --- Expander ---
 void		ft_expander(t_cmd_table *cmd_table);
 // --- Pipe ---
