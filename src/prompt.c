@@ -6,7 +6,7 @@
 /*   By: mbelarbi@student.42lausanne.ch             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 14:06:26 by Marco Belarbi     #+#    #+#             */
-/*   Updated: 2022/05/18 14:24:09 by Marco Belarbi    ###   ########.fr       */
+/*   Updated: 2022/05/24 16:27:36 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,11 @@ char	*ft_prompt(void)
 {
 	char	*input;
 
-	input = readline("minishell%");
+	input = NULL;
+	while (ft_strlen(input) <= 0)
+	{
+		input = readline("minishell%");
+	}
 	add_history(input);
 	return (input);
 }

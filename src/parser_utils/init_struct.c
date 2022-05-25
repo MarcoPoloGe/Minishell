@@ -6,7 +6,7 @@
 /*   By: facolomb <facolomb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 11:54:20 by facolomb          #+#    #+#             */
-/*   Updated: 2022/05/18 11:54:20 by facolomb         ###   ########.fr       */
+/*   Updated: 2022/05/24 16:38:27 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minishell.h"
@@ -20,11 +20,12 @@ void	ft_init_env(t_cmd_table *table, char **env)
 	}
 }
 
-void	ft_init_table(t_cmd_table *table, int nb_cmd, char **env)
+void ft_init_table(t_cmd_table *table, int nb_cmd, char **env)
 {
 	t_cmd		*cmd;
 	int			i;
 
+	table = ft_calloc(1, sizeof(t_cmd_table));
 	i = 0;
 	table->cmd_array = ft_calloc(nb_cmd + 1, sizeof(t_cmd));
 	cmd = table->cmd_array;

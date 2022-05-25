@@ -6,7 +6,7 @@
 /*   By: facolomb <facolomb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 15:28:40 by facolomb          #+#    #+#             */
-/*   Updated: 2022/04/14 15:28:40 by facolomb         ###   ########.fr       */
+/*   Updated: 2022/05/24 15:59:10 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,11 @@ char	**ft_lexer(char *str, char *lexer_meta_file)
 	int		word_len;
 	char	***meta_word_tab;
 	char	**token_tab;
+
+	if(str == NULL)
+	{
+		return(NULL); //todo error
+	}
 
 	meta_word_tab = NULL;
 	token_tab = NULL;

@@ -6,7 +6,7 @@
 /*   By: facolomb <facolomb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 15:14:10 by facolomb          #+#    #+#             */
-/*   Updated: 2022/05/24 16:38:24 by                  ###   ########.fr       */
+/*   Updated: 2022/05/24 16:37:27 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,25 +70,28 @@ int	ft_nb_cmd(char **tokens)
 	return (i);
 }
 
-t_cmd_table	ft_parser(char **tokens, char **env)
+t_cmd_table	*ft_parser(char **tokens, char **env)
 {
-	t_cmd_table		table;
+	t_cmd_table		*table;
 	int				nb_cmd;
 	int				i;
 	int				j;
 
+	if(tokens == NULL)
+		return (NULL);
+	table = NULL;
 	i = 0;
 	j = 0;
 	nb_cmd = ft_nb_cmd(tokens);
-	ft_init_table(&table, nb_cmd, env);
+	ft_init_table(table, nb_cmd, env);
 	while (i < nb_cmd)
 	{
-		table.cmd_array[i].cmd = ft_get_cmd_path(env, tokens[j++]);
-		if (table.cmd_array[i].cmd != NULL)
+		table->cmd_array[i].cmd = ft_get_cmd_path(env, tokens[j++]);
+		if (table->cmd_array[i].cmd != NULL)
 		{
 			while (tokens[j] && !ft_str_same(tokens[j], "PIPE"))
 			{
-				ft_manage_token(&table, tokens, &j, i);
+				ft_manage_token(table, tokens, &j, i);
 				j++;
 			}
 		}

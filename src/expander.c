@@ -73,5 +73,7 @@ void	ft_init_cmd_in_out(t_cmd_table *cmd_table)
 //chaque process.
 void	ft_expander(t_cmd_table *cmd_table)
 {
+	if(cmd_table == NULL)
+		return ;
 	ft_init_cmd_in_out(cmd_table);
 }

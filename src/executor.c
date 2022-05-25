@@ -6,7 +6,7 @@
 /*   By: mbelarbi@student.42lausanne.ch             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 14:38:53 by Marco Belarbi     #+#    #+#             */
-/*   Updated: 2022/05/16 16:16:33 by Marco Belarbi    ###   ########.fr       */
+/*   Updated: 2022/05/24 16:15:57 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -22,6 +22,8 @@ void	ft_executor(t_cmd_table *cmd_table)
 {
 	int	i;
 
+	if(cmd_table == NULL)
+		return ;
 	i = 0;
 	while (i < cmd_table->cmd_count)
 	{
@@ -32,8 +34,10 @@ void	ft_executor(t_cmd_table *cmd_table)
 		else
 		{
 			wait(NULL);
-			close(cmd_table->cmd_array[i].fd_out);
-			close(cmd_table->cmd_array[i].fd_in);
+			if(cmd_table->cmd_array[i].fd_out != 1)
+				close(cmd_table->cmd_array[i].fd_out);
+			if(cmd_table->cmd_array[i].fd_in != 0)
+				close(cmd_table->cmd_array[i].fd_in);
 		}
 		i++;
 	}
