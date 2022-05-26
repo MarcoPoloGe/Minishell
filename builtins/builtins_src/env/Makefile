@@ -1,11 +1,10 @@
-NAME = cd
+NAME = ../../bin/env
+SRC = env.c
 
-SRC =
+LIB = ../../../libft/libft.a
+LDIR = ../../../libft
 
-LIB = ../libft/libft.a
-LDIR = ./libft
-
-INCL = ../libft/libft.h
+INCL = ../../../src/minishell.h
 
 CC = gcc
 

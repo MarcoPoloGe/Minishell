@@ -1,11 +1,10 @@
-NAME = export
+NAME = ../../bin/echo
+SRC = echo.c
 
-SRC =
+LIB = ../../../libft/libft.a
+LDIR = ../../../libft
 
-LIB = ../libft/libft.a
-LDIR = ./libft
-
-INCL = ../libft/libft.h
+INCL = ../../../src/minishell.h
 
 CC = gcc
 

@@ -1,11 +1,10 @@
-NAME = unset
-
+NAME = ../../bin/cd
 SRC =
 
-LIB = ../libft/libft.a
-LDIR = ./libft
+LIB = ../../../libft/libft.a
+LDIR = ../../../libft
 
-INCL = ../libft/libft.h
+INCL = ../../../src/minishell.h
 
 CC = gcc
 

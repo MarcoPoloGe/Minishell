@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   echo.c                                             :+:      :+:    :+:   */
+/*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: facolomb <facolomb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/26 11:28:49 by facolomb          #+#    #+#             */
-/*   Updated: 2022/04/26 11:28:49 by facolomb         ###   ########.fr       */
+/*   Created: 2022/04/28 14:43:12 by facolomb          #+#    #+#             */
+/*   Updated: 2022/04/28 14:43:12 by facolomb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../src/minishell.h"
+#include "../../../src/minishell.h"
 
-void	ft_echo(char *str, int nl)
+void	ft_display_env(char **env)
 {
-	int	i;
-
-	i = 0;
-	while (str[i] != '\0')
-		ft_putchar(str[i++]);
-	if (nl == 1)
+	while (*env)
+	{
+		ft_putstr(*env);
 		ft_putchar('\n');
+		env++;
+	}
 }
-/*
+
 int	main(int argc, char **argv, char **env)
 {
-	ft_echo("test$path", 1, env);
-	return (0);
+	(void)argv;
+	(void)argc;
+	ft_display_env(env);
+	return(0);
 }
-*/

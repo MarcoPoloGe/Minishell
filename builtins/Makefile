@@ -1,27 +1,27 @@
-SRC =
+B_NAME = cd echo env exit export pwd unset
 
-LIB = ../libft/libft.a
-LDIR = ./libft
+B_NAME_PATH = $(foreach wrd,$(B_NAME),./bin/$(wrd))
 
-INCL = ../libft/libft.h
+B_DIR = ./builtins_src/
 
-CC = gcc
+B_FOLDER:= $(foreach wrd,$(B_NAME),$(B_DIR)$(wrd))
 
-CFLAGS = -Wall -Wextra -Werror #-g -fsanitize=address
+B_MAKE_COMMAND = $(foreach wrd,$(B_FOLDER),make -C $(wrd);)
 
-all: $(NAME)
+B_MAKE_CLEAN_COMMAND = $(foreach wrd,$(B_FOLDER),make -C $(wrd) clean;)
 
-$(NAME): $(SRC) $(LIB) $(INCL)
-	$(CC) $(CFLAGS) $(SRC) $(LIB) -o $(NAME)
+B_MAKE_FCLEAN_COMMAND = $(foreach wrd,$(B_FOLDER),make -C $(wrd) fclean;)
 
-$(LIB): $(LDIR)
-	make -C $(LDIR)
+
+all: $(B_NAME_PATH)
+
+$(B_NAME_PATH): $(B_FOLDER)
+	 $(B_MAKE_COMMAND)
 
 clean:
-	make -C $(LDIR) clean
+	$(B_MAKE_CLEAN_COMMAND)
 
 fclean: clean
-	make -C $(LDIR) fclean
-	rm -f $(NAME)
+	$(B_MAKE_FCLEAN_COMMAND)
 
 re: fclean all
