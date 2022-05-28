@@ -16,18 +16,19 @@ int	main(int argc, char **argv, char **env)
 {
 	char		*input;
 	char		**token_tab;
-	t_cmd_table cmd_table;
+	t_cmd_table *cmd_table;
 
 	(void)argc;
 	(void)argv;
 
-	//while(1)//todo temp que pas ctrl-/ ect.
-	//{
+	while(1)//todo temp que pas ctrl-/ ect.
+	{
 		input = ft_prompt();
 		token_tab = ft_lexer(input, "./config_files/lexer_meta.txt");
 		cmd_table = ft_parser(token_tab, env);
-		ft_expander(&cmd_table);
-		ft_executor(&cmd_table);
-	//}
+		ft_expander(cmd_table);
+		ft_display_cmd_table(cmd_table);
+		ft_executor(cmd_table);
+	}
 	return (0);
 }
