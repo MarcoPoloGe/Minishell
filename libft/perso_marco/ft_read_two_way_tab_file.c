@@ -40,7 +40,7 @@ char	***ft_read_two_way_tab_file(char *config_file, char *ext, char sep)
 	char	**simple_tab;
 
 	read = ft_read_file(config_file, ext);
-	if(read == NULL)
+	if (read == NULL)
 		return (NULL);
 	simple_tab = ft_split(read, '\n');
 	free(read);
