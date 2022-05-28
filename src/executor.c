@@ -23,7 +23,7 @@ void	ft_executor(t_cmd_table *cmd_table)
 	int	i;
 
 	if(cmd_table == NULL)
-		return ;
+		return ; //todo error
 	i = 0;
 	while (i < cmd_table->cmd_count)
 	{

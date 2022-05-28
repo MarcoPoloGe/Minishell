@@ -58,9 +58,9 @@ char		*ft_get_cmd_path(char **env, char *name);
 // --- Lexer ---
 char		**ft_lexer(char *str, char *lexer_meta_file);
 // --- Parser ---
-t_cmd_table	ft_parser(char **tokens, char **env);
+t_cmd_table	*ft_parser(char **tokens, char **env);
 char		*ft_check_str(char *str, char **env);
-void		ft_init_table(t_cmd_table *table, int nb_cmd, char **env);
+t_cmd_table	*ft_init_table(int nb_cmd, char **env);
 int			ft_extract_fd(char *str);
 // --- Expander ---
 void		ft_expander(t_cmd_table *cmd_table);

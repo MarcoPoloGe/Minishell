@@ -18,9 +18,7 @@ char	*ft_prompt(void)
 
 	input = NULL;
 	while (ft_strlen(input) <= 0)
-	{
 		input = readline("minishell%");
-	}
 	add_history(input);
 	return (input);
 }

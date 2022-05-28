@@ -70,30 +70,29 @@ int	ft_nb_cmd(char **tokens)
 	return (i);
 }
 
-t_cmd_table	ft_parser(char **tokens, char **env)
+t_cmd_table	*ft_parser(char **tokens, char **env)
 {
-	t_cmd_table		table;
-	int				nb_cmd;
+	t_cmd_table		*table;
 	int				i;
 	int				j;
 
 	i = 0;
 	j = 0;
-	nb_cmd = ft_nb_cmd(tokens);
-	ft_init_table(&table, nb_cmd, env);
-	while (i < nb_cmd)
+	table = ft_init_table(ft_nb_cmd(tokens), env);
+	while (i < table->cmd_count)
 	{
-		table.cmd_array[i].cmd = ft_get_cmd_path(env, tokens[j++]);
-		if (table.cmd_array[i].cmd != NULL)
+		table->cmd_array[i].cmd = ft_get_cmd_path(env, tokens[j++]);
+		if (table->cmd_array[i].cmd != NULL)
 		{
+			ft_tabadd(&table->cmd_array[i].args, table->cmd_array[i].cmd); //ajout de l'argv[0] pour les commandes ex pour ls = ./bin/ls.
 			while (tokens[j] && !ft_str_same(tokens[j], "PIPE"))
 			{
-				ft_manage_token(&table, tokens, &j, i);
+				ft_manage_token(table, tokens, &j, i);
 				j++;
 			}
 		}
 		else
-			;	//TO DO error incorrect cmd
+			;	//TODO error incorrect cmd
 		j++;
 		i++;
 	}
