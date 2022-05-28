@@ -29,22 +29,19 @@ int	ft_open_io(char *io, int flags)
 
 int	ft_init_input(t_cmd_table *cmd_table)
 {
-	if (cmd_table->io_in == NULL)
-		return (0);
-	if (cmd_table->io_extract_fd)
-	{
-		//todo not sure if extraction should happen here or in the parser.
-		return (0);
-	}
-	else
+	if (cmd_table->io_extract_fd > 0)
+		return (cmd_table->io_extract_fd);
+	if (cmd_table->io_in != NULL)
 		return (ft_open_io(cmd_table->io_in, O_RDONLY));
+	else
+		return (0);
 }
 
 int	ft_init_output(t_cmd_table *cmd_table)
 {
 	if (cmd_table->io_out == NULL)
 		return (1);
-	if (cmd_table->io_insert_flag)
+	if (cmd_table->io_insert_flag > 0)
 		return (ft_open_io(cmd_table->io_out, O_WRONLY | O_APPEND));
 	else
 		return (ft_open_io(cmd_table->io_out, O_WRONLY));
