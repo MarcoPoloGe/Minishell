@@ -25,7 +25,7 @@ int	main(int argc, char **argv, char **env)
 	{
 		input = ft_prompt();
 		token_tab = ft_lexer(input, "./config_files/lexer_meta.txt");
-		cmd_table = ft_parser(token_tab, env);
+		cmd_table = ft_parser(token_tab, env, "./builtins/bin");
 		ft_expander(cmd_table);
 		ft_display_cmd_table(cmd_table);
 		ft_executor(cmd_table);

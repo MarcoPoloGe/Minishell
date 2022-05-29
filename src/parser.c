@@ -70,7 +70,7 @@ int	ft_nb_cmd(char **tokens)
 	return (i);
 }
 
-t_cmd_table	*ft_parser(char **tokens, char **env)
+t_cmd_table	*ft_parser(char **tokens, char **env, char *bin_folder)
 {
 	t_cmd_table		*table;
 	int				i;
@@ -81,7 +81,7 @@ t_cmd_table	*ft_parser(char **tokens, char **env)
 	table = ft_init_table(ft_nb_cmd(tokens), env);
 	while (i < table->cmd_count)
 	{
-		table->cmd_array[i].cmd = ft_get_cmd_path(env, tokens[j++]);
+		table->cmd_array[i].cmd = ft_get_cmd_path(env, tokens[j++], bin_folder);
 		if (table->cmd_array[i].cmd != NULL)
 		{
 			ft_tabadd(&table->cmd_array[i].args, table->cmd_array[i].cmd); //ajout de l'argv[0] pour les commandes ex pour ls = ./bin/ls.

@@ -54,11 +54,11 @@ void		ft_exe_tester(void);
 // --- Prompt ---
 char	*ft_prompt(void);
 // --- Get_cmd_path ---
-char		*ft_get_cmd_path(char **env, char *name);
+char	*ft_get_cmd_path(char **env, char *name, char *builtin_folder);
 // --- Lexer ---
 char		**ft_lexer(char *str, char *lexer_meta_file);
 // --- Parser ---
-t_cmd_table	*ft_parser(char **tokens, char **env);
+t_cmd_table	*ft_parser(char **tokens, char **env, char *bin_folder);
 char		*ft_check_str(char *str, char **env);
 t_cmd_table	*ft_init_table(int nb_cmd, char **env);
 int			ft_extract_fd(char *str);

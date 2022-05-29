@@ -27,7 +27,7 @@ char	*ft_get_path(char **env)
 	return (NULL);
 }
 
-char	**ft_get_paths_list(char **env)
+char	**ft_get_paths_env(char **env)
 {
 	return (ft_split(ft_get_path(env) + ft_strlen("PATH="), ':'));
 }
@@ -69,12 +69,13 @@ char	*ft_find_cmd_in_paths(char **paths_list, char *name)
 }
 
 //si la commande n'existe pas ft_get_cmd_path retourne NULL.
-char	*ft_get_cmd_path(char **env, char *name)
+char	*ft_get_cmd_path(char **env, char *name, char *builtin_folder)
 {
 	char	**paths_list;
 	char	*cmd_path;
 
-	paths_list = ft_get_paths_list(env);
+	paths_list = ft_get_paths_env(env);
+	ft_tabadd_front(&paths_list, builtin_folder);
 	cmd_path = ft_find_cmd_in_paths(paths_list, name);
 	ft_free_tab(paths_list);
 	return (cmd_path);

@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tabcpy.c                                        :+:      :+:    :+:   */
+/*   ft_strcat.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbelarbi@student.42lausanne.ch             +#+  +:+       +#+        */
+/*   By: mbelarbi <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/17 15:14:12 by Marco Belarbi     #+#    #+#             */
-/*   Updated: 2022/05/17 15:35:36 by Marco Belarbi    ###   ########.fr       */
+/*   Created: 2022/01/07 12:27:06 by mbelarbi          #+#    #+#             */
+/*   Updated: 2022/01/07 12:27:08 by mbelarbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "perso_marco.h"
 
-int	ft_tabcpy(char **dst, char **tab)
+int	ft_tabcat(char **dst, char **tab)
 {
 	int	i;
+	int	dstlen;
 	int	tablen;
 
+	dstlen = ft_tablen(dst);
 	tablen = ft_tablen(tab);
 	i = 0;
-	while (i < tablen)
+	while (tab[i] && (i + 1) < tablen)
 	{
-		dst[i] = ft_strdup(tab[i]);
+		dst[dstlen + i] = ft_strdup(tab[i]);
 		i++;
 	}
-	dst[i] = NULL;
-	return (tablen);
+	dst[dstlen + i] = NULL;
+	return (dstlen + tablen);
 }

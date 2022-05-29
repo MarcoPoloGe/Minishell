@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tabcpy.c                                        :+:      :+:    :+:   */
+/*   ft_tabadd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbelarbi@student.42lausanne.ch             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/17 15:14:12 by Marco Belarbi     #+#    #+#             */
-/*   Updated: 2022/05/17 15:35:36 by Marco Belarbi    ###   ########.fr       */
+/*   Created: 2022/05/17 15:15:02 by Marco Belarbi     #+#    #+#             */
+/*   Updated: 2022/05/17 15:35:10 by Marco Belarbi    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "perso_marco.h"
 
-int	ft_tabcpy(char **dst, char **tab)
+void	ft_tabadd_front(char ***tab, char *str)
 {
-	int	i;
-	int	tablen;
+	int		len;
+	char	**old_tab;
 
-	tablen = ft_tablen(tab);
-	i = 0;
-	while (i < tablen)
-	{
-		dst[i] = ft_strdup(tab[i]);
-		i++;
-	}
-	dst[i] = NULL;
-	return (tablen);
+	if (str == NULL)
+		return ;
+	len = ft_tablen((*tab));
+	old_tab = *tab;
+	*tab = ft_calloc(len + 2, sizeof(char *));
+	if (*tab == NULL)
+		return ;
+	(*tab)[0] = ft_strdup(str);
+	ft_tabcat(*tab, old_tab);
+	if (old_tab)
+		ft_free_tab(old_tab);
 }
