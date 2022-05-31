@@ -92,7 +92,10 @@ t_cmd_table	*ft_parser(char **tokens, char **env, char *bin_folder)
 			}
 		}
 		else
-			;	//TODO error incorrect cmd
+		{
+			table = ft_free_struct(table);
+			return (table);
+		}
 		j++;
 		i++;
 	}

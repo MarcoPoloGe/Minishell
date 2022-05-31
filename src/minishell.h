@@ -52,19 +52,23 @@ void		ft_exe_tester(void);
 // ----- Functions -----
 // --- Main ---
 // --- Prompt ---
-char	*ft_prompt(void);
-// --- Get_cmd_path ---
-char	*ft_get_cmd_path(char **env, char *name, char *builtin_folder);
+char		*ft_prompt(void);
+
 // --- Lexer ---
 char		**ft_lexer(char *str, char *lexer_meta_file);
 // --- Parser ---
 t_cmd_table	*ft_parser(char **tokens, char **env, char *bin_folder);
+//		- Check_str -
 char		*ft_check_str(char *str, char **env);
+//		- Init_table -
 t_cmd_table	*ft_init_table(int nb_cmd, char **env);
+//		- Extract_fd -
 int			ft_extract_fd(char *str);
+// 		- Get_cmd_path -
+char	*ft_get_cmd_path(char **env, char *name, char *builtin_folder);
 // --- Expander ---
 void		ft_expander(t_cmd_table *cmd_table);
-// --- Pipe ---
+//		- Pipe -
 int			**ft_make_pipe_list(int nb);
 // --- Executor ---
 void		ft_executor(t_cmd_table *cmd_table);
@@ -78,5 +82,5 @@ void		ft_display_table(char **tab);
 void		ft_display_cmd_table(t_cmd_table *cmd_table);
 void		ft_display_two_way_table(char ***tab);
 // --- Utils ---
-
+t_cmd_table	*ft_free_struct(t_cmd_table *table);
 #endif
