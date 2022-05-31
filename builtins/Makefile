@@ -12,11 +12,11 @@ B_MAKE_CLEAN_COMMAND = $(foreach wrd,$(B_FOLDER),make -C $(wrd) clean;)
 
 B_MAKE_FCLEAN_COMMAND = $(foreach wrd,$(B_FOLDER),make -C $(wrd) fclean;)
 
-
 all: $(B_NAME_PATH)
 
 $(B_NAME_PATH): $(B_FOLDER)
-	 $(B_MAKE_COMMAND)
+	mkdir -p $(@D)
+	$(B_MAKE_COMMAND)
 
 clean:
 	$(B_MAKE_CLEAN_COMMAND)
