@@ -81,7 +81,14 @@ t_cmd_table	*ft_parser(char **tokens, char **env, char *bin_folder)
 	table = ft_init_table(ft_nb_cmd(tokens), env);
 	while (i < table->cmd_count)
 	{
-		table->cmd_array[i].cmd = ft_get_cmd_path(env, tokens[j++], bin_folder);
+		table->cmd_array[i].cmd = ft_get_redir_path(tokens[j++], redir_folder);
+		if(table->cmd_array[i].cmd != NULL)
+		{
+			ft_tabadd(&table->cmd_array[i].args, table->cmd_array[i].cmd);
+			ft_tabadd(&table->cmd_array[i].args, tokens[j++]);
+		}
+		else
+			table->cmd_array[i].cmd = ft_get_cmd_path(env, tokens[j++], bin_folder);
 		if (table->cmd_array[i].cmd != NULL)
 		{
 			ft_tabadd(&table->cmd_array[i].args, table->cmd_array[i].cmd); //ajout de l'argv[0] pour les commandes ex pour ls = ./bin/ls.
@@ -93,7 +100,7 @@ t_cmd_table	*ft_parser(char **tokens, char **env, char *bin_folder)
 		}
 		else
 		{
-			table = ft_free_struct(table);
+			ft_free_struct(&table);
 			return (table);
 		}
 		j++;
