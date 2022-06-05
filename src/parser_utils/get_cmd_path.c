@@ -38,6 +38,7 @@ char	*ft_find_cmd_in_directory(char *path, char *name)
 	struct dirent	*in_file;
 
 	dir = opendir(path);
+	//todo error cannot open folder
 	in_file = readdir(dir);
 	while (in_file)
 	{
