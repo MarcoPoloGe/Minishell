@@ -12,14 +12,27 @@
 
 #include "../minishell.h"
 
+void	ft_extract(char *str, int tube[2])
+{
+	char	*input;
+	int 	strlen;
+
+	input = NULL;
+	while (!(ft_str_same(str, input)))
+	{
+		input = ft_strcombine(input, readline("extract>"));
+		input = ft_strcombine_char(input, '\n');
+	}
+	strlen = ft_strlen(input);
+	write(tube[1], input, strlen);
+}
+
 int	ft_extract_fd(char *str)
 {
 	int		tube[2];
-    int		strlen;
 
 	pipe(tube);
-	strlen = ft_strlen(str) + 1;
-	write(tube[1], str, strlen);
+	ft_extract(str, tube);
 	close(tube[1]);
 	return (tube[0]);
 }

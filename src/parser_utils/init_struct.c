@@ -36,10 +36,6 @@ t_cmd_table	*ft_init_table(int nb_cmd, char **env)
 	table = ft_calloc(1, sizeof(t_cmd_table));
 	table->cmd_array = ft_init_cmd_array(nb_cmd);
 	table->cmd_count = nb_cmd;
-	table->io_in = NULL;
-	table->io_out = NULL;
-	table->io_extract_fd = -1;
-	table->io_insert_flag = -1;
 	table->env = ft_tabdup(env);
 	return (table);
 }

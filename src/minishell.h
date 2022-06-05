@@ -37,10 +37,6 @@ typedef struct s_cmd_table
 {
 	t_cmd	*cmd_array;
 	int		cmd_count;
-	int		io_extract_fd;
-	char	*io_in;
-	char	*io_out;
-	int		io_insert_flag;
 	char	**env;
 }	t_cmd_table;
 

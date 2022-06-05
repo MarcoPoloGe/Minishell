@@ -17,13 +17,10 @@
 
 void	ft_update_io(t_cmd_table *table, char *str, char *file)
 {
-	char	*tmp;
-
 	if (ft_str_same(str, "GREAT") || ft_str_same(str, "GREATGREAT"))
 	{
 		if (ft_str_same(str, "GREATGREAT"))
 			table->io_insert_flag = 1;
-		tmp = table->io_out;
 		table->io_out = ft_strdup(file);
 	}
 	else
@@ -31,10 +28,7 @@ void	ft_update_io(t_cmd_table *table, char *str, char *file)
 		if (ft_str_same(str, "LESSLESS"))
 			table->io_extract_fd = ft_extract_fd(file);
 		else if (ft_str_same(str, "LESS"))
-		{
-			tmp = table->io_in;
 			table->io_in = ft_strdup(file);
-		}
 	}
 }
 
@@ -53,6 +47,16 @@ void	ft_manage_token(t_cmd_table *table, char **tokens, int *j, int i)
 	{
 		arg = ft_check_str(tokens[*j], table->env);
 		ft_tabadd(&table->cmd_array[i].args, arg);
+	}
+}
+
+void	ft_add_until_pipe(char **tokens, t_cmd_table *table, int i, int *j)
+{
+	ft_tabadd(&table->cmd_array[i].args, table->cmd_array[i].cmd);
+	while (tokens[(*j)] && !ft_str_same(tokens[(*j)], "PIPE"))
+	{
+		ft_manage_token(table, tokens, j, i);
+		(*j)++;
 	}
 }
 
@@ -90,17 +94,10 @@ t_cmd_table	*ft_parser(char **tokens, char **env, char *bin_folder)
 		else
 			table->cmd_array[i].cmd = ft_get_cmd_path(env, tokens[j++], bin_folder);
 		if (table->cmd_array[i].cmd != NULL)
-		{
-			ft_tabadd(&table->cmd_array[i].args, table->cmd_array[i].cmd); //ajout de l'argv[0] pour les commandes ex pour ls = ./bin/ls.
-			while (tokens[j] && !ft_str_same(tokens[j], "PIPE"))
-			{
-				ft_manage_token(table, tokens, &j, i);
-				j++;
-			}
-		}
+			ft_add_until_pipe(tokens, table, i, &j);
 		else
 		{
-			ft_free_struct(&table);
+			ft_free_struct(table);
 			return (table);
 		}
 		j++;
