@@ -18,6 +18,8 @@ int	ft_tabcat(char **dst, char **tab)
 	int	dstlen;
 	int	tablen;
 
+	if(tab == NULL)
+		return 0;
 	dstlen = ft_tablen(dst);
 	tablen = ft_tablen(tab);
 	i = 0;
