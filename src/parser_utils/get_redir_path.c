@@ -13,8 +13,8 @@
 
 char	*ft_find_redir_path(char ***redirs, char *str)
 {
-	int i;
-	char *result;
+	int		i;
+	char	*result;
 
 	i = 0;
 	while (i < 4)
@@ -29,9 +29,9 @@ char	*ft_find_redir_path(char ***redirs, char *str)
 char	*ft_get_redir_path(char *str)
 {
 	char	***redirs;
-	char 	*redir_path;
+	char	*redir_path;
 
-	redirs = ft_read_two_way_tab(REDIR_WORDS_FILE, "txt",'=');
+	redirs = ft_read_two_way_tab(REDIR_WORDS_FILE, "txt", '=');
 	if (!redirs)
 		return (NULL);
 	redir_path = ft_find_redir_path(redirs, str);
