@@ -12,12 +12,22 @@
 
 #include "perso_marco.h"
 
-int	ft_strlen_to_char(char *str, char c)
+//retourne la longueur jusqu'au char.
+//si le char n'est pas présent ou que la string est null le retour est -1.
+int	ft_strlen_char(char *str, char c)
 {
 	int	len;
 
+	if(str == NULL)
+		return (-1);
 	len = 0;
-	while (str[len] && str[len] != c)
+	while (str[len])
+	{
+		if (str[len] == c)
+		{
+			return (len);
+		}
 		len++;
-	return (len);
+	}
+	return (-1);
 }
