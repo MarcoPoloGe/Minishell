@@ -24,7 +24,10 @@ void	ft_display_env(char **env)
 int	main(int argc, char **argv, char **env)
 {
 	(void)argv;
-	(void)argc;
-	ft_display_env(env);
+
+	if (argc != 2)
+		ft_printf("Too many arguments !");
+	else
+		ft_display_env(env);
 	return(0);
 }

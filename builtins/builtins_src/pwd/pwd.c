@@ -19,8 +19,13 @@ void	ft_display_pwd(void)
 	ft_printf("%s\n", str);
 }
 
-int	main(void)
+int	main(int argc, char **argv)
 {
-	ft_display_pwd();
+	(void) argv;
+
+	if (argc != 2)
+		ft_printf("Too many arguments !\n");
+	else
+		ft_display_pwd();
 	return(0);
 }
