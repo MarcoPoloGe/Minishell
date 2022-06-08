@@ -34,7 +34,7 @@ char	***ft_make_two_way_tab(char **simple_tab, char sep)
 
 //crée un tableau a deux dimention a partir d'un fichier.
 //param : nom du fichier, extention du fichier, séparateur entre deux éléments.
-char	***ft_read_two_way_tab_file(char *config_file, char *ext, char sep)
+char	***ft_read_two_way_tab(char *config_file, char *ext, char sep)
 {
 	char	*read;
 	char	**simple_tab;
