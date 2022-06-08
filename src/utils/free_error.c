@@ -17,7 +17,7 @@ void ft_free_struct(t_cmd_table **table_adress)
 	t_cmd_table *table;
 	int i;
 
-	if(table_adress == NULL || *table_adress == NULL)
+	if (table_adress == NULL || *table_adress == NULL)
 		return ;
 	table = *table_adress;
 	i = 0;
@@ -29,10 +29,6 @@ void ft_free_struct(t_cmd_table **table_adress)
 		i++;
 	}
 	free(table->cmd_array);
-	if (table->io_in)
-		free(table->io_in);
-	if (table->io_out)
-		free(table->io_out);
 	ft_free_tab(table->env);
 	free(table);
 	table = NULL;
