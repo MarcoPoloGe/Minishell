@@ -25,6 +25,9 @@
 # include <readline/history.h>
 # include <stdlib.h>
 
+# define BUILTIN_FOLDER "./builtins/bin"
+# define META_WORDS_FILE "./config_files/meta_words.txt"
+
 typedef struct s_cmd
 {
 	int		fd_in;
@@ -41,9 +44,6 @@ typedef struct s_cmd_table
 }	t_cmd_table;
 
 //for testing (to be removed)
-t_cmd_table	ft_create_cmd_table(void);
-t_cmd_table	ft_create_cmd_table_realistic(void);
-void		ft_exe_tester(void);
 
 // ----- Functions -----
 // --- Main ---
@@ -51,20 +51,21 @@ void		ft_exe_tester(void);
 char		*ft_prompt(void);
 
 // --- Lexer ---
-char		**ft_lexer(char *str, char *lexer_meta_file);
+char		**ft_lexer(char *str);
+// --- lexer_utils ---
+char		**ft_build_token_tab(char *str);
+void		ft_cmd_tokens_in_order(char ***token_tab);
+void		ft_all_tokens_in_order(char ***token_tab);
 // --- Parser ---
 t_cmd_table	*ft_parser(char **tokens, char **env, char *bin_folder);
-//		- Check_str -
+// --- parser_utils ---
 char		*ft_check_str(char *str, char **env);
-//		- Init_table -
 t_cmd_table	*ft_init_table(int nb_cmd, char **env);
-//		- Extract_fd -
 int			ft_extract_fd(char *str);
-// 		- Get_cmd_path -
-char	*ft_get_cmd_path(char **env, char *name, char *builtin_folder);
+char		*ft_get_cmd_path(char **env, char *name, char *builtin_folder);
 // --- Expander ---
 void		ft_expander(t_cmd_table *cmd_table);
-//		- Pipe -
+// --- expander_utils ---
 int			**ft_make_pipe_list(int nb);
 // --- Executor ---
 void		ft_executor(t_cmd_table *cmd_table);
@@ -78,5 +79,12 @@ void		ft_display_table(char **tab);
 void		ft_display_cmd_table(t_cmd_table *cmd_table);
 void		ft_display_two_way_table(char ***tab);
 // --- Utils ---
-t_cmd_table	*ft_free_struct(t_cmd_table *table);
+void		ft_free_struct(t_cmd_table **table);
+int			ft_is_meta(char *input);
+char 		*ft_get_meta_alias(char *input);
+int			ft_is_redir(char *token);
+int			ft_is_redir_out(char *token);
+int			ft_is_redir_in(char *token);
+void		ft_error(char *message, t_cmd_table **table);
+void		ft_fatal_error(char *message, t_cmd_table **table);
 #endif

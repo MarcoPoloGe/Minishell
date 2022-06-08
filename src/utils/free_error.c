@@ -10,12 +10,16 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
-t_cmd_table	*ft_free_struct(t_cmd_table *table)
+void ft_free_struct(t_cmd_table **table_adress)
 {
+	t_cmd_table *table;
 	int i;
 
+	if(table_adress == NULL || *table_adress == NULL)
+		return ;
+	table = *table_adress;
 	i = 0;
 	while (table->cmd_array[i].cmd)
 	{
@@ -32,5 +36,17 @@ t_cmd_table	*ft_free_struct(t_cmd_table *table)
 	ft_free_tab(table->env);
 	free(table);
 	table = NULL;
-	return (table);
+}
+
+void ft_error(char *message, t_cmd_table **table) //todo better
+{
+	ft_printf("Error : %s\n", message);
+	ft_free_struct(table);
+}
+
+void ft_fatal_error(char *message, t_cmd_table **table) //todo better
+{
+	ft_printf("Fatal Error : %s\n", message);
+	ft_free_struct(table);
+	exit(1);
 }
