@@ -1,31 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcat.c                                        :+:      :+:    :+:   */
+/*   ft_tabcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbelarbi <marvin@42lausanne.ch>            +#+  +:+       +#+        */
+/*   By: mbelarbi@student.42lausanne.ch             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/07 12:27:06 by mbelarbi          #+#    #+#             */
-/*   Updated: 2022/01/07 12:27:08 by mbelarbi         ###   ########.fr       */
+/*   Created: 2022/05/17 15:14:12 by Marco Belarbi     #+#    #+#             */
+/*   Updated: 2022/05/17 15:35:36 by Marco Belarbi    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "perso_marco.h"
 
-size_t	ft_strcat(char *dst, char *str)
+char	**ft_tabndup(char **tab, int len)
 {
-	size_t	i;
-	size_t	dstlen;
-	size_t	strlen;
+	char	**tabdup;
 
-	dstlen = ft_strlen(dst);
-	strlen = ft_strlen(str);
-	i = 0;
-	while (str[i])
-	{
-		dst[dstlen + i] = str[i];
-		i++;
-	}
-	dst[dstlen + i] = '\0';
-	return (dstlen + strlen);
+	tabdup = ft_calloc(len + 1, sizeof(char *));
+	if (tabdup == NULL)
+		return (NULL);
+	ft_tablcpy(tabdup, tab, len + 1);
+	return (tabdup);
 }

@@ -56,5 +56,8 @@ char	***ft_read_two_way_tab_file(char *config_file, char *ext, char sep);
 char	**ft_tabdup(char **tab);
 int		ft_tabcat(char **dst, char **tab);
 void	ft_tabadd_front(char ***tab, char *str);
-
+int		ft_tablcpy(char **dst, char **tab, int len);
+char	**ft_tabndup(char **tab, int len);
+void	ft_tab_combine(char ***s1, char **s2);
+void	ft_tabdel(char **tab, int index);
 #endif

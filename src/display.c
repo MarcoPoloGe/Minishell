@@ -17,6 +17,7 @@ void	ft_display_table(char **tab)
 		return ;
 	int	x;
 
+	ft_putstr("[ ");
 	x = 0;
 	while (tab[x])
 	{
@@ -25,6 +26,7 @@ void	ft_display_table(char **tab)
 		ft_printf("#%s#", tab[x]);
 		x++;
 	}
+	ft_putstr(" ]\n");
 }
 
 void	ft_display_two_way_table(char ***tab)

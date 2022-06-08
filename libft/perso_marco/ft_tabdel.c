@@ -1,31 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcat.c                                        :+:      :+:    :+:   */
+/*   ft_tabdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbelarbi <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/07 12:27:06 by mbelarbi          #+#    #+#             */
-/*   Updated: 2022/01/07 12:27:08 by mbelarbi         ###   ########.fr       */
+/*   Created: 2022/06/07 15:22:29 by mbelarbi          #+#    #+#             */
+/*   Updated: 2022/06/07 15:22:31 by mbelarbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "perso_marco.h"
 
-size_t	ft_strcat(char *dst, char *str)
+//supprime l'element du tableau a l'index donné (ne realloc pas).
+void	ft_tabdel(char **tab, int index)
 {
-	size_t	i;
-	size_t	dstlen;
-	size_t	strlen;
+	int	i;
+	int	shift_flag;
 
-	dstlen = ft_strlen(dst);
-	strlen = ft_strlen(str);
+	shift_flag = 0;
 	i = 0;
-	while (str[i])
+	if (index >= ft_tablen(tab))
+		return ;
+	while (tab[i])
 	{
-		dst[dstlen + i] = str[i];
+		if (i == index)
+		{
+			if (tab[i] == NULL)
+				free(tab[i]);
+			shift_flag = 1;
+		}
+		if (shift_flag == 1)
+		{
+			tab[i] = tab[i + 1];
+		}
 		i++;
 	}
-	dst[dstlen + i] = '\0';
-	return (dstlen + strlen);
+	tab[i] = NULL;
 }

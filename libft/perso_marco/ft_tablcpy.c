@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcat.c                                        :+:      :+:    :+:   */
+/*   ft_tabcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbelarbi <marvin@42lausanne.ch>            +#+  +:+       +#+        */
+/*   By: mbelarbi@student.42lausanne.ch             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/07 12:27:06 by mbelarbi          #+#    #+#             */
-/*   Updated: 2022/01/07 12:27:08 by mbelarbi         ###   ########.fr       */
+/*   Created: 2022/05/17 15:14:12 by Marco Belarbi     #+#    #+#             */
+/*   Updated: 2022/05/17 15:35:36 by Marco Belarbi    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "perso_marco.h"
 
-size_t	ft_strcat(char *dst, char *str)
+int	ft_tablcpy(char **dst, char **tab, int len)
 {
-	size_t	i;
-	size_t	dstlen;
-	size_t	strlen;
+	int	i;
+	int	tablen;
 
-	dstlen = ft_strlen(dst);
-	strlen = ft_strlen(str);
+	tablen = ft_tablen(tab);
+	if (len <= 0)
+		return (tablen);
 	i = 0;
-	while (str[i])
+	while (i < len - 1 && i < tablen)
 	{
-		dst[dstlen + i] = str[i];
+		dst[i] = ft_strdup(tab[i]);
 		i++;
 	}
-	dst[dstlen + i] = '\0';
-	return (dstlen + strlen);
+	dst[i] = NULL;
+	return (tablen);
 }
