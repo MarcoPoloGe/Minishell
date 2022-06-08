@@ -75,7 +75,7 @@ void		ft_executor(t_cmd_table *cmd_table);
 // --- Builtins ---
 void		ft_echo(char *str, int nl);
 void		ft_display_env(char **env);
-void		ft_display_pwd(char **env);
+void		ft_display_pwd();
 // --- Display ---
 void		ft_display_lexer_tokens(char **tokens_tab);
 void		ft_display_table(char **tab);
