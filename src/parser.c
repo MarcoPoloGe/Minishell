@@ -56,9 +56,16 @@ int	ft_manage_redir(t_cmd_table *table, char **tokens, int i, int *j)
 
 int	ft_manage_cmd(t_cmd_table *table, char **tokens, int i, int *j)
 {
+	table->cmd_array[i].cmd = ft_get_cmd_path(table->env, tokens[*j]);
 	if (table->cmd_array[i].cmd != NULL)
 	{
-		table->cmd_array[i].cmd = ft_get_cmd_path(table->env, tokens[(*j)++]);
+		++j;
+		ft_add_cmd_params(tokens, table, i, j);
+		return (0);
+	}
+	else if (access(tokens[*j], X_OK) == 0)
+	{
+		table->cmd_array[i].cmd = tokens[(*j)++];
 		ft_add_cmd_params(tokens, table, i, j);
 		return (0);
 	}
