@@ -1,4 +1,4 @@
-B_NAME = cd echo env exit export pwd unset
+B_NAME = cd echo env export pwd unset
 
 B_NAME_PATH = $(foreach wrd,$(B_NAME),./bin/$(wrd))
 

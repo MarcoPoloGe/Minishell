@@ -81,6 +81,7 @@ t_cmd_table	*ft_new_parser(char **tokens, char **env)
 	table = ft_init_table(ft_nb_cmd(tokens), env);
 	while (i < table->cmd_count)
 	{
+		ft_is_exit(table, tokens[j]);
 		table->cmd_array[i].cmd = ft_get_redir_path(tokens[j]);
 		if (table->cmd_array[i].cmd != NULL)
 			is_error = ft_manage_redir(table, tokens, i, &j);

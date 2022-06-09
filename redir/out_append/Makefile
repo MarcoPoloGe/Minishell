@@ -1,10 +1,10 @@
-NAME = ../../bin/exit
+NAME = ../../bin/out_append
 SRC =
 
-LIB = ../../../libft/libft.a
-LDIR = ../../../libft
+LIB = ../../libft/libft.a
+LDIR = ../../libft
 
-INCL = ../../../src/minishell.h
+INCL = ../../src/minishell.h
 
 CC = gcc
 

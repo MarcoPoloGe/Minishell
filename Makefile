@@ -1,6 +1,6 @@
 NAME = minishell
 
-SRC = main.c display.c lexer.c parser.c executor.c expander.c prompt.c utils.c
+SRC = main.c display.c lexer.c parser.c executor.c expander.c prompt.c utils.c builtins/builtins_src/exit/exit.c
 SRC_PARSER_UTILS = get_cmd_path.c check_env.c init_struct.c extract_fd.c get_redir_path.c
 SRC_EXPANDER_UTILS = pipe.c
 
