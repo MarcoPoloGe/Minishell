@@ -14,7 +14,6 @@
 char	*ft_find_redir_path(char ***redirs, char *str)
 {
 	int		i;
-	char	*result;
 
 	i = 0;
 	while (i < 4)
