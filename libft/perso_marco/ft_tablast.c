@@ -1,31 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_stradd.c                                        :+:      :+:    :+:   */
+/*   ft_tablast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbelarbi <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/27 14:47:23 by mbelarbi          #+#    #+#             */
-/*   Updated: 2022/01/27 14:47:24 by mbelarbi         ###   ########.fr       */
+/*   Created: 2022/06/09 18:18:03 by mbelarbi          #+#    #+#             */
+/*   Updated: 2022/06/09 18:18:04 by mbelarbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "perso_marco.h"
 
-void	ft_stradd_len(char **s1, char *s2, int s2_len)
+//returns the last element of a tab.
+char	**ft_tablast(char **tab)
 {
-	char	*old_s1;
-	int s1_len;
+	int	i;
 
-	if (!s2 || s2_len <= 0)
-		return ;
-	s1_len  = ft_strlen(*s1);
-	old_s1 = (*s1);
-	(*s1) = ft_calloc(s1_len + s2_len + 1, sizeof(char));
-	if ((*s1) == NULL)
-		return ;
-	ft_strcpy((*s1), old_s1);
-	ft_strlcat((*s1), s2, s1_len + s2_len + 1);
-	if (old_s1)
-		free(old_s1);
+	if (tab == NULL)
+		return (NULL);
+	i = 0;
+	while (tab[i])
+	{
+		if (tab[i + 1] == NULL)
+			return (tab + i);
+		i++;
+	}
+	return (NULL);
 }
