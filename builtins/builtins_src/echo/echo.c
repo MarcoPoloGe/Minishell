@@ -22,9 +22,11 @@ void	ft_echo(char *str, int nl)
 		ft_putchar('\n');
 }
 
-int	main(int argc, char **argv, char **env)
+int	main(int argc, char **argv)
 {
-
-	ft_echo("test$path", 1, env);
+	if (argc > 2 && ft_str_same(argv[2], "-n"))
+		ft_echo(argv[3], 1);
+	else
+		ft_echo(argv[2], 0);
 	return (0);
 }

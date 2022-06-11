@@ -6,24 +6,21 @@
 /*   By: facolomb <facolomb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 15:14:10 by facolomb          #+#    #+#             */
-/*   Updated: 2022/05/24 16:37:27 by                  ###   ########.fr       */
+/*   Updated: 2022/05/24 16:38:24 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../src/minishell.h"
 
 //tokens exemple : ls|PIPE|grep|"salut bobet"|LESS|test.txt|GREATGREAT|1_A.txt
 //					cmd|PIPE|cmd|arg[1]|LESS|infile|GREATGREAT|outfile
 
 void	ft_update_io(t_cmd_table *table, char *str, char *file)
 {
-	char	*tmp;
-
 	if (ft_str_same(str, "GREAT") || ft_str_same(str, "GREATGREAT"))
 	{
 		if (ft_str_same(str, "GREATGREAT"))
 			table->io_insert_flag = 1;
-		tmp = table->io_out;
 		table->io_out = ft_strdup(file);
 	}
 	else
@@ -31,10 +28,7 @@ void	ft_update_io(t_cmd_table *table, char *str, char *file)
 		if (ft_str_same(str, "LESSLESS"))
 			table->io_extract_fd = ft_extract_fd(file);
 		else if (ft_str_same(str, "LESS"))
-		{
-			tmp = table->io_in;
 			table->io_in = ft_strdup(file);
-		}
 	}
 }
 
@@ -56,6 +50,16 @@ void	ft_manage_token(t_cmd_table *table, char **tokens, int *j, int i)
 	}
 }
 
+void	ft_add_until_pipe(char **tokens, t_cmd_table *table, int i, int *j)
+{
+	ft_tabadd(&table->cmd_array[i].args, table->cmd_array[i].cmd);
+	while (tokens[(*j)] && !ft_str_same(tokens[(*j)], "PIPE"))
+	{
+		ft_manage_token(table, tokens, j, i);
+		(*j)++;
+	}
+}
+
 int	ft_nb_cmd(char **tokens)
 {
 	int	i;
@@ -70,33 +74,32 @@ int	ft_nb_cmd(char **tokens)
 	return (i);
 }
 
-t_cmd_table	*ft_parser(char **tokens, char **env)
+t_cmd_table	*ft_parser(char **tokens, char **env, char *bin_folder)
 {
 	t_cmd_table		*table;
-	int				nb_cmd;
 	int				i;
 	int				j;
 
-	if(tokens == NULL)
-		return (NULL);
-	table = NULL;
 	i = 0;
 	j = 0;
-	nb_cmd = ft_nb_cmd(tokens);
-	ft_init_table(table, nb_cmd, env);
-	while (i < nb_cmd)
+	table = ft_init_table(ft_nb_cmd(tokens), env);
+	while (i < table->cmd_count)
 	{
-		table->cmd_array[i].cmd = ft_get_cmd_path(env, tokens[j++]);
-		if (table->cmd_array[i].cmd != NULL)
+		table->cmd_array[i].cmd = ft_get_redir_path(tokens[j++], redir_folder);
+		if(table->cmd_array[i].cmd != NULL)
 		{
-			while (tokens[j] && !ft_str_same(tokens[j], "PIPE"))
-			{
-				ft_manage_token(table, tokens, &j, i);
-				j++;
-			}
+			ft_tabadd(&table->cmd_array[i].args, table->cmd_array[i].cmd);
+			ft_tabadd(&table->cmd_array[i].args, tokens[j++]);
 		}
 		else
-			;	//TO DO error incorrect cmd
+			table->cmd_array[i].cmd = ft_get_cmd_path(env, tokens[j++], bin_folder);
+		if (table->cmd_array[i].cmd != NULL)
+			ft_add_until_pipe(tokens, table, i, &j);
+		else
+		{
+			ft_free_struct(table);
+			return (table);
+		}
 		j++;
 		i++;
 	}

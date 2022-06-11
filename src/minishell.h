@@ -25,8 +25,10 @@
 # include <readline/history.h>
 # include <stdlib.h>
 
-# define BUILTIN_FOLDER "./builtins/bin"
+# define BUILTIN_FOLDER "./builtins/bin/"
+# define REDIR_FOLDER "./redir/bin/"
 # define META_WORDS_FILE "./config_files/meta_words.txt"
+# define REDIR_WORDS_FILE	"./config_files/redir_words.txt"
 
 typedef struct s_cmd
 {
@@ -57,12 +59,13 @@ char		**ft_build_token_tab(char *str);
 void		ft_cmd_tokens_in_order(char ***token_tab);
 void		ft_all_tokens_in_order(char ***token_tab);
 // --- Parser ---
-t_cmd_table	*ft_parser(char **tokens, char **env, char *bin_folder);
+t_cmd_table	*ft_parser(char **tokens, char **env);
 // --- parser_utils ---
 char		*ft_check_str(char *str, char **env);
 t_cmd_table	*ft_init_table(int nb_cmd, char **env);
 int			ft_extract_fd(char *str);
-char		*ft_get_cmd_path(char **env, char *name, char *builtin_folder);
+char		*ft_get_cmd_path(char **env, char *name);
+char		*ft_get_redir_path(char *name);
 // --- Expander ---
 void		ft_expander(t_cmd_table *cmd_table);
 // --- expander_utils ---
@@ -72,7 +75,8 @@ void		ft_executor(t_cmd_table *cmd_table);
 // --- Builtins ---
 void		ft_echo(char *str, int nl);
 void		ft_display_env(char **env);
-void		ft_display_pwd(char **env);
+void		ft_display_pwd();
+void		ft_is_exit(t_cmd_table *table, char *str);
 // --- Display ---
 void		ft_display_lexer_tokens(char **tokens_tab);
 void		ft_display_table(char **tab);
@@ -85,6 +89,7 @@ char 		*ft_get_meta_alias(char *input);
 int			ft_is_redir(char *token);
 int			ft_is_redir_out(char *token);
 int			ft_is_redir_in(char *token);
+int 		ft_is_pipe(char * token);
 void		ft_error(char *message, t_cmd_table **table);
 void		ft_fatal_error(char *message, t_cmd_table **table);
 #endif
