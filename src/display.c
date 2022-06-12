@@ -13,10 +13,10 @@
 
 void	ft_display_table(char **tab)
 {
-	if(tab == NULL || *tab == NULL)
-		return ;
 	int	x;
 
+	if (tab == NULL || *tab == NULL)
+		return ;
 	ft_putstr("[ ");
 	x = 0;
 	while (tab[x])
@@ -64,7 +64,6 @@ void	ft_display_cmd(t_cmd cmd)
 	ft_printf("<%i>", cmd.fd_out);
 	ft_putstr("]");
 	ft_putstr("\n");
-
 }
 
 void	ft_display_cmd_table(t_cmd_table *cmd_table)
@@ -102,38 +101,4 @@ void	ft_display_lexer_tokens(char **tokens_tab)
 		i++;
 	}
 	ft_putstr("--- token_table_end ---\n");
-}
-
-t_cmd_table	ft_create_cmd_table(void)
-{
-	t_cmd_table	cmd_table;
-	t_cmd		*cmd_array;
-
-	cmd_table.cmd_array = ft_calloc(3, sizeof(t_cmd_table));
-	cmd_array = cmd_table.cmd_array;
-	cmd_array[0].cmd = ft_strdup("cmd1");
-	cmd_array[0].args = ft_split("arg1 arg2", ' ');
-	cmd_array[1].cmd = ft_strdup("cmd2");
-	cmd_array[1].args = ft_split("arg1 arg2", ' ');
-	cmd_array[2].cmd = NULL;
-	cmd_array[2].args = NULL;
-	ft_display_cmd_table(&cmd_table);
-	return (cmd_table);
-}
-
-t_cmd_table	ft_create_cmd_table_realistic(void)
-{
-	t_cmd_table	cmd_table;
-	t_cmd		*cmd_array;
-
-	cmd_table.cmd_array = ft_calloc(3, sizeof(t_cmd_table));
-	cmd_array = cmd_table.cmd_array;
-	cmd_array[0].cmd = ft_strdup("ls");
-	cmd_array[0].args = ft_split("libft rendu", ' ');
-	cmd_array[1].cmd = ft_strdup("grep");
-	cmd_array[1].args = ft_split("ft_putchar.c", ' ');
-	cmd_array[2].cmd = NULL;
-	cmd_array[2].args = NULL;
-	ft_display_cmd_table(&cmd_table);
-	return (cmd_table);
 }

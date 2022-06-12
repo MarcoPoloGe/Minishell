@@ -6,7 +6,7 @@
 /*   By: mbelarbi@student.42lausanne.ch             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 15:23:54 by Marco Belarbi     #+#    #+#             */
-/*   Updated: 2022/05/16 15:28:31 by Marco Belarbi    ###   ########.fr       */
+/*   Updated: 2022/06/12 13:01:19 by mbelarbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,20 +29,24 @@ void ft_free_struct(t_cmd_table **table_adress)
 		i++;
 	}
 	free(table->cmd_array);
-	ft_free_tab(table->env);
+	if(table->env)
+		ft_free_tab(table->env);
 	free(table);
-	table = NULL;
+	*table_adress = NULL;
 }
 
-void ft_error(char *message, t_cmd_table **table) //todo better
+void	*ft_error(char *message, t_cmd_table **cmd_table, char **str_table) //todo better
 {
 	ft_printf("Error : %s\n", message);
-	ft_free_struct(table);
+	ft_free_struct(cmd_table);
+	ft_free_tab(str_table);
+	return (NULL);
 }
 
-void ft_fatal_error(char *message, t_cmd_table **table) //todo better
+void ft_fatal_error(char *message, t_cmd_table **table, char **str_table) //todo better
 {
 	ft_printf("Fatal Error : %s\n", message);
 	ft_free_struct(table);
+	ft_free_tab(str_table);
 	exit(1);
 }

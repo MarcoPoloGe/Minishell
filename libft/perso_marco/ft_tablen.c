@@ -16,8 +16,10 @@ int	ft_tablen(char **tab)
 {
 	int	count;
 
+	if (tab == NULL || *tab == NULL)
+		return (0);
 	count = 0;
-	while (tab && (*tab) && tab[count] != NULL)
+	while (tab[count] != NULL)
 		count++;
 	return (count);
 }

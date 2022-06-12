@@ -56,8 +56,9 @@ char		*ft_prompt(void);
 char		**ft_lexer(char *str);
 // --- lexer_utils ---
 char		**ft_build_token_tab(char *str);
+char		*ft_replace_env_var(char **str);
 void		ft_cmd_tokens_in_order(char ***token_tab);
-void		ft_all_tokens_in_order(char ***token_tab);
+void		ft_put_tokens_in_order(char ***token_tab);
 // --- Parser ---
 t_cmd_table	*ft_parser(char **tokens, char **env);
 // --- parser_utils ---
@@ -73,9 +74,6 @@ int			**ft_make_pipe_list(int nb);
 // --- Executor ---
 void		ft_executor(t_cmd_table *cmd_table);
 // --- Builtins ---
-void		ft_echo(char *str, int nl);
-void		ft_display_env(char **env);
-void		ft_display_pwd();
 void		ft_is_exit(t_cmd_table *table, char *str);
 // --- Display ---
 void		ft_display_lexer_tokens(char **tokens_tab);
@@ -90,6 +88,6 @@ int			ft_is_redir(char *token);
 int			ft_is_redir_out(char *token);
 int			ft_is_redir_in(char *token);
 int 		ft_is_pipe(char * token);
-void		ft_error(char *message, t_cmd_table **table);
-void		ft_fatal_error(char *message, t_cmd_table **table);
+void		*ft_error(char *message, t_cmd_table **cmd_table, char **str_table);
+void		ft_fatal_error(char *message, t_cmd_table **table, char **str_table);
 #endif

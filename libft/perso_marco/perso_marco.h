@@ -27,7 +27,7 @@ char	*ft_str_to_uppercase(char *str);
 size_t	ft_strcat(char *dst, char *str);
 char	*ft_strcombine(char *s1, char *s2);
 size_t	ft_strcpy(char *dst, char *str);
-int		ft_strlen_to_char(char *str, char c);
+int		ft_strlen_char(char *str, char c);
 char	*ft_strndup(char *str, int n);
 char	*ft_strrev(char *str);
 int		ft_power(int nb, int power);
@@ -60,4 +60,5 @@ int		ft_tablcpy(char **dst, char **tab, int len);
 char	**ft_tabndup(char **tab, int len);
 void	ft_tab_combine(char ***s1, char **s2);
 void	ft_tabdel(char **tab, int index);
+char	**ft_tablast(char **tab);
 #endif

@@ -14,14 +14,14 @@
 void ft_add_cmd_params(char **tokens, t_cmd_table *table, int i, int *j)
 {
 	ft_tabadd(&table->cmd_array[i].args, table->cmd_array[i].cmd);
-	if (ft_is_redir(tokens[*j - 1]))
+	if (ft_is_meta(tokens[*j - 1]))
 		if (ft_str_same(tokens[*j - 1], "LESSLESS"))
 			ft_extract_fd(tokens[*j]);
 		else
 			ft_tabadd(&table->cmd_array[i].args, tokens[(*j)++]);
 	else
 	{
-		while (tokens[*j] && !ft_is_redir(*tokens))
+		while (tokens[*j] && !ft_is_meta(*tokens))
 			ft_tabadd(&table->cmd_array[i].args, tokens[(*j)++]);
 	}
 }
@@ -33,7 +33,7 @@ int	ft_nb_cmd(char **tokens)
 	i = 1;
 	while (*tokens)
 	{
-		if (ft_is_redir(*tokens))
+		if (ft_is_meta(*tokens))
 			i++;
 		tokens++;
 	}
@@ -42,14 +42,14 @@ int	ft_nb_cmd(char **tokens)
 
 int	ft_manage_redir(t_cmd_table *table, char **tokens, int i, int *j)
 {
-	if (!(ft_is_redir(tokens[++(*j)])))
+	if (!(ft_is_meta(tokens[++(*j)])))
 	{
 		ft_add_cmd_params(tokens, table, i, j);
 		return (0);
 	}
 	else
 	{
-		ft_error("Redirection after redirection !!", &table);
+		ft_error("Redirection after redirection !!", &table, NULL);
 		return (1);
 	}
 }
@@ -71,7 +71,7 @@ int	ft_manage_cmd(t_cmd_table *table, char **tokens, int i, int *j)
 	}
 	else
 	{
-		ft_error("Not a command !!", &table);
+		ft_error("Not a command !!", &table, NULL);
 		return (1);
 	}
 }
