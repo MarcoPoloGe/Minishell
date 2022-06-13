@@ -1,29 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   ft_delete_str_tab.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: facolomb <facolomb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/09 11:31:57 by facolomb          #+#    #+#             */
-/*   Updated: 2022/06/09 11:31:57 by facolomb         ###   ########.fr       */
+/*   Created: 2022/06/13 14:56:40 by facolomb          #+#    #+#             */
+/*   Updated: 2022/06/13 14:56:40 by facolomb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../../../src/minishell.h"
+#include "perso_fabian.h"
 
-void	ft_exit(t_cmd_table *table, char *arg)
+char **ft_delete_str_tab(char **tab, char *str)
 {
-	int x;
+	int i;
+	int y;
+	char **ret;
+	int strlen;
 
-	x = 0;
-	if (ft_isalldigit(arg))
-		x = ft_atoi(arg);
-	ft_free_struct(&table);
-	exit(x);
-}
-
-void	ft_is_exit(t_cmd_table *table, char *str, char *arg)
-{
-	if (ft_str_same(str, "exit"))
-		ft_exit(table, arg);
+	i = 0;
+	y = 0;
+	strlen = ft_strlen(str);
+	ret = ft_calloc(sizeof(char *), ft_tablen(tab) - 1);
+	while (tab[i])
+	{
+		if (!ft_str_match(str, tab[i]) && tab[i][strlen + 1] != '=')
+			ret[y++] = tab[i];
+		i++;
+	}
+	return (ret);
 }

@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: facolomb <facolomb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/09 11:31:57 by facolomb          #+#    #+#             */
-/*   Updated: 2022/06/09 11:31:57 by facolomb         ###   ########.fr       */
+/*   Created: 2022/06/13 14:40:45 by facolomb          #+#    #+#             */
+/*   Updated: 2022/06/13 14:40:45 by facolomb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../../src/minishell.h"
 
-void	ft_exit(t_cmd_table *table, char *arg)
+void	ft_delete_env_str(t_cmd_table *table, char **args)
 {
-	int x;
+	int	i;
 
-	x = 0;
-	if (ft_isalldigit(arg))
-		x = ft_atoi(arg);
-	ft_free_struct(&table);
-	exit(x);
+	i = 0;
+	while (args[i])
+		table->env = ft_delete_str_tab(table->env, args[i++]);
 }
 
-void	ft_is_exit(t_cmd_table *table, char *str, char *arg)
+void	ft_unset(t_cmd_table *table, char **args)
 {
-	if (ft_str_same(str, "exit"))
-		ft_exit(table, arg);
+	if (args != NULL)
+		ft_delete_env_str(table, args);
 }

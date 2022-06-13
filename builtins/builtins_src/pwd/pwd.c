@@ -15,7 +15,7 @@ void	ft_display_pwd(void)
 {
 	char	*str;
 
-	str = getenv("PWD");
+	str = getenv(str);
 	ft_printf("%s\n", str);
 }
 

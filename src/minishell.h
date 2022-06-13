@@ -74,7 +74,9 @@ int			**ft_make_pipe_list(int nb);
 // --- Executor ---
 void		ft_executor(t_cmd_table *cmd_table);
 // --- Builtins ---
-void		ft_is_exit(t_cmd_table *table, char *str);
+void		ft_is_exit(t_cmd_table *table, char *str, char *arg);
+void		ft_export(t_cmd_table *table, char **args);
+void		ft_unset(t_cmd_table *table, char **args);
 // --- Display ---
 void		ft_display_lexer_tokens(char **tokens_tab);
 void		ft_display_table(char **tab);
