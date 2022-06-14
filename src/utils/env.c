@@ -12,6 +12,23 @@
 
 #include "../minishell.h"
 
+char	***ft_env_expand(char **env)
+{
+	char	***new;
+	int		i;
+
+	if (env == NULL || *env == NULL)
+		return (NULL);
+	new = ft_calloc(ft_tablen(env), sizeof(char **));
+	i = 0;
+	while (env[i])
+	{
+		new[i] = ft_split(env[i], '=');
+		i++;
+	}
+	return (new);
+}
+
 char	***ft_get_env(void)
 {
 	char	***env;
