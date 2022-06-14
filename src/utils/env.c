@@ -12,7 +12,12 @@
 
 #include "../minishell.h"
 
-char ***ft_get_env(void)
+char	***ft_get_env(void)
 {
-	return(ft_read_two_way_tab(ENV_FILE,"txt",'='));
+	char	***env;
+
+	env = ft_read_two_way_tab(ENV_FILE, "txt", '=');
+	if (env == NULL)
+		ft_fatal_error("Can't read env file.", NULL, NULL);
+	return (env);
 }
