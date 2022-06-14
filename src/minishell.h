@@ -66,7 +66,7 @@ t_cmd_table	*ft_parser(char **tokens, char **env);
 char		*ft_check_str(char *str, char **env);
 t_cmd_table	*ft_init_table(int nb_cmd, char **env);
 int			ft_extract_fd(char *str);
-char		*ft_get_cmd_path(char **env, char *name);
+char		*ft_get_cmd_path(char *name);
 char		*ft_get_redir_path(char *name);
 // --- Expander ---
 void		ft_expander(t_cmd_table *cmd_table);
@@ -93,6 +93,7 @@ int			ft_is_redir_in(char *token);
 int 		ft_is_pipe(char * token);
 void		*ft_error(char *message, t_cmd_table **cmd_table, char **str_table);
 void		ft_fatal_error(char *message, t_cmd_table **table, char **str_table);
-char		***ft_get_env(void);
+char		***ft_read_env(void);
 void		ft_update_env(char ***env);
+char		*ft_getenv(char *var_name);
 #endif
