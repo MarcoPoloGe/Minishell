@@ -11,22 +11,22 @@
 /* ************************************************************************** */
 #include "perso_fabian.h"
 
-char	**ft_sort_str_tab(char **tab)
+char	***ft_sort_str_tab(char ***tab)
 {
 	int 	i;
 	int 	tablen;
 	int 	ordered;
-	char	*tmp;
+	char	**tmp;
 
 	ordered = 0;
-	tablen = ft_tablen(tab);
+	tablen = ft_tablen(*tab);
 	while (ordered == 0)
 	{
 		ordered = 1;
 		i = 0;
 		while (i < tablen - 1)
 		{
-			if (ft_strncmp(tab[i], tab[i + 1], ft_strlen(tab[i])) > 0)
+			if (ft_strncmp(tab[i][0], tab[i + 1][0], ft_strlen(tab[i][0])) > 0)
 			{
 				tmp = tab[i];
 				tab[i] = tab[i + 1];

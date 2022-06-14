@@ -49,7 +49,7 @@ int	ft_manage_redir(t_cmd_table *table, char **tokens, int i, int *j)
 	}
 	else
 	{
-		ft_error("Redirection after redirection !!", &table, NULL);
+		ft_error("syntax error", &table, NULL);
 		return (1);
 	}
 }
@@ -71,7 +71,7 @@ int	ft_manage_cmd(t_cmd_table *table, char **tokens, int i, int *j)
 	}
 	else
 	{
-		ft_error("Not a command !!", &table, NULL);
+		ft_error("Command not found", &table, NULL);
 		return (1);
 	}
 }
@@ -85,6 +85,8 @@ t_cmd_table	*ft_new_parser(char **tokens, char **env)
 
 	i = 0;
 	j = 0;
+	if (!tokens)
+		return (NULL);
 	table = ft_init_table(ft_nb_cmd(tokens), env);
 	while (i < table->cmd_count)
 	{
