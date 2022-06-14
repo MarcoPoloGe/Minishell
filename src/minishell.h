@@ -28,7 +28,7 @@
 # define BUILTIN_FOLDER "./builtins/bin/"
 # define REDIR_FOLDER "./redir/bin/"
 # define META_WORDS_FILE "./config_files/meta_words.txt"
-# define REDIR_WORDS_FILE "./config_files/redir_words.txt"dd
+# define REDIR_WORDS_FILE "./config_files/redir_words.txt"
 # define ENV_FILE "./config_files/env.txt"
 
 typedef struct s_cmd
@@ -93,4 +93,6 @@ int			ft_is_redir_in(char *token);
 int 		ft_is_pipe(char * token);
 void		*ft_error(char *message, t_cmd_table **cmd_table, char **str_table);
 void		ft_fatal_error(char *message, t_cmd_table **table, char **str_table);
+char		***ft_get_env(void);
+void		ft_update_env(char ***env);
 #endif
