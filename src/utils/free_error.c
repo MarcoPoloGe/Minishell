@@ -35,7 +35,7 @@ void ft_free_struct(t_cmd_table **table_adress)
 	*table_adress = NULL;
 }
 
-void	*ft_error(char *message, t_cmd_table **cmd_table, char **str_table) //todo better
+void	*ft_error(char *message, t_cmd_table **cmd_table, char **str_table)
 {
 	ft_printf("Error : %s\n", message);
 	ft_free_struct(cmd_table);
@@ -43,7 +43,7 @@ void	*ft_error(char *message, t_cmd_table **cmd_table, char **str_table) //todo 
 	return (NULL);
 }
 
-void ft_fatal_error(char *message, t_cmd_table **table, char **str_table) //todo better
+void ft_fatal_error(char *message, t_cmd_table **table, char **str_table)
 {
 	ft_printf("Fatal Error : %s\n", message);
 	ft_free_struct(table);

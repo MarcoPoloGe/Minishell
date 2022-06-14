@@ -75,10 +75,6 @@ void	ft_display_cmd_table(t_cmd_table *cmd_table)
 	i = 0;
 	ft_putstr("--- cmd_table_start ---\n");
 	ft_printf("cmd_count      :%i\n", cmd_table->cmd_count);
-	ft_printf("io_out         :%i\n", cmd_table->io_out);
-	ft_printf("io_in          :%i\n", cmd_table->io_in);
-	ft_printf("io_extract_fd  :%i\n", cmd_table->io_extract_fd);
-	ft_printf("io_insert_flag :%i\n", cmd_table->io_insert_flag);
 	while (cmd_table->cmd_array[i].cmd != NULL)
 	{
 		ft_display_cmd(cmd_table->cmd_array[i]);

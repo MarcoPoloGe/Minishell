@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "minishell.h"
-
+/*
 int	ft_open_io(char *io, int flags, int mode)
 {
 	int	fd;
@@ -45,7 +45,8 @@ int	ft_init_output(t_cmd_table *cmd_table)
 		return (ft_open_io(cmd_table->io_out, O_CREAT | O_WRONLY | O_APPEND, S_IRWXU));
 	else
 		return (ft_open_io(cmd_table->io_out, O_CREAT | O_WRONLY | O_TRUNC, S_IRWXU));
-}
+}*/
+
 
 void	ft_init_cmd_in_out(t_cmd_table *cmd_table)
 {
@@ -56,14 +57,14 @@ void	ft_init_cmd_in_out(t_cmd_table *cmd_table)
 	pipe_list = ft_make_pipe_list(cmd_table->cmd_count);
 	cmd_array = cmd_table->cmd_array;
 	i = 0;
-	cmd_array[i].fd_in = ft_init_input(cmd_table);
+	cmd_array[i].fd_in = 0;
 	while (i < cmd_table->cmd_count - 1)
 	{
 		cmd_array[i].fd_out = pipe_list[i][1];
 		i++;
 		cmd_array[i].fd_in = pipe_list[i - 1][0];
 	}
-	cmd_array[i].fd_out = ft_init_output(cmd_table);
+	cmd_array[i].fd_out = 1;
 }
 
 //À pour but de créer les pipes et l'entrée et sortie pour les assigner à

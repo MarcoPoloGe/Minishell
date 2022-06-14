@@ -42,21 +42,3 @@ void	ft_executor(t_cmd_table *cmd_table)
 		i++;
 	}
 }
-
-t_cmd_table	ft_create_cmd_table_executable(void)
-{
-	t_cmd_table	cmd_table;
-	t_cmd		*cmd_array;
-
-	cmd_table.cmd_array = ft_calloc(3, sizeof(t_cmd_table));
-	cmd_table.cmd_count = 2;
-	cmd_array = cmd_table.cmd_array;
-	cmd_array[0].cmd = ft_strdup("philosophers");
-	cmd_array[0].args = ft_split("libft rendu", ' ');
-	cmd_array[1].cmd = ft_strdup("philosophers");
-	cmd_array[1].args = ft_split("ft_putchar.c", ' ');
-	cmd_array[2].cmd = NULL;
-	cmd_array[2].args = NULL;
-	ft_display_cmd_table(&cmd_table);
-	return (cmd_table);
-}
