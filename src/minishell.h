@@ -28,7 +28,8 @@
 # define BUILTIN_FOLDER "./builtins/bin/"
 # define REDIR_FOLDER "./redir/bin/"
 # define META_WORDS_FILE "./config_files/meta_words.txt"
-# define REDIR_WORDS_FILE	"./config_files/redir_words.txt"
+# define REDIR_WORDS_FILE "./config_files/redir_words.txt"dd
+# define ENV_FILE "./config_files/env.txt"
 
 typedef struct s_cmd
 {
