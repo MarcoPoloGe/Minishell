@@ -43,7 +43,6 @@ typedef struct s_cmd_table
 {
 	t_cmd	*cmd_array;
 	int		cmd_count;
-	char	**env;
 }	t_cmd_table;
 
 //for testing (to be removed)
@@ -95,5 +94,6 @@ void		*ft_error(char *message, t_cmd_table **cmd_table, char **str_table);
 void		ft_fatal_error(char *message, t_cmd_table **table, char **str_table);
 char		***ft_read_env(void);
 void		ft_update_env(char ***env);
+char		***ft_env_expand(char **env);
 char		*ft_getenv(char *var_name);
 #endif

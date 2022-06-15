@@ -11,35 +11,42 @@
 /* ************************************************************************** */
 #include "../../../src/minishell.h"
 
-void	ft_add_export(t_cmd_table *table, char **args)
+void	ft_add_export(char **args)
 {
 	int i;
+	char ***tab;
 
-	i = 0;
+	i = 1;
+	tab = ft_get_env();
 	while (args[i])
 	{
 		if (ft_isalpha(args[i][0]))
-			ft_tabadd(&table->env, args[i]);
+			ft_tabadd(tab, args[i]);
 		else
-			ft_error("export, not a valid identifier ", &table, NULL);
+			ft_error("export, not a valid identifier ", NULL, NULL);
 		i++;
 	}
+	ft_update_env(tab);
 }
 
-void	ft_display_export(char **tab)
+void	ft_display_export()
 {
 	int i;
+	char ***tab;
 
 	i = 0;
+	tab = ft_get_env();
 	tab = ft_sort_str_tab(tab);
 	while (tab[i])
-		ft_printf("declare -x %s\n", tab[i++]);
+		ft_printf("declare -x %s=%s\n", tab[i][0], tab[i][1]);
 }
 
-void	ft_export(t_cmd_table *table, char **args)
+int main(int argc, char **argv)
 {
-	if (!args)
-		ft_display_export(table->env);
+	(void) argc;
+
+	if (!argv)
+		ft_display_export();
 	else
-		ft_add_export(table, args);
+		ft_add_export(argv);
 }

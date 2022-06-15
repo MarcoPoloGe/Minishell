@@ -47,6 +47,16 @@ char	***ft_env_expand(char **env)
 	return (new);
 }
 
+char	***ft_read_env(void)
+{
+	char	***env;
+
+	env = ft_read_two_way_tab(ENV_FILE, "txt", '=');
+	if (env == NULL)
+		ft_fatal_error("Can't read env file.", NULL, NULL);
+	return (env);
+}
+
 char	***ft_env_compress(char **env)
 {
 	char	***new;
@@ -64,12 +74,25 @@ char	***ft_env_compress(char **env)
 	return (new);
 }
 
-char	***ft_read_env(void)
+void	ft_update_env(char ***tab)
 {
-	char	***env;
+	int fd;
+	int i;
 
-	env = ft_read_two_way_tab(ENV_FILE, "txt", '=');
-	if (env == NULL)
-		ft_fatal_error("Can't read env file.", NULL, NULL);
-	return (env);
+	i = 0;
+	fd = open(ENV_FILE, O_CREAT | O_WRONLY | O_TRUNC, S_IRWXU);
+	if (fd < 0)
+	{
+		ft_error("Can't open file", NULL, NULL);
+		return;
+	}
+	while (tab[i])
+	{
+		write(fd, tab[i], ft_strlen(tab[i][0]));
+		write(fd, "=", 1);
+		write(fd, tab[i], ft_strlen(tab[i][1]));
+		write(fd, "\n", 1);
+		i++;
+	}
+	close(fd);
 }
