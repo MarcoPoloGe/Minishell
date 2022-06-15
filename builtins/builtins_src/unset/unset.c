@@ -11,17 +11,20 @@
 /* ************************************************************************** */
 #include "../../../src/minishell.h"
 
-void	ft_delete_env_str(t_cmd_table *table, char **args)
+void	ft_unset(char **args)
 {
-	int	i;
+	int i;
+	char ***tab;
 
-	i = 0;
+	i = 1;
+	tab = ft_get_env();
 	while (args[i])
-		table->env = ft_delete_str_tab(table->env, args[i++]);
+		tab = ft_delete_str_tab(tab, args[i++]);
 }
 
-void	ft_unset(t_cmd_table *table, char **args)
+int main(int argc, char **argv)
 {
-	if (args != NULL)
-		ft_delete_env_str(table, args);
+	if (argc > 1)
+		ft_unset(argv);
+	return (0);
 }
