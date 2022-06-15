@@ -11,20 +11,18 @@
 /* ************************************************************************** */
 #include "perso_fabian.h"
 
-char **ft_delete_str_tab(char **tab, char *str)
+char ***ft_delete_str_tab(char ***tab, char *str)
 {
 	int i;
 	int y;
-	char **ret;
-	int strlen;
+	char ***ret;
 
 	i = 0;
 	y = 0;
-	strlen = ft_strlen(str);
-	ret = ft_calloc(sizeof(char *), ft_tablen(tab) - 1);
+	ret = ft_calloc(sizeof(char **), ft_tablen(*tab) - 1);
 	while (tab[i])
 	{
-		if (!ft_str_match(str, tab[i]) && tab[i][strlen + 1] != '=')
+		if (!ft_str_same(str, tab[i][0]))
 			ret[y++] = tab[i];
 		i++;
 	}

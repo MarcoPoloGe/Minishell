@@ -29,8 +29,6 @@ void ft_free_struct(t_cmd_table **table_adress)
 		i++;
 	}
 	free(table->cmd_array);
-	if(table->env)
-		ft_free_tab(table->env);
 	free(table);
 	*table_adress = NULL;
 }
