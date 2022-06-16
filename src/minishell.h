@@ -32,6 +32,12 @@
 # define REDIR_WORDS_FILE "./config_files/redir_words.txt"
 # define ENV_FILE "./config_files/env.txt"
 
+//----- Special Builtins ID -----
+# define BUILTIN_EXIT "exit"
+# define BUILTIN_CD "cd"
+# define BUILTIN_EXPORT "export"
+# define BUILTIN_UNSET "unset"
+
 typedef struct s_cmd
 {
 	int		fd_in;
