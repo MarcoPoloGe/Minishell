@@ -26,20 +26,6 @@ void ft_add_cmd_params(char **tokens, t_cmd_table *table, int i, int *j)
 	}
 }
 
-int	ft_nb_cmd(char **tokens)
-{
-	int	i;
-
-	i = 1;
-	while (*tokens)
-	{
-		if (ft_is_meta(*tokens))
-			i++;
-		tokens++;
-	}
-	return (i);
-}
-
 int	ft_manage_redir(t_cmd_table *table, char **tokens, int i, int *j)
 {
 	if (!(ft_is_meta(tokens[++(*j)])))
@@ -76,6 +62,12 @@ int	ft_manage_cmd(t_cmd_table *table, char **tokens, int i, int *j)
 	}
 }
 
+void	ft_manage_builtins(t_cmd_table *table, char **tokens, int i, int *j)
+{
+	table->cmd_array[i].cmd = ft_strdup(tokens[*j]);
+	ft_add_cmd_params(tokens, table, i, j);
+}
+
 t_cmd_table	*ft_parser(char **tokens, char **env)
 {
 	t_cmd_table	*table;
@@ -93,6 +85,8 @@ t_cmd_table	*ft_parser(char **tokens, char **env)
 		table->cmd_array[i].cmd = ft_get_redir_path(tokens[j]);
 		if (table->cmd_array[i].cmd != NULL)
 			is_error = ft_manage_redir(table, tokens, i, &j);
+		else if (ft_is_builtin(tokens[j]) == 1)
+			ft_manage_builtins(table, tokens, i, &j);
 		else
 			is_error = ft_manage_cmd(table, tokens, i ,&j);
 		if (is_error == 1)

@@ -11,6 +11,20 @@
 /* ************************************************************************** */
 #include "../minishell.h"
 
+int	ft_nb_cmd(char **tokens)
+{
+	int	i;
+
+	i = 1;
+	while (*tokens)
+	{
+		if (ft_is_meta(*tokens))
+			i++;
+		tokens++;
+	}
+	return (i);
+}
+
 t_cmd *ft_init_cmd_array(int nb_cmd)
 {
 	int			i;

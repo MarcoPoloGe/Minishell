@@ -70,6 +70,7 @@ t_cmd_table	*ft_parser(char **tokens, char **env);
 // --- parser_utils ---
 char		*ft_check_str(char *str, char **env);
 t_cmd_table	*ft_init_table(int nb_cmd, char **env);
+int			ft_nb_cmd(char **tokens);
 int			ft_extract_fd(char *str);
 char		*ft_get_cmd_path(char *name);
 char		*ft_get_redir_path(char *name);
