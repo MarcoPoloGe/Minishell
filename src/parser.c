@@ -11,14 +11,16 @@
 /* ************************************************************************** */
 #include "minishell.h"
 
-void ft_add_cmd_params(char **tokens, t_cmd_table *table, int i, int *j)
+void	ft_add_cmd_params(char **tokens, t_cmd_table *table, int i, int *j)
 {
 	ft_tabadd(&table->cmd_array[i].args, table->cmd_array[i].cmd);
 	if (ft_is_meta(tokens[*j - 1]))
+	{
 		if (ft_str_same(tokens[*j - 1], "LESSLESS"))
 			ft_extract_fd(tokens[*j]);
 		else
 			ft_tabadd(&table->cmd_array[i].args, tokens[(*j)++]);
+	}
 	else
 	{
 		while (tokens[*j] && !ft_is_meta(*tokens))
@@ -73,7 +75,7 @@ t_cmd_table	*ft_parser(char **tokens, char **env)
 	t_cmd_table	*table;
 	int			i;
 	int			j;
-	int 		is_error;
+	int			is_error;
 
 	i = 0;
 	j = 0;
@@ -88,7 +90,7 @@ t_cmd_table	*ft_parser(char **tokens, char **env)
 		else if (ft_is_builtin(tokens[j]) == 1)
 			ft_manage_builtins(table, tokens, i, &j);
 		else
-			is_error = ft_manage_cmd(table, tokens, i ,&j);
+			is_error = ft_manage_cmd(table, tokens, i, &j);
 		if (is_error == 1)
 			break ;
 		j++;
