@@ -107,4 +107,5 @@ char		*ft_getenv(char *var_name);
 char		**ft_read_env_simple(void);
 void		ft_init_env(char **env);
 void		ft_update_env_simple(char **env);
+int			ft_is_builtin(char *name);
 #endif
