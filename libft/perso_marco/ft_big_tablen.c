@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_tablen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbelarbi <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/14 18:12:26 by mbelarbi          #+#    #+#             */
-/*   Updated: 2022/02/20 12:30:17 by Marco Belarbi    ###   ########.fr       */
+/*   Created: 2022/02/13 16:18:25 by mbelarbi          #+#    #+#             */
+/*   Updated: 2022/02/13 16:18:31 by mbelarbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft42.h"
 
-int	ft_strlen(const char *str)
+#include "perso_marco.h"
+
+int	ft_big_tablen(char ***tab)
 {
-	int	len;
+	int	count;
 
-	len = 0;
-	if (str == NULL)
-		return (len);
-	while (str[len])
-		len++;
-	return (len);
+	if (tab == NULL || *tab == NULL)
+		return (0);
+	count = 0;
+	while (tab[count] != NULL)
+		count++;
+	return (count);
 }

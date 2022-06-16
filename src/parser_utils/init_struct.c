@@ -36,6 +36,6 @@ t_cmd_table	*ft_init_table(int nb_cmd, char **env)
 	table = ft_calloc(1, sizeof(t_cmd_table));
 	table->cmd_array = ft_init_cmd_array(nb_cmd);
 	table->cmd_count = nb_cmd;
-	ft_update_env(ft_env_expand(env));
+	ft_init_env(env);
 	return (table);
 }

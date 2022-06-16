@@ -1,5 +1,6 @@
 NAME = ../../bin/pwd
 SRC = pwd.c
+SRC_UTILS = ../../../src/utils/*.c
 
 LIB = ../../../libft/libft.a
 LDIR = ../../../libft
@@ -12,8 +13,8 @@ CFLAGS = -Wall -Wextra -Werror #-g -fsanitize=address
 
 all: $(NAME)
 
-$(NAME): $(SRC) $(LIB) $(INCL)
-	$(CC) $(CFLAGS) $(SRC) $(LIB) -o $(NAME)
+$(NAME): $(SRC) $(LIB) $(INCL) $(SRC_UTILS)
+	$(CC) $(CFLAGS) $(SRC) $(SRC_UTILS) $(LIB) -o $(NAME)
 
 $(LIB): $(LDIR)
 	make -C $(LDIR)

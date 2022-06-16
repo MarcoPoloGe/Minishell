@@ -17,6 +17,13 @@ int	ft_str_match(char *hay, char *needle)
 {
 	int	i;
 
+	if (hay == NULL || needle == NULL)
+	{
+		if (hay == needle)
+			return (1);
+		else
+			return (0);
+	}
 	i = 0;
 	while (hay[i] == needle[i] && hay[i] && needle[i])
 	{

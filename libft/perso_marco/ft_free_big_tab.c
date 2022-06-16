@@ -1,30 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_delete_str_tab.c                                :+:      :+:    :+:   */
+/*   ft_free_tab.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: facolomb <facolomb@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbelarbi@student.42lausanne.ch             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/13 14:56:40 by facolomb          #+#    #+#             */
-/*   Updated: 2022/06/13 14:56:40 by facolomb         ###   ########.fr       */
+/*   Created: 2022/02/19 16:09:25 by Marco Belarbi     #+#    #+#             */
+/*   Updated: 2022/02/19 16:10:23 by Marco Belarbi    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "perso_fabian.h"
 
-char ***ft_delete_str_tab(char ***tab, char *str)
+#include "perso_marco.h"
+
+void	ft_free_big_tab(char ***tab)
 {
 	int i;
-	int y;
-	char ***ret;
 
 	i = 0;
-	y = 0;
-	ret = ft_calloc(sizeof(char **), ft_big_tablen(tab));
 	while (tab[i])
-	{
-		if (!ft_str_same(str, tab[i][0]))
-			ret[y++] = tab[i];
-		i++;
-	}
-	return (ret);
+		ft_free_tab(tab[i++]);
+	free(tab);
 }

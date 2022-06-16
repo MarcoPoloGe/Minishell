@@ -11,21 +11,26 @@
 /* ************************************************************************** */
 #include "../../../src/minishell.h"
 
-void	ft_display_pwd(void)
+void	ft_display_pwd(char **env)
 {
-	char	*str;
+	int		i;
 
-	str = getenv(str);
-	ft_printf("%s\n", str);
+	i = 0;
+	while (env[i])
+	{
+		if (ft_str_match(env[i], "PWD"))
+			ft_printf("%s\n", env[i] + 4);
+		i++;
+	}
 }
 
-int	main(int argc, char **argv)
+int	main(int argc, char **argv, char **env)
 {
 	(void) argv;
 
 	if (argc != 2)
 		ft_printf("Too many arguments !\n");
 	else
-		ft_display_pwd();
+		ft_display_pwd(env);
 	return(0);
 }

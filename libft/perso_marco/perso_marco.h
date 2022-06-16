@@ -61,4 +61,7 @@ char	**ft_tabndup(char **tab, int len);
 void	ft_tab_combine(char ***s1, char **s2);
 void	ft_tabdel(char **tab, int index);
 char	**ft_tablast(char **tab);
+void	ft_free_big_tab(char ***tab);
+int		ft_big_tablen(char ***tab);
+void	ft_display_big_tab(char ***tab);
 #endif

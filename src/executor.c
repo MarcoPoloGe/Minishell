@@ -11,11 +11,13 @@
 /* ************************************************************************** */
 #include "minishell.h"
 
-void	ft_child(t_cmd *cmd, char **env)
+void	ft_child(t_cmd *cmd)
 {
 	dup2(cmd->fd_in, 0);
 	dup2(cmd->fd_out, 1);
-	execve(cmd->cmd, cmd->args, env);
+	//if(cmd ft_is_special_builtin)
+	//	cmd->fd_ou;
+	execve(cmd->cmd, cmd->args, ft_read_env_simple());
 }
 
 void	ft_executor(t_cmd_table *cmd_table)
@@ -29,7 +31,7 @@ void	ft_executor(t_cmd_table *cmd_table)
 	{
 		if (fork() == 0)
 		{
-			ft_child((cmd_table->cmd_array + i), cmd_table->env);
+			ft_child((cmd_table->cmd_array + i));
 		}
 		else
 		{

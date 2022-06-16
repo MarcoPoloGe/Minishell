@@ -25,7 +25,8 @@
 # include <readline/history.h>
 # include <stdlib.h>
 
-# define BUILTIN_FOLDER "./builtins/bin/"
+//----- Files Paths -----
+# define BUILTIN_FOLDER "./builtins/bin"
 # define REDIR_FOLDER "./redir/bin/"
 # define META_WORDS_FILE "./config_files/meta_words.txt"
 # define REDIR_WORDS_FILE "./config_files/redir_words.txt"
@@ -51,7 +52,6 @@ typedef struct s_cmd_table
 // --- Main ---
 // --- Prompt ---
 char		*ft_prompt(void);
-
 // --- Lexer ---
 char		**ft_lexer(char *str);
 // --- lexer_utils ---
@@ -75,8 +75,9 @@ int			**ft_make_pipe_list(int nb);
 void		ft_executor(t_cmd_table *cmd_table);
 // --- Builtins ---
 void		ft_is_exit(t_cmd_table *table, char *str, char *arg);
-void		ft_export(t_cmd_table *table, char **args);
-void		ft_unset(char **args);
+void 		ft_export(int argc, char **argv);
+void		ft_unset(int argc, char **argv);
+void		ft_exit(int argc, char **argv, t_cmd_table *table);
 // --- Display ---
 void		ft_display_lexer_tokens(char **tokens_tab);
 void		ft_display_table(char **tab);
@@ -95,5 +96,9 @@ void		ft_fatal_error(char *message, t_cmd_table **table, char **str_table);
 char		***ft_read_env(void);
 void		ft_update_env(char ***env);
 char		***ft_env_expand(char **env);
+char		**ft_env_condense(char ***env);
 char		*ft_getenv(char *var_name);
+char		**ft_read_env_simple(void);
+void		ft_init_env(char **env);
+void		ft_update_env_simple(char **env);
 #endif

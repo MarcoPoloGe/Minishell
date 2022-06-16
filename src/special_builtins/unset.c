@@ -9,22 +9,18 @@
 /*   Updated: 2022/06/13 14:40:45 by facolomb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../../../src/minishell.h"
+#include "../minishell.h"
 
-void	ft_unset(char **args)
+void	ft_unset(int argc, char **argv)
 {
 	int i;
 	char ***tab;
 
+	if (argc < 2)
+		return ;
 	i = 1;
-	tab = ft_get_env();
-	while (args[i])
-		tab = ft_delete_str_tab(tab, args[i++]);
-}
-
-int main(int argc, char **argv)
-{
-	if (argc > 1)
-		ft_unset(argv);
-	return (0);
+	tab = ft_read_env();
+	while (argv[i])
+		tab = ft_delete_str_tab(tab, argv[i++]);
+	ft_update_env(tab);
 }

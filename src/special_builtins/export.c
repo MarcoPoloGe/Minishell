@@ -9,43 +9,41 @@
 /*   Updated: 2022/06/09 15:08:36 by facolomb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../../../src/minishell.h"
+#include "../minishell.h"
 
 void	ft_add_export(char **args)
 {
 	int i;
-	char ***tab;
+	char **env;
 
 	i = 1;
-	tab = ft_get_env();
+	env = ft_read_env_simple();
 	while (args[i])
 	{
-		if (ft_isalpha(args[i][0]))
-			ft_tabadd(tab, args[i]);
+		if (ft_isalpha(args[i][0]) || args[i][0] == '_')
+			ft_tabadd(&env, args[i]);
 		else
 			ft_error("export, not a valid identifier ", NULL, NULL);
 		i++;
 	}
-	ft_update_env(tab);
+	ft_update_env_simple(env);
 }
 
 void	ft_display_export()
 {
 	int i;
-	char ***tab;
+	char **tab;
 
 	i = 0;
-	tab = ft_get_env();
+	tab = ft_read_env_simple();
 	tab = ft_sort_str_tab(tab);
 	while (tab[i])
-		ft_printf("declare -x %s=%s\n", tab[i][0], tab[i][1]);
+		ft_printf("declare -x %s\n", tab[i++]);
 }
 
-int main(int argc, char **argv)
+void	ft_export(int argc, char **argv)
 {
-	(void) argc;
-
-	if (!argv)
+	if (argc == 1)
 		ft_display_export();
 	else
 		ft_add_export(argv);

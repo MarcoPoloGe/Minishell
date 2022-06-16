@@ -56,10 +56,10 @@ int	ft_manage_redir(t_cmd_table *table, char **tokens, int i, int *j)
 
 int	ft_manage_cmd(t_cmd_table *table, char **tokens, int i, int *j)
 {
-	table->cmd_array[i].cmd = ft_get_cmd_path(table->env, tokens[*j]);
+	table->cmd_array[i].cmd = ft_get_cmd_path(tokens[*j]);
 	if (table->cmd_array[i].cmd != NULL)
 	{
-		++j;
+		++(*j);
 		ft_add_cmd_params(tokens, table, i, j);
 		return (0);
 	}
@@ -76,7 +76,7 @@ int	ft_manage_cmd(t_cmd_table *table, char **tokens, int i, int *j)
 	}
 }
 
-t_cmd_table	*ft_new_parser(char **tokens, char **env)
+t_cmd_table	*ft_parser(char **tokens, char **env)
 {
 	t_cmd_table	*table;
 	int			i;

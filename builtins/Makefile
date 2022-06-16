@@ -1,6 +1,8 @@
-B_NAME = cd echo env pwd unset
+B_NAME = echo env pwd
 
 B_NAME_PATH = $(foreach wrd,$(B_NAME),./bin/$(wrd))
+
+BIN_DIR = ./bin
 
 B_DIR = ./builtins_src/
 
@@ -19,9 +21,9 @@ $(B_NAME_PATH): $(B_FOLDER)
 	$(B_MAKE_COMMAND)
 
 clean:
+	rm -f -r $(BIN_DIR)
 	$(B_MAKE_CLEAN_COMMAND)
 
 fclean: clean
 	$(B_MAKE_FCLEAN_COMMAND)
-
 re: fclean all
