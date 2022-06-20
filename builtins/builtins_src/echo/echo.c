@@ -11,22 +11,44 @@
 /* ************************************************************************** */
 #include "../../../src/minishell.h"
 
-void	ft_echo(char *str, int nl)
+int ft_is_nl(char *str)
+{
+    if (str[0] == '-')
+    {
+        if (ft_str_same(str, "-n"))
+            return (1);
+        else
+            ft_error("Error : echo unkown option", NULL, NULL);
+    }
+    else
+    {
+        ft_putstr(str);
+        return (0);
+    }
+}
+
+void	ft_echo(char **args)
 {
 	int	i;
+    int tablen;
+    int nl;
 
-	i = 0;
-	while (str[i] != '\0')
-		ft_putchar(str[i++]);
-	if (nl == 1)
-		ft_putchar('\n');
+    tablen = ft_tablen(args);
+    while (i < tablen)
+    {
+        if (i == tablen - 1)
+            nl = ft_is_nl(args[i]);
+        else
+            ft_putstr(args[i]);
+        i++;
+    }
+    if (nl == 1)
+        ft_putchar('\n');
 }
 
 int	main(int argc, char **argv)
 {
-	if (argc > 2 && ft_str_same(argv[2], "-n"))
-		ft_echo(argv[3], 1);
-	else
-		ft_echo(argv[2], 0);
+	if (argc >= 2)
+		ft_echo(argv);
 	return (0);
 }
