@@ -1,32 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_read_file.c                                     :+:      :+:    :+:   */
+/*   ft_read_fd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbelarbi@student.42lausanne.ch             +#+  +:+       +#+        */
+/*   By: mbelarbi <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/07 15:07:26 by Marco Belarbi     #+#    #+#             */
-/*   Updated: 2022/03/07 15:15:00 by Marco Belarbi    ###   ########.fr       */
+/*   Created: 2022/06/20 13:21:02 by mbelarbi          #+#    #+#             */
+/*   Updated: 2022/06/20 13:21:05 by mbelarbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "perso_marco.h"
 
-//permet de lire le fichier en entier et de verifier si le fichier est de la
-//bonne extension.
-//(si la valeur de ext est NULL alors toutes les extensions fonctionnent).
-char	*ft_read_file(char *file_name, char *ext)
+//permet de lire le contenu du fd en entier.
+char	*ft_read_fd(int fd)
 {
 	char	*file;
 	char	*line;
-	int		fd;
 
-	if (!ft_check_ext(file_name, ext))
-		return (NULL);
-	fd = open(file_name, O_RDONLY);
 	if (fd == -1)
 	{
-		ft_printf_fd(2, "Error: %s: %s\n", strerror(errno), file_name);
+		ft_putstr_fd("Error: can't read fd.\n", 2);
 		return (NULL);
 	}
 	file = NULL;

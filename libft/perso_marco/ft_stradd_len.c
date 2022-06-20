@@ -15,7 +15,7 @@
 void	ft_stradd_len(char **s1, char *s2, int s2_len)
 {
 	char	*old_s1;
-	int s1_len;
+	int		s1_len;
 
 	if (!s2 || s2_len <= 0)
 		return ;

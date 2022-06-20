@@ -57,3 +57,31 @@ int	ft_printf(const char *str, ...)
 	va_end(ap);
 	return (nb);
 }
+
+int	ft_printf_fd(int fd, const char *str, ...)
+{
+	int		nb;
+	int		i;
+	va_list	ap;
+	int		fd_out;
+
+	fd_out = dup(1);
+	dup2(fd, 1);
+	va_start(ap, str);
+	nb = 0;
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == '%')
+		{
+			i++;
+			nb += ft_print_types(str[i], ap);
+		}
+		else
+			nb += ft_putchar_len(str[i]);
+		i++;
+	}
+	va_end(ap);
+	dup2(fd_out, 1);
+	return (nb);
+}

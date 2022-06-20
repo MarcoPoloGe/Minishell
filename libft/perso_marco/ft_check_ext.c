@@ -16,6 +16,8 @@ int	ft_check_ext(char *file, char *ext)
 {
 	int	start;
 
+	if (ext == NULL)
+		return (1);
 	start = ft_strlen(file) - ft_strlen(ext);
 	if (ft_str_same(file + start, ext))
 		return (1);

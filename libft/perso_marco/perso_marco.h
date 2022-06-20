@@ -15,6 +15,9 @@
 # include "../libft42/libft42.h"
 # include "../printf/ft_printf.h"
 # include "../get_next_line/get_next_line.h"
+# include <errno.h>
+# include <string.h>
+# include <stdio.h>
 
 int		ft_is_lower(int c);
 int		ft_is_upper(int c);
@@ -64,4 +67,6 @@ char	**ft_tablast(char **tab);
 void	ft_free_big_tab(char ***tab);
 int		ft_big_tablen(char ***tab);
 void	ft_display_big_tab(char ***tab);
+char	*ft_read_fd(int fd);
+int		ft_printf_fd(int fd, const char *str, ...);
 #endif
