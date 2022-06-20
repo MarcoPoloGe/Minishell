@@ -81,7 +81,7 @@ void	ft_move_pipe_to_last(char ***ordered_token_tab)
 {
 	int	i;
 
-	if(ordered_token_tab == NULL || *ordered_token_tab == NULL)
+	if (ordered_token_tab == NULL || *ordered_token_tab == NULL)
 		return ;
 	i = 0;
 	while ((*ordered_token_tab)[i])

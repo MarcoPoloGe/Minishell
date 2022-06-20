@@ -25,10 +25,10 @@ int	ft_nb_cmd(char **tokens)
 	return (i);
 }
 
-t_cmd *ft_init_cmd_array(int nb_cmd)
+t_cmd	*ft_init_cmd_array(int nb_cmd)
 {
 	int			i;
-	t_cmd *cmd_array;
+	t_cmd		*cmd_array;
 
 	i = 0;
 	cmd_array = ft_calloc(nb_cmd + 1, sizeof(t_cmd));
@@ -43,13 +43,12 @@ t_cmd *ft_init_cmd_array(int nb_cmd)
 	return (cmd_array);
 }
 
-t_cmd_table	*ft_init_table(int nb_cmd, char **env)
+t_cmd_table	*ft_init_table(int nb_cmd)
 {
-	t_cmd_table *table;
+	t_cmd_table	*table;
 
 	table = ft_calloc(1, sizeof(t_cmd_table));
 	table->cmd_array = ft_init_cmd_array(nb_cmd);
 	table->cmd_count = nb_cmd;
-	ft_init_env(env);
 	return (table);
 }

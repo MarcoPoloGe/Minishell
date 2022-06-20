@@ -40,8 +40,11 @@ char	**ft_env_condense(char ***env)
 	i = 0;
 	while (env[i])
 	{
-		new[i] = ft_strjoin(env[i][0],"=");
-		new[i] = ft_strcombine(new[i],env[i][1]);
+		if (ft_strlen(env[i][1]) > 0)
+			new[i] = ft_strjoin(env[i][0], "=");
+		else
+			new[i] = ft_strdup(env[i][0]);
+		new[i] = ft_strcombine(new[i], env[i][1]);
 		i++;
 	}
 	return (new);
@@ -49,8 +52,8 @@ char	**ft_env_condense(char ***env)
 
 void	ft_update_env(char ***tab)
 {
-	int fd;
-	int i;
+	int	fd;
+	int	i;
 
 	i = 0;
 	fd = open(ENV_FILE, O_CREAT | O_WRONLY | O_TRUNC, S_IRWXU);
@@ -58,16 +61,17 @@ void	ft_update_env(char ***tab)
 		ft_fatal_error("Can't open file", NULL, NULL);
 	while (tab[i])
 	{
-		ft_putstr_fd(tab[i][0],fd);
-		ft_putchar_fd('=',fd);
-		ft_putstr_fd(tab[i][1],fd);
-		ft_putchar_fd('\n',fd);
+		ft_putstr_fd(tab[i][0], fd);
+		if (tab[i][1])
+			ft_putchar_fd('=', fd);
+		ft_putstr_fd(tab[i][1], fd);
+		ft_putchar_fd('\n', fd);
 		i++;
 	}
 	close(fd);
 }
 
-void ft_init_env(char **env)
+void	ft_init_env(char **env)
 {
 	char	***new;
 
@@ -83,12 +87,3 @@ void	ft_update_env_simple(char **env)
 	ft_update_env(new);
 	ft_free_big_tab(new);
 }
-
-
-
-
-
-
-
-
-

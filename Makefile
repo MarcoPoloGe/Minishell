@@ -15,10 +15,13 @@ SRC_PATH := $(foreach wrd,$(SRC),./src/$(wrd))\
 			$(foreach wrd,$(SRC_SPECIAL_BUILTINS),src/special_builtins/$(wrd))
 
 LIB = ./libft/libft.a
-LDIR = ./libft
+LIB_DIR = ./libft
 
 BUILTINS = ./builtins/bin
 BUILTINS_DIR = ./builtins
+
+REDIR = ./redir/bin
+REDIR_DIR = ./redir
 
 INCL = src/minishell.h
 
@@ -28,22 +31,28 @@ CFLAGS = -Wall -Wextra -Werror  -lreadline -L ./readline/8.1.2/lib -I ./readline
 
 all: $(NAME)
 
-$(NAME): $(SRC_PATH) $(BUILTINS) $(LIB) $(INCL)
+$(NAME): $(SRC_PATH) $(BUILTINS) $(REDIR) $(LIB) $(INCL)
 	$(CC) $(CFLAGS) $(SRC_PATH) $(LIB) -o $(NAME)
 
 $(BUILTINS): $(BUILTINS_DIR)
 	make -C $(BUILTINS_DIR)
 
-$(LIB): $(LDIR)
-	make -C $(LDIR)
+$(REDIR): $(REDIR_DIR)
+	make -C $(REDIR_DIR)
+
+$(LIB): $(LIB_DIR)
+	make -C $(LIB_DIR)
 
 clean:
-	make -C $(LDIR) clean
+	make -C $(LIB_DIR) clean
 	make -C $(BUILTINS_DIR) clean
+	make -C $(REDIR_DIR) clean
 
 fclean: clean
-	make -C $(LDIR) fclean
+	make -C $(LIB_DIR) fclean
 	make -C $(BUILTINS_DIR) fclean
+	make -C $(REDIR_DIR) fclean
+	rm -f ./config_files/env.txt
 	rm -f $(NAME)
 
 re: fclean all

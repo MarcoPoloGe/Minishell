@@ -47,7 +47,7 @@ int	ft_manage_cmd(t_cmd_table *table, char **tokens, int i, int *j)
 	table->cmd_array[i].cmd = ft_get_cmd_path(tokens[*j]);
 	if (table->cmd_array[i].cmd != NULL)
 	{
-		++(*j);
+		(*j)++;
 		ft_add_cmd_params(tokens, table, i, j);
 		return (0);
 	}
@@ -67,10 +67,11 @@ int	ft_manage_cmd(t_cmd_table *table, char **tokens, int i, int *j)
 void	ft_manage_builtins(t_cmd_table *table, char **tokens, int i, int *j)
 {
 	table->cmd_array[i].cmd = ft_strdup(tokens[*j]);
+	(*j)++;
 	ft_add_cmd_params(tokens, table, i, j);
 }
 
-t_cmd_table	*ft_parser(char **tokens, char **env)
+t_cmd_table	*ft_parser(char **tokens)
 {
 	t_cmd_table	*table;
 	int			i;
@@ -81,7 +82,7 @@ t_cmd_table	*ft_parser(char **tokens, char **env)
 	j = 0;
 	if (!tokens)
 		return (NULL);
-	table = ft_init_table(ft_nb_cmd(tokens), env);
+	table = ft_init_table(ft_nb_cmd(tokens));
 	while (i < table->cmd_count)
 	{
 		table->cmd_array[i].cmd = ft_get_redir_path(tokens[j]);

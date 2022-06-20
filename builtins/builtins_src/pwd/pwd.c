@@ -9,7 +9,8 @@
 /*   Updated: 2022/04/28 14:33:08 by facolomb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../../../src/minishell.h"
+
+#include "../../../libft/libft.h"
 
 void	ft_display_pwd(char **env)
 {

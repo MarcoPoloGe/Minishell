@@ -66,10 +66,10 @@ char		*ft_replace_env_var(char **str);
 void		ft_cmd_tokens_in_order(char ***token_tab);
 void		ft_put_tokens_in_order(char ***token_tab);
 // --- Parser ---
-t_cmd_table	*ft_parser(char **tokens, char **env);
+t_cmd_table	*ft_parser(char **tokens);
 // --- parser_utils ---
 char		*ft_check_str(char *str, char **env);
-t_cmd_table	*ft_init_table(int nb_cmd, char **env);
+t_cmd_table	*ft_init_table(int nb_cmd);
 int			ft_nb_cmd(char **tokens);
 int			ft_extract_fd(char *str);
 char		*ft_get_cmd_path(char *name);
@@ -81,7 +81,6 @@ int			**ft_make_pipe_list(int nb);
 // --- Executor ---
 void		ft_executor(t_cmd_table *cmd_table);
 // --- Builtins ---
-void		ft_is_exit(t_cmd_table *table, char *str, char *arg);
 void 		ft_export(int argc, char **argv);
 void		ft_unset(int argc, char **argv);
 void		ft_exit(int argc, char **argv, t_cmd_table *table);

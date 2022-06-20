@@ -13,8 +13,8 @@
 
 void	ft_unset(int argc, char **argv)
 {
-	int i;
-	char ***tab;
+	int		i;
+	char	***tab;
 
 	if (argc < 2)
 		return ;

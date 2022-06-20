@@ -12,10 +12,10 @@
 
 #include "../minishell.h"
 
-void ft_free_struct(t_cmd_table **table_adress)
+void	ft_free_struct(t_cmd_table **table_adress)
 {
-	t_cmd_table *table;
-	int i;
+	t_cmd_table	*table;
+	int			i;
 
 	if (table_adress == NULL || *table_adress == NULL)
 		return ;
@@ -41,7 +41,7 @@ void	*ft_error(char *message, t_cmd_table **cmd_table, char **str_table)
 	return (NULL);
 }
 
-void ft_fatal_error(char *message, t_cmd_table **table, char **str_table)
+void	ft_fatal_error(char *message, t_cmd_table **table, char **str_table)
 {
 	ft_printf("Fatal Error : %s\n", message);
 	ft_free_struct(table);

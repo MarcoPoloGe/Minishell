@@ -13,8 +13,8 @@
 
 void	ft_add_export(char **args)
 {
-	int i;
-	char **env;
+	int		i;
+	char	**env;
 
 	i = 1;
 	env = ft_read_env_simple();
@@ -29,10 +29,10 @@ void	ft_add_export(char **args)
 	ft_update_env_simple(env);
 }
 
-void	ft_display_export()
+void	ft_display_export(void)
 {
-	int i;
-	char **tab;
+	int		i;
+	char	**tab;
 
 	i = 0;
 	tab = ft_read_env_simple();

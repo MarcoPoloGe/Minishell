@@ -11,9 +11,9 @@
 /* ************************************************************************** */
 #include "../minishell.h"
 
-void ft_exit(int argc, char **argv, t_cmd_table *table)
+void	ft_exit(int argc, char **argv, t_cmd_table *table)
 {
-	int x;
+	int	x;
 
 	x = 0;
 	if (argc == 2)
@@ -23,7 +23,7 @@ void ft_exit(int argc, char **argv, t_cmd_table *table)
 		ft_free_struct(&table);
 		exit(x);
 	}
-	else if (argc == 1)
+	else if (argc <= 1)
 		exit(x);
 	else
 		ft_error("Exit : too many arguments", &table, NULL);

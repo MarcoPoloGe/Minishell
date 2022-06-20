@@ -30,9 +30,12 @@ char	*ft_get_redir_path(char *str)
 	char	***redirs;
 	char	*redir_path;
 
+	if (str == NULL)
+		return (NULL);
 	redirs = ft_read_two_way_tab(REDIR_WORDS_FILE, "txt", '=');
 	if (!redirs)
 		return (NULL);
 	redir_path = ft_find_redir_path(redirs, str);
+	ft_free_big_tab(redirs);
 	return (redir_path);
 }

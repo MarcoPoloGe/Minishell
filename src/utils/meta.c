@@ -15,10 +15,11 @@
 char	***ft_get_meta_word_tab(void)
 {
 	static char	***meta_word_tab;
+
 	if (meta_word_tab == NULL)
 		meta_word_tab = ft_read_two_way_tab(META_WORDS_FILE, "txt", '=');
 	if (meta_word_tab == NULL)
-		exit(1); //todo Error cannot read lexer_meta file;
+		ft_fatal_error("Cannot read meta_words.txt", NULL, NULL);
 	return (meta_word_tab);
 }
 
