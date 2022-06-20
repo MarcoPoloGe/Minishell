@@ -81,7 +81,7 @@ int			**ft_make_pipe_list(int nb);
 // --- Executor ---
 void		ft_executor(t_cmd_table *cmd_table);
 // --- Builtins ---
-void 		ft_export(int argc, char **argv);
+void		ft_export(int argc, char **argv);
 void		ft_unset(int argc, char **argv);
 void		ft_exit(int argc, char **argv, t_cmd_table *table);
 // --- Display ---
@@ -92,13 +92,14 @@ void		ft_display_two_way_table(char ***tab);
 // --- Utils ---
 void		ft_free_struct(t_cmd_table **table);
 int			ft_is_meta(char *input);
-char 		*ft_get_meta_alias(char *input);
+char		*ft_get_meta_alias(char *input);
 int			ft_is_redir(char *token);
 int			ft_is_redir_out(char *token);
 int			ft_is_redir_in(char *token);
-int 		ft_is_pipe(char * token);
+int			ft_is_pipe(char *token);
 void		*ft_error(char *message, t_cmd_table **cmd_table, char **str_table);
-void		ft_fatal_error(char *message, t_cmd_table **table, char **str_table);
+void		ft_fatal_error(char *message, t_cmd_table **cmd_table,
+				char **str_table);
 char		***ft_read_env(void);
 void		ft_update_env(char ***env);
 char		***ft_env_expand(char **env);

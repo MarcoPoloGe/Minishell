@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "../../src/minishell.h"
 
 void	ft_out_apppend(char *file_name)
@@ -22,7 +21,7 @@ void	ft_out_apppend(char *file_name)
 	if (fd < 0)
 		ft_printf_fd(2, "Error: %s: %s\n", strerror(errno), file_name);
 	file = ft_read_fd(0);
-	if(isatty(1))
+	if (isatty(1))
 		ft_putstr_fd(file, fd);
 	else
 		ft_putstr_fd(file, 1);

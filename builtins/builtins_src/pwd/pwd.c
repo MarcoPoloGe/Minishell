@@ -28,10 +28,9 @@ void	ft_display_pwd(char **env)
 int	main(int argc, char **argv, char **env)
 {
 	(void) argv;
-
 	if (argc != 2)
 		ft_printf("Too many arguments !\n");
 	else
 		ft_display_pwd(env);
-	return(0);
+	return (0);
 }

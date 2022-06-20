@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   special_builtins.c                                 :+:      :+:    :+:   */
+/*   builtins.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbelarbi <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,18 +10,17 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "../minishell.h"
 
-int ft_is_builtin(char *name)
+int	ft_is_builtin(char *name)
 {
-	if(ft_str_same(name, BUILTIN_CD))
+	if (ft_str_same(name, BUILTIN_CD))
 		return (1);
-	if(ft_str_same(name, BUILTIN_EXIT))
+	if (ft_str_same(name, BUILTIN_EXIT))
 		return (1);
-	if(ft_str_same(name, BUILTIN_EXPORT))
+	if (ft_str_same(name, BUILTIN_EXPORT))
 		return (1);
-	if(ft_str_same(name, BUILTIN_UNSET))
+	if (ft_str_same(name, BUILTIN_UNSET))
 		return (1);
 	return (0);
 }

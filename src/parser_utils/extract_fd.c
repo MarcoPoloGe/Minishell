@@ -15,7 +15,7 @@
 void	ft_extract(char *str, int tube[2])
 {
 	char	*input;
-	int 	strlen;
+	int		strlen;
 
 	input = NULL;
 	while (!(ft_str_same(str, input)))

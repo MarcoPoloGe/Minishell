@@ -11,22 +11,22 @@
 /* ************************************************************************** */
 #include "minishell.h"
 
-void ft_launch_special_builtins(t_cmd *cmd, t_cmd_table *cmd_table)
+void	ft_launch_special_builtins(t_cmd *cmd, t_cmd_table *cmd_table)
 {
-	int term_in;
-	int term_out;
+	int	term_in;
+	int	term_out;
 
-  	term_out = dup(1);
+	term_out = dup(1);
 	term_in = dup(0);
 	dup2(cmd->fd_in, 0);
 	dup2(cmd->fd_out, 1);
 	//if(ft_str_same(cmd->cmd, BUILTIN_CD))
 		// todo cd ;
-	if(ft_str_same(cmd->cmd, BUILTIN_EXIT))
+	if (ft_str_same(cmd->cmd, BUILTIN_EXIT))
 		ft_exit(ft_tablen(cmd->args), cmd->args, cmd_table);
-	else if(ft_str_same(cmd->cmd, BUILTIN_EXPORT))
+	else if (ft_str_same(cmd->cmd, BUILTIN_EXPORT))
 		ft_export(ft_tablen(cmd->args), cmd->args);
-	else if(ft_str_same(cmd->cmd, BUILTIN_UNSET))
+	else if (ft_str_same(cmd->cmd, BUILTIN_UNSET))
 		ft_unset(ft_tablen(cmd->args), cmd->args);
 	dup2(term_out, 1);
 	dup2(term_in, 0);

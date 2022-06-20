@@ -19,7 +19,7 @@ void	ft_stradd_len(char **s1, char *s2, int s2_len)
 
 	if (!s2 || s2_len <= 0)
 		return ;
-	s1_len  = ft_strlen(*s1);
+	s1_len = ft_strlen(*s1);
 	old_s1 = (*s1);
 	(*s1) = ft_calloc(s1_len + s2_len + 1, sizeof(char));
 	if ((*s1) == NULL)
