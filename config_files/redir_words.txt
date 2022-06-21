@@ -1,4 +1,4 @@
 GREAT=out_trunc
 GREATGREAT=out_append
-LESS=in_prompt
-LESSLESS=in_file
+LESS=in_file
+LESSLESS=in_prompt

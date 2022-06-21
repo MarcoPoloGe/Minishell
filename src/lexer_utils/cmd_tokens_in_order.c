@@ -86,7 +86,7 @@ void	ft_move_pipe_to_last(char ***ordered_token_tab)
 	i = 0;
 	while ((*ordered_token_tab)[i])
 	{
-		if (ft_str_same((*ordered_token_tab)[i], "PIPE"))
+		if (ft_is_pipe((*ordered_token_tab)[i]))
 		{
 			ft_tabdel((*ordered_token_tab), i);
 			ft_tabadd(ordered_token_tab, "PIPE");

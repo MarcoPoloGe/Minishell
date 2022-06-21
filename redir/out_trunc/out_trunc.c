@@ -20,7 +20,10 @@ void	ft_out_trunc(char *str)
 	fd = open(str, O_CREAT | O_WRONLY | O_TRUNC, S_IRWXU);
 	if (fd < 0)
 		ft_putstr_fd("Error out_trunc: file opening or creation.", 2);
-	file = ft_read_fd(0);
+	if (isatty(0))
+		file = NULL;
+	else
+		file = ft_read_fd(0);
 	if (isatty(1))
 		ft_putstr_fd(file, fd);
 	else

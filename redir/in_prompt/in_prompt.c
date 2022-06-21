@@ -24,7 +24,7 @@ char	*ft_here_doc(char *delimiter)
 		ft_stradd(&here_doc, input);
 		if (here_doc != NULL)
 			ft_stradd(&here_doc, "\n");
-		input = readline("> ");
+		input = readline("heredoc> ");
 	}
 	return (here_doc);
 }

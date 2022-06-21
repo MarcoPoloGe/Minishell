@@ -11,18 +11,34 @@
 /* ************************************************************************** */
 #include "../minishell.h"
 
-int	ft_nb_cmd(char **tokens)
+char	**ft_skip_word(char **tokens)
 {
-	int	i;
-
-	i = 1;
+	tokens++;
 	while (*tokens)
 	{
 		if (ft_is_meta(*tokens))
-			i++;
+			break ;
 		tokens++;
 	}
-	return (i);
+	return (tokens);
+}
+
+int	ft_nb_cmd(char **tokens)
+{
+	int	count;
+
+	count = 0;
+	if (ft_tablen(tokens) <= 0)
+		return (0);
+	while (*tokens)
+	{
+		count++;
+		if (ft_is_redir(*tokens))
+			tokens += 2;
+		else
+			tokens = ft_skip_word(tokens);
+	}
+	return (count);
 }
 
 t_cmd	*ft_init_cmd_array(int nb_cmd)

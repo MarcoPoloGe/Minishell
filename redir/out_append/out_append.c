@@ -20,7 +20,10 @@ void	ft_out_apppend(char *file_name)
 	fd = open(file_name, O_CREAT | O_WRONLY | O_APPEND, S_IRWXU);
 	if (fd < 0)
 		ft_printf_fd(2, "Error: %s: %s\n", strerror(errno), file_name);
-	file = ft_read_fd(0);
+	if (isatty(0))
+		file = NULL;
+	else
+		file = ft_read_fd(0);
 	if (isatty(1))
 		ft_putstr_fd(file, fd);
 	else
