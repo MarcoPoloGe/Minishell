@@ -25,6 +25,7 @@ int	ft_is_nl(char *str)
 		ft_putstr(str);
 		return (0);
 	}
+	return (0);
 }
 
 void	ft_echo(char **args)
