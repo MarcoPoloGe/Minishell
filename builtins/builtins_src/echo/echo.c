@@ -9,48 +9,40 @@
 /*   Updated: 2022/04/26 11:28:49 by facolomb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../../../src/minishell.h"
+
+#include "../../../libft/libft.h"
 
 int	ft_is_nl(char *str)
 {
-	if (str[0] == '-')
-	{
-		if (ft_str_same(str, "-n"))
-			return (1);
-		else
-			ft_error("Error : echo unkown option", NULL, NULL);
-	}
+	if (ft_str_same(str, "-n"))
+		return (1);
 	else
-	{
-		ft_putstr(str);
 		return (0);
-	}
-	return (0);
 }
 
-void	ft_echo(char **args)
+void	ft_echo(int argc, char **args)
 {
 	int	i;
-	int	tablen;
 	int	nl;
 
-	i = 0;
-	tablen = ft_tablen(args);
-	while (i < tablen)
+	i = 1;
+	nl = ft_is_nl(args[i]);
+	if (nl)
+		i++;
+	while (i < argc)
 	{
-		if (i == tablen - 1)
-			nl = ft_is_nl(args[i]);
-		else
-			ft_putstr(args[i]);
+		ft_putstr(args[i]);
+		if (i < argc - 1)
+			ft_putchar(' ');
 		i++;
 	}
-	if (nl == 1)
+	if (nl == 0)
 		ft_putchar('\n');
 }
 
 int	main(int argc, char **argv)
 {
 	if (argc >= 2)
-		ft_echo(argv);
+		ft_echo(argc, argv);
 	return (0);
 }

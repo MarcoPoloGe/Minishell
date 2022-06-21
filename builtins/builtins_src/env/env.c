@@ -9,7 +9,7 @@
 /*   Updated: 2022/04/28 14:43:12 by facolomb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../../../src/minishell.h"
+#include "../../../libft/libft.h"
 
 void	ft_display_env(char **env)
 {
@@ -25,7 +25,7 @@ int	main(int argc, char **argv, char **env)
 {
 	(void)argv;
 	if (argc > 1)
-		ft_printf("Too many arguments !");
+		ft_printf_fd(2, "Error : Too many arguments for builtin env.");
 	else
 		ft_display_env(env);
 	return (0);
