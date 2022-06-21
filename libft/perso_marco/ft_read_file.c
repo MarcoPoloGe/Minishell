@@ -26,7 +26,7 @@ char	*ft_read_file(char *file_name, char *ext)
 	fd = open(file_name, O_RDONLY);
 	if (fd == -1)
 	{
-		ft_printf_fd(2, "Error: %s: %s\n", strerror(errno), file_name);
+		ft_printf_fd(2, "Error: %s: %s\n", file_name , strerror(errno));
 		return (NULL);
 	}
 	file = NULL;

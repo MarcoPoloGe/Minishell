@@ -91,7 +91,7 @@ t_cmd_table	*ft_parser(char **tokens)
 		else
 			is_error = ft_manage_cmd(table, tokens, i, &j);
 		if (is_error == 1)
-			break ;
+			return (NULL);
 		i++;
 		//j++;
 	}
