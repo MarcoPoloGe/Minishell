@@ -27,7 +27,7 @@ INCL = src/minishell.h
 
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror  -lreadline -L ./readline/8.1.2/lib -I ./readline/8.1.2/include #-g -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -lreadline -L$(HOME)/.brew/opt/readline/lib -I$(HOME)/.brew/opt/readline/include #-g -fsanitize=address
 
 all: $(NAME)
 
