@@ -20,7 +20,7 @@
 # include <signal.h>
 # include <curses.h>
 # include <dirent.h>
-//#include <term.h>
+//# include <term.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <stdlib.h>
@@ -109,4 +109,7 @@ char		**ft_read_env_simple(void);
 void		ft_init_env(char **env);
 void		ft_update_env_simple(char **env);
 int			ft_is_builtin(char *name);
+//Signaux
+void		signals(void);
+void		signals_fork(void);
 #endif

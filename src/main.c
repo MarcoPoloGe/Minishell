@@ -23,6 +23,7 @@ int	main(int argc, char **argv, char **env)
 	ft_init_env(env);
 	while (1) //todo temp que pas ctrl-/ ect.
 	{
+		signals();
 		input = ft_prompt();
 		token_tab = ft_lexer(input);
 		cmd_table = ft_parser(token_tab);

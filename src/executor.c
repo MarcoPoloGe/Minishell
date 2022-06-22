@@ -48,6 +48,7 @@ void	ft_executor(t_cmd_table *cmd_table)
 	i = 0;
 	while (i < cmd_table->cmd_count)
 	{
+		signals_fork();
 		if (ft_is_builtin(cmd_table->cmd_array[i].cmd))
 			ft_launch_special_builtins((cmd_table->cmd_array + i), cmd_table);
 		else
