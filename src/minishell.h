@@ -84,6 +84,9 @@ void		ft_executor(t_cmd_table *cmd_table);
 void		ft_export(int argc, char **argv);
 void		ft_unset(int argc, char **argv);
 void		ft_exit(int argc, char **argv, t_cmd_table *table);
+void		ft_cd(int argc, char **argv, t_cmd_table *table);
+char		*ft_combine_path(int nb_back, char *s1, char *s2);
+int			ft_nb_back_path(char *path);
 // --- Display ---
 void		ft_display_lexer_tokens(char **tokens_tab);
 void		ft_display_table(char **tab);
