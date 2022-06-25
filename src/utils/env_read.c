@@ -45,8 +45,9 @@ char	*ft_getenv(char *var_name)
 	while (env[i])
 	{
 		if (ft_str_same(env[i][0], var_name))
-			return (env[i][1]);
+			return (ft_strdup(env[i][1]));
 		i++;
 	}
+	ft_free_big_tab(env);
 	return (NULL);
 }

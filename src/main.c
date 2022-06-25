@@ -23,11 +23,16 @@ int	main(int argc, char **argv, char **env)
 	ft_init_env(env);
 	while (1) //todo temp que pas ctrl-/ ect.
 	{
+		signals();
 		input = ft_prompt();
 		token_tab = ft_lexer(input);
+		ft_display_tab(token_tab);
 		cmd_table = ft_parser(token_tab);
+		//ft_display_cmd_table(cmd_table);
+		//ft_printf("\n");
 		ft_expander(cmd_table);
-	//	ft_display_cmd_table(cmd_table);
+		//ft_printf("---cmd table after expander---\n");
+		//ft_display_cmd_table(cmd_table);
 		ft_executor(cmd_table);
 	}
 	return (0);

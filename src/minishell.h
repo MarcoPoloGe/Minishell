@@ -20,7 +20,7 @@
 # include <signal.h>
 # include <curses.h>
 # include <dirent.h>
-//#include <term.h>
+//# include <term.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <stdlib.h>
@@ -84,6 +84,9 @@ void		ft_executor(t_cmd_table *cmd_table);
 void		ft_export(int argc, char **argv);
 void		ft_unset(int argc, char **argv);
 void		ft_exit(int argc, char **argv, t_cmd_table *table);
+void		ft_cd(int argc, char **argv, t_cmd_table *table);
+char		*ft_combine_path(int nb_back, char *s1, char *s2);
+int			ft_nb_back_path(char *path);
 // --- Display ---
 void		ft_display_lexer_tokens(char **tokens_tab);
 void		ft_display_table(char **tab);
@@ -109,4 +112,7 @@ char		**ft_read_env_simple(void);
 void		ft_init_env(char **env);
 void		ft_update_env_simple(char **env);
 int			ft_is_builtin(char *name);
+//Signaux
+void		signals(void);
+void		signals_fork(void);
 #endif

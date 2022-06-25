@@ -21,7 +21,10 @@ char	*ft_prompt(void)
 	{
 		input = readline("minishell%");
 		if (input == NULL)
+		{
+			ft_printf("exit");
 			ft_exit(0, NULL, NULL);
+		}
 	}
 	add_history(input);
 	return (input);
