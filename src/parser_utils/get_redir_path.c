@@ -11,6 +11,17 @@
 /* ************************************************************************** */
 #include "../minishell.h"
 
+char	***ft_get_redir_word_tab(void)
+{
+	static char	***redir_word_tab;
+
+	if (redir_word_tab == NULL)
+		redir_word_tab = ft_read_two_way_tab(REDIR_WORDS_FILE, "txt", '=');
+	if (redir_word_tab == NULL)
+		ft_fatal_error("Cannot read redir_words.txt", NULL, NULL);
+	return (redir_word_tab);
+}
+
 char	*ft_find_redir_path(char ***redirs, char *str)
 {
 	int		i;
@@ -32,7 +43,7 @@ char	*ft_get_redir_path(char *str)
 
 	if (str == NULL)
 		return (NULL);
-	redirs = ft_read_two_way_tab(REDIR_WORDS_FILE, "txt", '=');
+	redirs = ft_get_redir_word_tab();
 	if (!redirs)
 		return (NULL);
 	redir_path = ft_find_redir_path(redirs, str);
