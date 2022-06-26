@@ -17,7 +17,7 @@ void	ft_add_export(char **args)
 	char	**env;
 
 	i = 1;
-	env = ft_read_env_simple();
+	env = ft_read_env();
 	while (args[i])
 	{
 		if (ft_isalpha(args[i][0]) || args[i][0] == '_')
@@ -26,7 +26,8 @@ void	ft_add_export(char **args)
 			ft_error("export, not a valid identifier ", NULL, NULL);
 		i++;
 	}
-	ft_update_env_simple(env);
+	ft_update_env(env);
+	ft_free_tab(env);
 }
 
 void	ft_display_export(void)
@@ -35,10 +36,11 @@ void	ft_display_export(void)
 	char	**tab;
 
 	i = 0;
-	tab = ft_read_env_simple();
+	tab = ft_read_env();
 	tab = ft_sort_str_tab(tab);
 	while (tab[i])
 		ft_printf("declare -x %s\n", tab[i++]);
+	ft_free_tab(tab);
 }
 
 void	ft_export(int argc, char **argv)

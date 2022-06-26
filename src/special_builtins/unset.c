@@ -14,7 +14,7 @@
 void	ft_unset(int argc, char **argv)
 {
 	int		i;
-	char	***tab;
+	char	**tab;
 
 	if (argc < 2)
 		return ;
@@ -23,4 +23,5 @@ void	ft_unset(int argc, char **argv)
 	while (argv[i])
 		tab = ft_delete_str_tab(tab, argv[i++]);
 	ft_update_env(tab);
+	ft_free_tab(tab);
 }

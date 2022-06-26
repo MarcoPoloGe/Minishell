@@ -12,42 +12,28 @@
 
 #include "../minishell.h"
 
-char	***ft_read_env(void)
+char	**ft_read_env(void)
 {
-	char	***env;
-
-	env = ft_read_two_way_tab(ENV_FILE, "txt", '=');
-	if (env == NULL)
-		ft_fatal_error("Can't read env file.", NULL, NULL);
-	return (env);
-}
-
-char	**ft_read_env_simple(void)
-{
-	char	***env;
-	char	**new;
-
-	env = ft_read_env();
-	new = ft_env_condense(env);
-	ft_free_big_tab(env);
-	return (new);
+	return (ft_tabdup(ft_env(NULL)));
 }
 
 char	*ft_getenv(char *var_name)
 {
 	int		i;
 	char	***env;
+	char	*var_content;
 
+	var_content = NULL;
 	if (var_name == NULL)
 		return (NULL);
-	env = ft_read_env();
+	env = ft_env_expand(ft_env(NULL));
 	i = 0;
 	while (env[i])
 	{
 		if (ft_str_same(env[i][0], var_name))
-			return (ft_strdup(env[i][1]));
+			var_content = ft_strdup(env[i][1]);
 		i++;
 	}
 	ft_free_big_tab(env);
-	return (NULL);
+	return (var_content);
 }

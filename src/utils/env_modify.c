@@ -12,6 +12,35 @@
 
 #include "../minishell.h"
 
+// the function that actually stores the env table.
+// It is used to read and modify the env table.
+char	**ft_env(char **updated_env)
+{
+	static char **env;
+
+	if(updated_env)
+	{
+		if(env)
+			ft_free_tab(env);
+		env = ft_tabdup(updated_env);
+	}
+	if(env)
+		return (env);
+	else
+	{
+		ft_printf_fd(2, "Error : env has not been initialized");
+		return (NULL);
+	}
+}
+
+//Is used to update and initialize the env table.
+char	**ft_update_env(char **updated_env)
+{
+	if(updated_env == NULL)
+		return (NULL);
+	return (ft_env(updated_env));
+}
+
 char	***ft_env_expand(char **env)
 {
 	char	***new;
@@ -48,42 +77,4 @@ char	**ft_env_condense(char ***env)
 		i++;
 	}
 	return (new);
-}
-
-void	ft_update_env(char ***tab)
-{
-	int	fd;
-	int	i;
-
-	i = 0;
-	fd = open(ENV_FILE, O_CREAT | O_WRONLY | O_TRUNC, S_IRWXU);
-	if (fd < 0)
-		ft_fatal_error("Can't open file", NULL, NULL);
-	while (tab[i])
-	{
-		ft_putstr_fd(tab[i][0], fd);
-		if (tab[i][1])
-			ft_putchar_fd('=', fd);
-		ft_putstr_fd(tab[i][1], fd);
-		ft_putchar_fd('\n', fd);
-		i++;
-	}
-	close(fd);
-}
-
-void	ft_init_env(char **env)
-{
-	char	***new;
-
-	new = ft_env_expand(env);
-	ft_update_env(new);
-}
-
-void	ft_update_env_simple(char **env)
-{
-	char	***new;
-
-	new = ft_env_expand(env);
-	ft_update_env(new);
-	ft_free_big_tab(new);
 }

@@ -18,7 +18,7 @@ char	**ft_tabdup(char **tab)
 	char	**tabdup;
 
 	tablen = ft_tablen(tab);
-	tabdup = ft_calloc(tablen, sizeof(char *));
+	tabdup = ft_calloc(tablen + 1, sizeof(char *));
 	ft_tabcpy(tabdup, tab);
 	return (tabdup);
 }

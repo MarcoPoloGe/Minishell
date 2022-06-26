@@ -52,7 +52,6 @@ fclean: clean
 	make -C $(LIB_DIR) fclean
 	make -C $(BUILTINS_DIR) fclean
 	make -C $(REDIR_DIR) fclean
-	rm -f ./config_files/env.txt
 	rm -f $(NAME)
 
 re: fclean all

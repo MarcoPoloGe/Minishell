@@ -16,11 +16,12 @@ void	ft_oldpwd(void)
 	char **env;
 	char *old;
 
-	env = ft_read_env_simple();
+	env = ft_read_env();
 	old = ft_getenv("PWD");
 	old = ft_strjoin("OLDPWD=", old);
 	ft_tabadd(&env, old);
-	ft_update_env_simple(env);
+	ft_update_env(env);
+	ft_free_tab(env);
 	free(old);
 }
 
@@ -30,11 +31,12 @@ void	ft_update_pwd(char *path)
 	int i;
 
 	i = 0;
-	env = ft_read_env_simple();
+	env = ft_read_env();
 	while (env[i] && !ft_str_match(env[i], "PWD"))
 		i++;
 	env[i] = ft_combine_path(ft_nb_back_path(path), env[i], path);
-	ft_update_env_simple(env);
+	ft_update_env(env);
+	ft_free_tab(env);
 }
 
 void	ft_go_to_home(void)

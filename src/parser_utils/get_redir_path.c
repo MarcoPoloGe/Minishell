@@ -47,6 +47,5 @@ char	*ft_get_redir_path(char *str)
 	if (!redirs)
 		return (NULL);
 	redir_path = ft_find_redir_path(redirs, str);
-	ft_free_big_tab(redirs);
 	return (redir_path);
 }
