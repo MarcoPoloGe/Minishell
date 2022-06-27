@@ -103,14 +103,12 @@ int			ft_is_pipe(char *token);
 void		*ft_error(char *message, t_cmd_table **cmd_table, char **str_table);
 void		ft_fatal_error(char *message, t_cmd_table **cmd_table,
 				char **str_table);
-char		***ft_read_env(void);
-void		ft_update_env(char ***env);
+char		**ft_env(char **updated_env);
+char		**ft_read_env(void);
+char		**ft_update_env(char **env);
 char		***ft_env_expand(char **env);
 char		**ft_env_condense(char ***env);
 char		*ft_getenv(char *var_name);
-char		**ft_read_env_simple(void);
-void		ft_init_env(char **env);
-void		ft_update_env_simple(char **env);
 int			ft_is_builtin(char *name);
 //Signaux
 void		signals(void);
