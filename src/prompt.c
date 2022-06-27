@@ -19,7 +19,7 @@ char	*ft_prompt(void)
 	input = NULL;
 	while (ft_strlen(input) <= 0)
 	{
-		input = readline("minishell%");
+		input = readline("minishell% ");
 		if (input == NULL)
 		{
 			ft_printf("exit");
