@@ -57,7 +57,8 @@ int	ft_manage_cmd(t_cmd_table *table, char **tokens, int i, int *j)
 	}
 	else
 	{
-		ft_error("Command not found", &table, NULL);
+		ft_printf_fd(2, "Error: %s: Command not found\n", tokens[*j]);
+		ft_free_struct(&table);
 		return (1);
 	}
 }
