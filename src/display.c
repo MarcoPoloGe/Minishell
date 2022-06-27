@@ -26,7 +26,7 @@ void	ft_display_table(char **tab)
 		ft_printf("#%s#", tab[x]);
 		x++;
 	}
-	ft_putstr(" ]\n");
+	ft_putstr(" ]");
 }
 
 void	ft_display_two_way_table(char ***tab)
@@ -48,21 +48,19 @@ void	ft_display_two_way_table(char ***tab)
 
 void	ft_display_cmd(t_cmd cmd)
 {
-	ft_putstr("[");
 	ft_putstr("CMD: ");
 	ft_printf("<%s>", cmd.cmd);
-	ft_putstr("][");
+	ft_putstr(" , ");
 	ft_putstr("ARGS: ");
 	ft_display_table(cmd.args);
-	ft_putstr("]");
+	ft_putstr(";");
 	ft_putstr("\n");
-	ft_putstr("[");
 	ft_putstr("fd_in: ");
 	ft_printf("<%i>", cmd.fd_in);
-	ft_putstr("][");
+	ft_putstr(" , ");
 	ft_putstr("fd_out: ");
 	ft_printf("<%i>", cmd.fd_out);
-	ft_putstr("]");
+	ft_putstr(";");
 	ft_putstr("\n");
 }
 
@@ -75,8 +73,10 @@ void	ft_display_cmd_table(t_cmd_table *cmd_table)
 	i = 0;
 	ft_putstr("--- cmd_table_start ---\n");
 	ft_printf("cmd_count      :%i\n", cmd_table->cmd_count);
+
 	while (cmd_table->cmd_array[i].cmd != NULL)
 	{
+		ft_putchar('\n');
 		ft_display_cmd(cmd_table->cmd_array[i]);
 		i++;
 	}
