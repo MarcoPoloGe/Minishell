@@ -12,6 +12,14 @@
 
 #include "../minishell.h"
 
+void ft_check_config_files(void)
+{
+	struct stat buffer;
+
+	if(stat(REDIR_WORDS_FILE, &buffer) == -1 || stat(META_WORDS_FILE, &buffer) == -1)
+		ft_fatal_error("can't find configuration files", NULL, NULL);
+}
+
 void	ft_free_struct(t_cmd_table **table_adress)
 {
 	t_cmd_table	*table;
