@@ -12,14 +12,31 @@
 
 #include "../minishell.h"
 
+void ft_init_path_list(void)
+{
+	ft_get_paths_env();
+}
+
 char	**ft_get_paths_env(void)
 {
-	char	*output;
+	static char	**paths_list;
+	char	*temp;
+	char	*absolut_path;
 
-	output = ft_getenv("PATH");
-	if (output == NULL)
-		ft_fatal_error("env PATH not found.", NULL, NULL);
-	return (ft_split(output, ':'));
+	if(paths_list == NULL)
+	{
+		temp = ft_getenv("PATH");
+		if (temp == NULL)
+			ft_fatal_error("env PATH not found.", NULL, NULL);
+		paths_list = ft_split(temp, ':');
+		free(temp);
+		temp = ft_strdup(BUILTIN_FOLDER);
+		absolut_path = ft_strcombine(ft_getenv("PWD"), temp + 1);
+		free(temp);
+		ft_tabadd_front(&paths_list, absolut_path);
+		free(absolut_path);
+	}
+	return (paths_list);
 }
 
 char	*ft_find_cmd_in_directory(char *path, char *name)
@@ -69,8 +86,6 @@ char	*ft_get_cmd_path(char *name)
 	char	*cmd_path;
 
 	paths_list = ft_get_paths_env();
-	ft_tabadd_front(&paths_list, BUILTIN_FOLDER);
 	cmd_path = ft_find_cmd_in_paths(paths_list, name);
-	ft_free_tab(paths_list);
 	return (cmd_path);
 }

@@ -79,6 +79,7 @@ t_cmd_table	*ft_parser(char **tokens)
 
 	i = 0;
 	j = 0;
+	is_error = 0;
 	if (!tokens)
 		return (NULL);
 	table = ft_init_table(ft_nb_cmd(tokens));
@@ -94,7 +95,6 @@ t_cmd_table	*ft_parser(char **tokens)
 		if (is_error == 1)
 			return (NULL);
 		i++;
-		//j++;
 	}
 	return (table);
 }

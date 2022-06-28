@@ -75,6 +75,8 @@ int			ft_nb_cmd(char **tokens);
 int			ft_extract_fd(char *str);
 char		*ft_get_cmd_path(char *name);
 char		*ft_get_redir_path(char *name);
+void		ft_init_path_list(void);
+char		**ft_get_paths_env(void);
 // --- Expander ---
 void		ft_expander(t_cmd_table *cmd_table);
 // --- expander_utils ---
