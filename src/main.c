@@ -21,6 +21,7 @@ int	main(int argc, char **argv, char **env)
 	(void)argc;
 	(void)argv;
 
+	ft_check_config_files();
 	ft_update_env(env);
 	ft_init_path_list();
 	while (1) //todo temp que pas ctrl-/ ect.

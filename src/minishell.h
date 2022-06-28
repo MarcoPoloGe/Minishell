@@ -56,7 +56,9 @@ typedef struct s_cmd_table
 //for testing (to be removed)
 
 // ----- Functions -----
-// --- Main ---
+// --- Signaux ---
+void		signals(void);
+void		signals_fork(void);
 // --- Prompt ---
 char		*ft_prompt(void);
 // --- Lexer ---
@@ -97,23 +99,23 @@ void		ft_display_cmd_table(t_cmd_table *cmd_table);
 void		ft_display_two_way_table(char ***tab);
 // --- Utils ---
 void		ft_free_struct(t_cmd_table **table);
+void		*ft_error(char *message, t_cmd_table **cmd_table, char **str_table);
+void		ft_fatal_error(char *message, t_cmd_table **cmd_table,
+						   char **str_table);
+void		ft_check_config_files(void);
 int			ft_is_meta(char *input);
 char		*ft_get_meta_alias(char *input);
 int			ft_is_redir(char *token);
 int			ft_is_redir_out(char *token);
 int			ft_is_redir_in(char *token);
 int			ft_is_pipe(char *token);
-void		*ft_error(char *message, t_cmd_table **cmd_table, char **str_table);
-void		ft_fatal_error(char *message, t_cmd_table **cmd_table,
-				char **str_table);
+int			ft_is_builtin(char *name);
 char		**ft_env(char **updated_env);
 char		**ft_read_env(void);
 char		**ft_update_env(char **env);
 char		***ft_env_expand(char **env);
 char		**ft_env_condense(char ***env);
 char		*ft_getenv(char *var_name);
-int			ft_is_builtin(char *name);
-//Signaux
-void		signals(void);
-void		signals_fork(void);
+
+
 #endif
