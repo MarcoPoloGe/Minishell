@@ -28,8 +28,8 @@ void	ft_display_pwd(char **env)
 int	main(int argc, char **argv, char **env)
 {
 	(void) argv;
-	if (argc != 2)
-		ft_printf_fd(2, "Error : Too many arguments for builtin pwd.");
+	if (argc != 1)
+		ft_printf_fd(2, "Error : Too many arguments for builtin pwd\n");
 	else
 		ft_display_pwd(env);
 	return (0);

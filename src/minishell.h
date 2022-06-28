@@ -24,6 +24,7 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <stdlib.h>
+# include <termios.h>
 
 //----- Files Paths -----
 # define BUILTIN_FOLDER "./builtins/bin"

@@ -13,15 +13,12 @@
 
 void	ft_unset(int argc, char **argv)
 {
-	int		i;
 	char	**tab;
 
 	if (argc < 2)
 		return ;
-	i = 1;
 	tab = ft_read_env();
-	while (argv[i])
-		tab = ft_delete_str_tab(tab, argv[i++]);
+	tab = ft_delete_str_tab(tab, argv[1]);
 	ft_update_env(tab);
 	ft_free_tab(tab);
 }
