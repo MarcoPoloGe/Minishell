@@ -119,6 +119,7 @@ void	ft_executor(t_cmd_table *cmd_table)
 	pid_list = calloc(cmd_table->cmd_count, sizeof(int));
 	i = 0;
 	while (i < cmd_table->cmd_count)
+
 	{
 		pid_list[i] = ft_launch_cmd(cmd_table->cmd_array + i, cmd_table);
 		i++;

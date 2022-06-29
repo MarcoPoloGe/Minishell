@@ -12,6 +12,33 @@
 
 #include "../minishell.h"
 
+// the function that actually stores the env table.
+// It is used to read and modify the env table.
+char	**ft_env(char **updated_env)
+{
+	static char **env;
+	char *str;
+
+	if(updated_env)
+	{
+		if(env)
+			ft_free_tab(env);
+		env = ft_tabdup(updated_env);
+		str = ft_getenv("LAST_EXIT_CODE");
+		if(str == NULL)
+			ft_modify_env("LAST_EXIT_CODE", "0");
+		else
+			free(str);
+	}
+	if(env)
+		return (env);
+	else
+	{
+		ft_printf_fd(2, "Error : env has not been initialized");
+		return (NULL);
+	}
+}
+
 char	**ft_read_env(void)
 {
 	return (ft_tabdup(ft_env(NULL)));

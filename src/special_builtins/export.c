@@ -14,20 +14,30 @@
 void	ft_add_export(char **args)
 {
 	int		i;
-	char	**env;
+	int 	size;
+	char 	*name;
+	char 	*value;
 
 	i = 1;
-	env = ft_read_env();
 	while (args[i])
 	{
-		if (ft_isalpha(args[i][0]) || args[i][0] == '_')
-			ft_tabadd(&env, args[i]);
+		size = ft_strlen_char(args[i], '=');
+		if (size > 0)
+		{
+			name = ft_strndup(args[i], size);
+			if (args[i] + (size + 1))
+				value = ft_strdup(args[i] + (size + 1));
+			else
+				value = ft_calloc(sizeof(char), 0);
+		}
 		else
-			ft_error("export, not a valid identifier ", NULL, NULL);
+		{
+			name = ft_strdup(args[i]);
+			value = NULL;
+		}
+		ft_modify_env(name, value);
 		i++;
 	}
-	ft_update_env(env);
-	ft_free_tab(env);
 }
 
 void	ft_display_export(void)
