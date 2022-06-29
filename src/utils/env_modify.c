@@ -74,6 +74,8 @@ void ft_modify_env(char *var_name, char *var_value)
 	char **env;
 	char *var;
 
+	if(var_name == NULL)
+		return ;
 	env = ft_read_env();
 	if(ft_search_var_and_replace(env, var_name, var_value) == 0)
 	{
