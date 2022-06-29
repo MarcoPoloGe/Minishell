@@ -25,10 +25,11 @@ char	*ft_here_doc(char *delimiter)
 		if (here_doc != NULL)
 			ft_stradd(&here_doc, "\n");
 		input = readline("heredoc> ");
-		if (input == NULL) //todo control D termios remove ^D
+		if (input == NULL)
 		{
+			//todo control D termios remove ^D
 			ft_putchar('\n');
-			break;
+			break ;
 		}
 	}
 	return (here_doc);
