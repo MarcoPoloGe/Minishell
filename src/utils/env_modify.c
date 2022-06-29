@@ -29,7 +29,7 @@ int	ft_get_position_var(char **env, char *var_name)
 	{
 		if (ft_str_match(env[i], var_name))
 		{
-			if (ft_strlen_char(env[i], '=') == ft_strlen(var_name))
+			if (ft_strlen_char_end(env[i], '=') == ft_strlen(var_name))
 				return (i);
 		}
 		i++;
