@@ -102,7 +102,7 @@ void		ft_free_struct(t_cmd_table **table);
 void		*ft_error(char *message, t_cmd_table **cmd_table, char **str_table);
 void		ft_fatal_error(char *message, t_cmd_table **cmd_table,
 						   char **str_table);
-void		ft_check_config_files(void);
+void		ft_check_config_files(void)
 int			ft_is_meta(char *input);
 char		*ft_get_meta_alias(char *input);
 int			ft_is_redir(char *token);

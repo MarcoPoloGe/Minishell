@@ -25,7 +25,7 @@ void	ft_oldpwd(void)
 	free(old);
 }
 
-void	ft_update_pwd(char *path)
+void	ft_update_pwd(char *path, int is_home)
 {
 	char **env;
 	int i;
@@ -34,7 +34,10 @@ void	ft_update_pwd(char *path)
 	env = ft_read_env();
 	while (env[i] && !ft_str_match(env[i], "PWD"))
 		i++;
-	env[i] = ft_combine_path(ft_nb_back_path(path), env[i], path);
+	if (is_home == 1)
+		env[i] = ft_strjoin("PWD=", path);
+	else
+		env[i] = ft_combine_path(ft_nb_back_path(path), env[i], path);
 	ft_update_env(env);
 	ft_free_tab(env);
 }
@@ -45,7 +48,7 @@ void	ft_go_to_home(void)
 
 	ft_oldpwd();
 	home = ft_getenv("HOME");
-	ft_update_pwd(home);
+	ft_update_pwd(home, 1);
 	chdir(home);
 }
 
@@ -61,7 +64,7 @@ void	ft_cd(int argc, char **argv, t_cmd_table *table)
 		else
 		{
 			ft_oldpwd();
-			ft_update_pwd(argv[1]);
+			ft_update_pwd(argv[1], 0);
 			chdir(argv[1]);
 		}
 		closedir(dir);
