@@ -14,9 +14,8 @@
 void	ft_add_cmd_params(char **tokens, t_cmd_table *table, int i, int *j)
 {
 	ft_tabadd(&table->cmd_array[i].args, table->cmd_array[i].cmd);
-
-	if(ft_is_redir(tokens[(*j) - 1]))
-	 	ft_tabadd(&table->cmd_array[i].args, tokens[(*j)++]);
+	if (ft_is_redir(tokens[(*j) - 1]))
+		ft_tabadd(&table->cmd_array[i].args, tokens[(*j)++]);
 	else
 	{
 		while (tokens[*j] && !ft_is_meta(tokens[*j]))
@@ -40,7 +39,7 @@ int	ft_manage_redir(t_cmd_table *table, char **tokens, int i, int *j)
 
 int	ft_manage_cmd(t_cmd_table *table, char **tokens, int i, int *j)
 {
-	if(ft_is_pipe(tokens[*j]))
+	if (ft_is_pipe(tokens[*j]))
 		(*j)++;
 	table->cmd_array[i].cmd = ft_get_cmd_path(tokens[*j]);
 	if (table->cmd_array[i].cmd != NULL)
