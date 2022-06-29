@@ -90,8 +90,11 @@ void		ft_export(int argc, char **argv);
 void		ft_unset(int argc, char **argv);
 void		ft_exit(int argc, char **argv, t_cmd_table *table);
 void		ft_cd(int argc, char **argv, t_cmd_table *table);
-char		*ft_combine_path(int nb_back, char *s1, char *s2);
+// --- CD Utils ---
+char 		*ft_new_str_till_n_char(int n, char c, char *str);
 int			ft_nb_back_path(char *path);
+char		*ft_pwd_with_back(int nb_back, char *str, char *path);
+char		*ft_pwd_without_back(char *str, char *path);
 // --- Display ---
 void		ft_display_lexer_tokens(char **tokens_tab);
 void		ft_display_table(char **tab);

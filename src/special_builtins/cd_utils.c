@@ -11,14 +11,42 @@
 /* ************************************************************************** */
 #include "../minishell.h"
 
+char	*ft_pwd_with_back(int nb_back, char *str, char *path)
+{
+	char	*tmp;
+	int		nb_char;
+
+	nb_char = ft_count_char('/', str);
+	str = ft_new_str_till_n_char(nb_char - nb_back, '/', str);
+	if (path[(nb_back * 3) + 1])
+	{
+		tmp = str;
+		str = ft_strjoin(tmp, path + (nb_back * 3));
+		free(tmp);
+	}
+	return (str);
+}
+
+char	*ft_pwd_without_back(char *str, char *path)
+{
+	char	*tmp;
+
+	str = ft_getenv("PWD");
+	str = ft_strcombine_char(str, '/');
+	tmp = str;
+	str = ft_strjoin(tmp, path);
+	free(tmp);
+	return (str);
+}
+
 int	ft_nb_back_path(char *path)
 {
-	int i;
-	int count;
+	int	i;
+	int	count;
 
 	i = 0;
 	count = 0;
-	while (path[i])
+	while (path[i] && !ft_isalpha(path[i]))
 	{
 		if (ft_str_match(path + i, "../"))
 			count++;
@@ -27,10 +55,12 @@ int	ft_nb_back_path(char *path)
 	return (count);
 }
 
-int ft_size_till_n_char(int n, char c, char *str)
+char	*ft_new_str_till_n_char(int n, char c, char *str)
 {
-	int i;
-	int count;
+	int		i;
+	int		len;
+	int		count;
+	char	*new;
 
 	i = 0;
 	count = 0;
@@ -40,27 +70,15 @@ int ft_size_till_n_char(int n, char c, char *str)
 			count++;
 		i++;
 	}
-	return (i);
-}
-
-char	*ft_combine_path(int nb_back, char *s1, char *s2)
-{
-	char	*new_s1;
-	char	*new_s2;
-	int		nb_slash_s1;
-	int 	new_size;
-	int 	i;
-
+	len = i;
 	i = 0;
-	nb_slash_s1 = ft_count_char('/', s1);
-	new_size = ft_size_till_n_char(nb_slash_s1 - nb_back, '/', s1);
-	new_s1 = ft_calloc(sizeof(char), new_size + 1);
-	while (i < new_size)
+	new = ft_calloc(sizeof(char), len);
+	new[len] = '\0';
+	while (i < len)
 	{
-		new_s1[i] = s1[i];
+		new[i] = str[i];
 		i++;
 	}
-	new_s1[i] = '\0';
-	new_s2 = ft_strdup(s2 + (nb_back * 3));
-	return (ft_strcombine(new_s1, new_s2));
+	free(str);
+	return (new);
 }

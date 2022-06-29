@@ -11,50 +11,49 @@
 /* ************************************************************************** */
 #include "../minishell.h"
 
-void	ft_oldpwd(void)
+void	ft_go_to_home(void)
 {
-	char **env;
-	char *old;
+	char	*pwd;
+	char	*old;
 
-	env = ft_read_env();
+	pwd = ft_getenv("HOME");
 	old = ft_getenv("PWD");
-	old = ft_strjoin("OLDPWD=", old);
-	ft_tabadd(&env, old);
-	ft_update_env(env);
-	ft_free_tab(env);
+	ft_modify_env("PWD", pwd);
+	ft_modify_env("OLDPWD", old);
+	chdir(pwd);
+	free(pwd);
 	free(old);
 }
 
-void	ft_update_pwd(char *path, int is_home)
+void	ft_update_pwd(char *path)
 {
-	char **env;
-	int i;
+	int		nb_back;
+	char	*str;
 
-	i = 0;
-	env = ft_read_env();
-	while (env[i] && !ft_str_match(env[i], "PWD"))
-		i++;
-	if (is_home == 1)
-		env[i] = ft_strjoin("PWD=", path);
+	nb_back = ft_nb_back_path(path);
+	str = ft_getenv("PWD");
+	if (nb_back > 0)
+		str = ft_pwd_with_back(nb_back, str, path);
 	else
-		env[i] = ft_combine_path(ft_nb_back_path(path), env[i], path);
-	ft_update_env(env);
-	ft_free_tab(env);
+		str = ft_pwd_without_back(str, path);
+	if (str[ft_strlen(str) - 1] == '/')
+		str[ft_strlen(str) - 1] = '\0';
+	ft_modify_env("PWD", str);
+	free(str);
 }
 
-void	ft_go_to_home(void)
+void	ft_oldpwd(void)
 {
-	char	*home;
+	char	*str;
 
-	ft_oldpwd();
-	home = ft_getenv("HOME");
-	ft_update_pwd(home, 1);
-	chdir(home);
+	str = ft_getenv("PWD");
+	ft_modify_env("OLDPWD", str);
+	free(str);
 }
 
 void	ft_cd(int argc, char **argv, t_cmd_table *table)
 {
-	DIR *dir;
+	DIR	*dir;
 
 	if (argc == 2)
 	{
@@ -64,7 +63,7 @@ void	ft_cd(int argc, char **argv, t_cmd_table *table)
 		else
 		{
 			ft_oldpwd();
-			ft_update_pwd(argv[1], 0);
+			ft_update_pwd(argv[1]);
 			chdir(argv[1]);
 		}
 		closedir(dir);
