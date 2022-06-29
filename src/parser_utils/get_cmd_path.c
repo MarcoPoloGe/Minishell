@@ -12,7 +12,7 @@
 
 #include "../minishell.h"
 
-void ft_init_path_list(void)
+void	ft_init_path_list(void)
 {
 	ft_get_paths_env();
 }
@@ -20,10 +20,10 @@ void ft_init_path_list(void)
 char	**ft_get_paths_env(void)
 {
 	static char	**paths_list;
-	char	*temp;
-	char	*absolut_path;
+	char		*temp;
+	char		*absolut_path;
 
-	if(paths_list == NULL)
+	if (paths_list == NULL)
 	{
 		temp = ft_getenv("PATH");
 		if (temp == NULL)
