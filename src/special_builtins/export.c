@@ -11,31 +11,40 @@
 /* ************************************************************************** */
 #include "../minishell.h"
 
-void	ft_add_export(char **args)
+void	ft_add_export(int size, int i, char **args)
 {
-	int		i;
-	int 	size;
-	char 	*name;
-	char 	*value;
+	char	*name;
+	char	*value;
+
+	if (size > 0)
+	{
+		name = ft_strndup(args[i], size);
+		if (args[i] + (size + 1))
+			value = ft_strdup(args[i] + (size + 1));
+		else
+			value = ft_calloc(sizeof(char), 0);
+	}
+	else
+	{
+		name = ft_strdup(args[i]);
+		value = NULL;
+	}
+	ft_modify_env(name, value);
+	free(name);
+	if (size > 0)
+		free(value);
+}
+
+void	ft_manage_export(char **args)
+{
+	int	i;
+	int	size;
 
 	i = 1;
 	while (args[i])
 	{
 		size = ft_strlen_char(args[i], '=');
-		if (size > 0)
-		{
-			name = ft_strndup(args[i], size);
-			if (args[i] + (size + 1))
-				value = ft_strdup(args[i] + (size + 1));
-			else
-				value = ft_calloc(sizeof(char), 0);
-		}
-		else
-		{
-			name = ft_strdup(args[i]);
-			value = NULL;
-		}
-		ft_modify_env(name, value);
+		ft_add_export(size, i, args);
 		i++;
 	}
 }
@@ -58,5 +67,5 @@ void	ft_export(int argc, char **argv)
 	if (argc == 1)
 		ft_display_export();
 	else
-		ft_add_export(argv);
+		ft_manage_export(argv);
 }
