@@ -69,4 +69,5 @@ int		ft_big_tablen(char ***tab);
 void	ft_display_big_tab(char ***tab);
 char	*ft_read_fd(int fd);
 int		ft_printf_fd(int fd, const char *str, ...);
+int		ft_strlen_char_end(char *str, char c);
 #endif
