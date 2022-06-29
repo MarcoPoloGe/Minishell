@@ -17,7 +17,7 @@ void	ft_free_big_tab(char ***tab)
 	int	i;
 
 	i = 0;
-	while (tab[i])
+	while (tab && tab[i])
 		ft_free_tab(tab[i++]);
 	free(tab);
 }
