@@ -26,6 +26,8 @@ char	*ft_getenv(char *var_name)
 	var_content = NULL;
 	if (var_name == NULL)
 		return (NULL);
+	if(ft_str_same(var_name,"?"))
+		var_name = "LAST_EXIT_CODE";
 	env = ft_env_expand(ft_env(NULL));
 	i = 0;
 	while (env[i])

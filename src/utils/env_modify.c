@@ -17,12 +17,18 @@
 char	**ft_env(char **updated_env)
 {
 	static char **env;
+	char *str;
 
 	if(updated_env)
 	{
 		if(env)
 			ft_free_tab(env);
 		env = ft_tabdup(updated_env);
+		str = ft_getenv("LAST_EXIT_CODE");
+		if(str == NULL)
+			ft_modify_env("LAST_EXIT_CODE", "0");
+		else
+			free(str);
 	}
 	if(env)
 		return (env);

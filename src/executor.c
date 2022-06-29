@@ -89,14 +89,19 @@ void ft_wait_pid_list(int *pid_list, t_cmd_table *cmd_table)
 {
 	int status;
 	int i;
+	char *temp;
 
 	i = 0;
 
 	while (i < cmd_table->cmd_count)
 	{
 		if(pid_list[i] > 0)
-		{
 			waitpid(pid_list[i], &status, 0);
+		if(WIFEXITED(status))
+		{
+			temp = ft_itoa(WEXITSTATUS(status));
+			ft_modify_env("LAST_EXIT_CODE", temp);
+			free(temp);
 		}
 		ft_close_cmd_pipes(cmd_table->cmd_array + i);
 		i++;
