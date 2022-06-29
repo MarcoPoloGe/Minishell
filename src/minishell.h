@@ -85,13 +85,17 @@ void		ft_expander(t_cmd_table *cmd_table);
 int			**ft_make_pipe_list(int nb);
 // --- Executor ---
 void		ft_executor(t_cmd_table *cmd_table);
+// --- executor_utils ---
+void		ft_dup_cmd_pipes(t_cmd *cmd);
+void		ft_close_cmd_pipes(t_cmd *cmd);
+void		ft_close_unrelated_pipes(t_cmd *cmd, t_cmd_table *cmd_table);
 // --- Builtins ---
 void		ft_export(int argc, char **argv);
 void		ft_unset(int argc, char **argv);
 void		ft_exit(int argc, char **argv, t_cmd_table *table);
 void		ft_cd(int argc, char **argv, t_cmd_table *table);
 // --- CD Utils ---
-char 		*ft_new_str_till_n_char(int n, char c, char *str);
+char		*ft_new_str_till_n_char(int n, char c, char *str);
 int			ft_nb_back_path(char *path);
 char		*ft_pwd_with_back(int nb_back, char *str, char *path);
 char		*ft_pwd_without_back(char *str, char *path);
