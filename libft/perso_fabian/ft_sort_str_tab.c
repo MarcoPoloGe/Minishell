@@ -13,9 +13,9 @@
 
 char	**ft_sort_str_tab(char **tab)
 {
-	int 	i;
-	int 	tablen;
-	int 	ordered;
+	int		i;
+	int		tablen;
+	int		ordered;
 	char	*tmp;
 
 	ordered = 0;

@@ -12,30 +12,30 @@
 
 #include "../minishell.h"
 
-void ft_dup_cmd_pipes(t_cmd *cmd)
+void	ft_dup_cmd_pipes(t_cmd *cmd)
 {
-	if(cmd->fd_in > 0)
+	if (cmd->fd_in > 0)
 		dup2(cmd->fd_in, 0);
-	if(cmd->fd_out > 1)
+	if (cmd->fd_out > 1)
 		dup2(cmd->fd_out, 1);
 }
 
-void ft_close_cmd_pipes(t_cmd *cmd)
+void	ft_close_cmd_pipes(t_cmd *cmd)
 {
-	if(cmd->fd_in > 0)
+	if (cmd->fd_in > 0)
 		close(cmd->fd_in);
-	if(cmd->fd_out > 1)
+	if (cmd->fd_out > 1)
 		close(cmd->fd_out);
 }
 
 void	ft_close_unrelated_pipes(t_cmd *cmd, t_cmd_table *cmd_table)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < cmd_table->cmd_count)
 	{
-		if(cmd_table->cmd_array + i != cmd)
+		if (cmd_table->cmd_array + i != cmd)
 			ft_close_cmd_pipes(cmd_table->cmd_array + i);
 		i++;
 	}

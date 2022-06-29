@@ -16,21 +16,21 @@
 // It is used to read and modify the env table.
 char	**ft_env(char **updated_env)
 {
-	static char **env;
-	char *str;
+	static char	**env;
+	char		*str;
 
-	if(updated_env)
+	if (updated_env)
 	{
-		if(env)
+		if (env)
 			ft_free_tab(env);
 		env = ft_tabdup(updated_env);
 		str = ft_getenv("LAST_EXIT_CODE");
-		if(str == NULL)
+		if (str == NULL)
 			ft_modify_env("LAST_EXIT_CODE", "0");
 		else
 			free(str);
 	}
-	if(env)
+	if (env)
 		return (env);
 	else
 	{
@@ -53,7 +53,7 @@ char	*ft_getenv(char *var_name)
 	var_content = NULL;
 	if (var_name == NULL)
 		return (NULL);
-	if(ft_str_same(var_name,"?"))
+	if (ft_str_same(var_name, "?"))
 		var_name = "LAST_EXIT_CODE";
 	env = ft_env_expand(ft_env(NULL));
 	i = 0;

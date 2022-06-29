@@ -108,7 +108,7 @@ void		ft_display_two_way_table(char ***tab);
 void		ft_free_struct(t_cmd_table **table);
 void		*ft_error(char *message, t_cmd_table **cmd_table, char **str_table);
 void		ft_fatal_error(char *message, t_cmd_table **cmd_table,
-						   char **str_table);
+				char **str_table);
 void		ft_check_config_files(void);
 int			ft_is_meta(char *input);
 char		*ft_get_meta_alias(char *input);
@@ -124,6 +124,5 @@ void		ft_modify_env(char *var_name, char *var_value);
 char		***ft_env_expand(char **env);
 char		**ft_env_condense(char ***env);
 char		*ft_getenv(char *var_name);
-
 
 #endif

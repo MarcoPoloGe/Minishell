@@ -11,12 +11,12 @@
 /* ************************************************************************** */
 #include "perso_fabian.h"
 
-char **ft_delete_str_tab(char **tab, char *str)
+char	**ft_delete_str_tab(char **tab, char *str)
 {
-	int i;
-	int y;
-	char **ret;
-	int strlen;
+	int		i;
+	int		y;
+	char	**ret;
+	int		strlen;
 
 	i = 0;
 	y = 0;

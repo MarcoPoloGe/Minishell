@@ -19,7 +19,7 @@ void	ft_launch_special_builtins(t_cmd *cmd, t_cmd_table *cmd_table)
 	term_out = dup(1);
 	term_in = dup(0);
 	ft_dup_cmd_pipes(cmd);
-	if(ft_str_same(cmd->cmd, BUILTIN_CD))
+	if (ft_str_same(cmd->cmd, BUILTIN_CD))
 		ft_cd(ft_tablen(cmd->args), cmd->args, cmd_table);
 	else if (ft_str_same(cmd->cmd, BUILTIN_EXIT))
 		ft_exit(ft_tablen(cmd->args), cmd->args, cmd_table);
@@ -38,10 +38,11 @@ void	ft_child(t_cmd *cmd, t_cmd_table *cmd_table)
 	execve(cmd->cmd, cmd->args, ft_env(NULL));
 }
 
-//a pour but de lancer les forks doit retourner le pid du fork correspondant a la cmd donnée
-int ft_launch_cmd(t_cmd *cmd, t_cmd_table *cmd_table)
+//a pour but de lancer les forks doit retourner le pid du fork correspondant
+// a la cmd donnée
+int	ft_launch_cmd(t_cmd *cmd, t_cmd_table *cmd_table)
 {
-	int pid;
+	int	pid;
 
 	if (ft_is_builtin(cmd->cmd))
 		ft_launch_special_builtins(cmd, cmd_table);
@@ -56,19 +57,18 @@ int ft_launch_cmd(t_cmd *cmd, t_cmd_table *cmd_table)
 	return (-1);
 }
 
-void ft_wait_pid_list(int *pid_list, t_cmd_table *cmd_table)
+void	ft_wait_pid_list(int *pid_list, t_cmd_table *cmd_table)
 {
-	int status;
-	int i;
-	char *temp;
+	int		status;
+	int		i;
+	char	*temp;
 
 	i = 0;
-
 	while (i < cmd_table->cmd_count)
 	{
-		if(pid_list[i] > 0)
+		if (pid_list[i] > 0)
 			waitpid(pid_list[i], &status, 0);
-		if(WIFEXITED(status))
+		if (WIFEXITED(status))
 		{
 			temp = ft_itoa(WEXITSTATUS(status));
 			ft_modify_env("LAST_EXIT_CODE", temp);
@@ -81,7 +81,7 @@ void ft_wait_pid_list(int *pid_list, t_cmd_table *cmd_table)
 
 void	ft_executor(t_cmd_table *cmd_table)
 {
-	int *pid_list;
+	int	*pid_list;
 	int	i;
 
 	signals_fork();
