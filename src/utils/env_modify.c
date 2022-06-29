@@ -15,66 +15,52 @@
 //Is used to update and initialize the env table.
 char	**ft_update_env(char **updated_env)
 {
-	if(updated_env == NULL)
+	if (updated_env == NULL)
 		return (NULL);
 	return (ft_env(updated_env));
 }
 
-int ft_search_var_and_replace(char **env, char *var_name, char *var_value)
+int	ft_get_position_var(char **env, char *var_name)
 {
-	int i;
-	char ***big_env;
-	char **updated_env;
+	int	i;
 
-	big_env = ft_env_expand(env);
 	i = 0;
 	while (env[i])
 	{
-		if(ft_str_same(big_env[i][0], var_name))
+		if (ft_str_match(env[i], var_name))
 		{
-			ft_free_tab(big_env[i]);
-			big_env[i] = ft_calloc(2 + 1, sizeof (char *));
-			big_env[i][0] = ft_strdup(var_name);
-			if(ft_strlen(var_value) == 0 && var_value)
-				big_env[i][1] = ft_strdup("\"\"");
-			else
-				big_env[i][1] = ft_strdup(var_value);
-			updated_env = ft_env_condense(big_env);
-			ft_update_env(updated_env);
-			ft_free_tab(updated_env);
-			ft_free_big_tab(big_env);
-			return (1);
+			if (ft_strlen_char(env[i], '=') == ft_strlen(var_name))
+				return (i);
 		}
 		i++;
 	}
-	ft_free_big_tab(big_env);
-	return (0);
+	return (i);
 }
 
-void ft_modify_env(char *var_name, char *var_value)
+void	ft_modify_env(char *var_name, char *var_value)
 {
-	char **env;
-	char *var;
+	char	**env;
+	int		position;
 
-	if(var_name == NULL)
+	if (var_name == NULL)
 		return ;
 	env = ft_read_env();
-	if(ft_search_var_and_replace(env, var_name, var_value) == 0)
+	position = ft_get_position_var(env, var_name);
+	if (env[position] == NULL)
+		ft_tabadd(&env, "");
+	if (var_value)
 	{
-		if(var_value)
-		{
-			var = ft_strjoin(var_name, "=");
-			if(ft_strlen(var_value) == 0)
-				var = ft_strcombine(var, "\"\"");
-			else
-				var = ft_strcombine(var, var_value);
-		}
+		if (env[position])
+			free(env[position]);
+		env[position] = ft_strjoin(var_name, "=");
+		if (ft_strlen(var_value) == 0)
+			env[position] = ft_strcombine(env[position], "\"\"");
 		else
-			var = ft_strdup(var_name);
-		ft_tabadd(&env, var);
-		free(var);
-		ft_update_env(env);
+			env[position] = ft_strcombine(env[position], var_value);
 	}
+	else
+		env[position] = ft_strdup(var_name);
+	ft_update_env(env);
 	ft_free_tab(env);
 }
 
