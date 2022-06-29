@@ -53,7 +53,7 @@ int	ft_get_env_var(char *str, char **new_str)
 			return (1);
 		}
 		ft_stradd_len(&var_name, str + 1, var_len);
-		var_content = getenv(ft_str_to_uppercase(var_name));
+		var_content = ft_getenv(ft_str_to_uppercase(var_name));
 		free(var_name);
 		ft_stradd(new_str, var_content);
 		return (var_len + 1);

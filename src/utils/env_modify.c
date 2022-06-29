@@ -17,12 +17,18 @@
 char	**ft_env(char **updated_env)
 {
 	static char **env;
+	char *str;
 
 	if(updated_env)
 	{
 		if(env)
 			ft_free_tab(env);
 		env = ft_tabdup(updated_env);
+		str = ft_getenv("LAST_EXIT_CODE");
+		if(str == NULL)
+			ft_modify_env("LAST_EXIT_CODE", "0");
+		else
+			free(str);
 	}
 	if(env)
 		return (env);
@@ -74,6 +80,8 @@ void ft_modify_env(char *var_name, char *var_value)
 	char **env;
 	char *var;
 
+	if(var_name == NULL)
+		return ;
 	env = ft_read_env();
 	if(ft_search_var_and_replace(env, var_name, var_value) == 0)
 	{
