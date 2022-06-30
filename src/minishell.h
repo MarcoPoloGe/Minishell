@@ -99,6 +99,7 @@ char		*ft_new_str_till_n_char(int n, char c, char *str);
 int			ft_nb_back_path(char *path);
 char		*ft_pwd_with_back(int nb_back, char *str, char *path);
 char		*ft_pwd_without_back(char *str, char *path);
+int			ft_is_absolute(char *path);
 // --- Display ---
 void		ft_display_lexer_tokens(char **tokens_tab);
 void		ft_display_table(char **tab);

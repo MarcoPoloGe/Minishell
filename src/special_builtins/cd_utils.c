@@ -11,6 +11,13 @@
 /* ************************************************************************** */
 #include "../minishell.h"
 
+int	ft_is_absolute(char *path)
+{
+	if (path[0] == '/')
+		return (1);
+	return (0);
+}
+
 char	*ft_pwd_with_back(int nb_back, char *str, char *path)
 {
 	char	*tmp;
@@ -18,7 +25,7 @@ char	*ft_pwd_with_back(int nb_back, char *str, char *path)
 
 	nb_char = ft_count_char('/', str);
 	str = ft_new_str_till_n_char(nb_char - nb_back, '/', str);
-	if (path[(nb_back * 3) + 1])
+	if (path[nb_back * 3])
 	{
 		tmp = str;
 		str = ft_strjoin(tmp, path + (nb_back * 3));
@@ -72,13 +79,13 @@ char	*ft_new_str_till_n_char(int n, char c, char *str)
 	}
 	len = i;
 	i = 0;
-	new = ft_calloc(sizeof(char), len);
-	new[len] = '\0';
+	new = ft_calloc(sizeof(char), len + 1);
 	while (i < len)
 	{
 		new[i] = str[i];
 		i++;
 	}
+	new[i] = '\0';
 	free(str);
 	return (new);
 }

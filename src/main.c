@@ -20,7 +20,6 @@ int	main(int argc, char **argv, char **env)
 
 	(void)argc;
 	(void)argv;
-
 	ft_check_config_files();
 	ft_update_env(env);
 	ft_init_path_list();
@@ -32,5 +31,6 @@ int	main(int argc, char **argv, char **env)
 		cmd_table = ft_parser(token_tab);
 		ft_expander(cmd_table);
 		ft_executor(cmd_table);
+		ft_free_struct(&cmd_table);
 	}
 }
