@@ -2,7 +2,7 @@ NAME = minishell
 
 SRC = main.c display.c lexer.c parser.c executor.c expander.c prompt.c signals.c
 SRC_LEXER_UTILS = put_tokens_in_order.c build_tokens_tab.c cmd_tokens_in_order.c replace_env_var.c
-SRC_PARSER_UTILS = get_cmd_path.c check_env.c init_struct.c extract_fd.c get_redir_path.c
+SRC_PARSER_UTILS = get_cmd_path.c init_struct.c get_redir_path.c
 SRC_EXPANDER_UTILS = make_pipe.c
 SRC_EXECUTOR_UTILS = close_dup_pipe.c
 SRC_UTILS = free_error.c meta.c redir.c env_modify.c env_read.c builtin.c

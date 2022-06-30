@@ -61,5 +61,6 @@ void	ft_put_tokens_in_order(char ***token_tab)
 	}
 	if (ft_tablen(*token_tab) > 0)
 		ft_fatal_error("token sequence combining.", NULL, ordered_tab);
+	free(*token_tab);
 	*token_tab = ordered_tab;
 }

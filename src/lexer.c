@@ -12,17 +12,6 @@
 
 #include "minishell.h"
 
-void	ft_display_two(char **token_tab, char **ordered_token_tab)
-{
-	ft_putstr("\n");
-	ft_putstr("token_tab :\n");
-	ft_display_table(token_tab);
-	ft_putstr("\n");
-	ft_putstr("ordered_tab :\n");
-	ft_display_table(ordered_token_tab);
-	ft_putstr("\n");
-}
-
 int	ft_check_redir_has_arg(char **token_tab)
 {
 	int	i;

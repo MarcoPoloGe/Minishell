@@ -12,6 +12,13 @@
 
 #include "minishell.h"
 
+void ft_init_prog(char **env)
+{
+	ft_check_config_files();
+	ft_update_env(env);
+	ft_init_path_list();
+}
+
 int	main(int argc, char **argv, char **env)
 {
 	char		*input;
@@ -20,12 +27,10 @@ int	main(int argc, char **argv, char **env)
 
 	(void)argc;
 	(void)argv;
-	signals();
-	ft_check_config_files();
-	ft_update_env(env);
-	ft_init_path_list();
+	ft_init_prog(env);
 	while (1)
 	{
+		signals();
 		input = NULL;
 		token_tab = NULL;
 		cmd_table = NULL;

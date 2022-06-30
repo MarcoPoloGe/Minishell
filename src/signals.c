@@ -20,7 +20,6 @@ void	sig_fork_handler_int(int sig)
 void	sig_fork_handler_quit(int sig)
 {
 	ft_printf("Quit : %d\n", sig);
-	(void) sig;
 }
 
 void	sig_handler_int(int sig)

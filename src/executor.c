@@ -33,7 +33,6 @@ void	ft_launch_special_builtins(t_cmd *cmd, t_cmd_table *cmd_table)
 
 void	ft_child(t_cmd *cmd, t_cmd_table *cmd_table)
 {
-	signals_fork();
 	ft_close_unrelated_pipes(cmd, cmd_table);
 	ft_dup_cmd_pipes(cmd);
 	execve(cmd->cmd, cmd->args, ft_env(NULL));
@@ -45,6 +44,7 @@ int	ft_launch_cmd(t_cmd *cmd, t_cmd_table *cmd_table)
 {
 	int	pid;
 
+	signals_fork();
 	if (ft_is_builtin(cmd->cmd))
 		ft_launch_special_builtins(cmd, cmd_table);
 	else
