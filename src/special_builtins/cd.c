@@ -34,6 +34,8 @@ void	ft_update_pwd(char *path)
 	str = ft_getenv("PWD");
 	if (nb_back > 0)
 		str = ft_pwd_with_back(nb_back, str, path);
+	else if (ft_is_absolute(path))
+		str = ft_strdup(path);
 	else
 		str = ft_pwd_without_back(str, path);
 	if (str[ft_strlen(str) - 1] == '/')
@@ -65,8 +67,8 @@ void	ft_cd(int argc, char **argv, t_cmd_table *table)
 			ft_oldpwd();
 			ft_update_pwd(argv[1]);
 			chdir(argv[1]);
+			closedir(dir);
 		}
-		closedir(dir);
 	}
 	else if (argc > 2)
 		ft_error("cd: string not in pwd", &table, NULL);

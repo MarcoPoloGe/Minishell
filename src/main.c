@@ -20,13 +20,15 @@ int	main(int argc, char **argv, char **env)
 
 	(void)argc;
 	(void)argv;
-
 	signals();
 	ft_check_config_files();
 	ft_update_env(env);
 	ft_init_path_list();
 	while (1)
 	{
+		input = NULL;
+		token_tab = NULL;
+		cmd_table = NULL;
 		input = ft_prompt();
 		token_tab = ft_lexer(input);
 		if(input)
