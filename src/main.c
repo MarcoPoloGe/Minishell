@@ -21,16 +21,22 @@ int	main(int argc, char **argv, char **env)
 	(void)argc;
 	(void)argv;
 
+	signals();
 	ft_check_config_files();
 	ft_update_env(env);
 	ft_init_path_list();
-	while (1) //todo temp que pas ctrl-/ ect.
+	while (1)
 	{
-		signals();
 		input = ft_prompt();
 		token_tab = ft_lexer(input);
+		if(input)
+			free(input);
 		cmd_table = ft_parser(token_tab);
+		if(token_tab)
+			ft_free_tab(token_tab);
 		ft_expander(cmd_table);
 		ft_executor(cmd_table);
+		if(cmd_table)
+			ft_free_struct(&cmd_table);
 	}
 }

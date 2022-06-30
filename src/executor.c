@@ -33,6 +33,7 @@ void	ft_launch_special_builtins(t_cmd *cmd, t_cmd_table *cmd_table)
 
 void	ft_child(t_cmd *cmd, t_cmd_table *cmd_table)
 {
+	signals_fork();
 	ft_close_unrelated_pipes(cmd, cmd_table);
 	ft_dup_cmd_pipes(cmd);
 	execve(cmd->cmd, cmd->args, ft_env(NULL));
@@ -84,7 +85,6 @@ void	ft_executor(t_cmd_table *cmd_table)
 	int	*pid_list;
 	int	i;
 
-	signals_fork();
 	if (cmd_table == NULL)
 		return ;
 	pid_list = calloc(cmd_table->cmd_count, sizeof(int));
