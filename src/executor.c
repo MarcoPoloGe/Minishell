@@ -95,4 +95,5 @@ void	ft_executor(t_cmd_table *cmd_table)
 		i++;
 	}
 	ft_wait_pid_list(pid_list, cmd_table);
+	free(pid_list);
 }
