@@ -81,8 +81,6 @@ void		ft_init_path_list(void);
 char		**ft_get_paths_env(void);
 // --- Expander ---
 void		ft_expander(t_cmd_table *cmd_table);
-// --- expander_utils ---
-int			**ft_make_pipe_list(int nb);
 // --- Executor ---
 void		ft_executor(t_cmd_table *cmd_table);
 // --- executor_utils ---
