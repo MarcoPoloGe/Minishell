@@ -43,23 +43,25 @@ char	*ft_find_cmd_in_directory(char *path, char *name)
 {
 	DIR				*dir;
 	struct dirent	*in_file;
-	char			*temp;
+	char			*result;
 
 	dir = opendir(path);
 	if (dir == NULL)
 		ft_fatal_error("Can't read PATH folder", NULL, NULL);
+	result = NULL;
 	in_file = readdir(dir);
 	while (in_file)
 	{
 		if (ft_str_same(in_file->d_name, name))
 		{
-			temp = ft_strjoin(path, "/");
-			ft_stradd(&temp, name);
-			return (temp);
+			result = ft_strjoin(path, "/");
+			ft_stradd(&result, name);
+			break ;
 		}
 		in_file = readdir(dir);
 	}
-	return (NULL);
+	closedir(dir);
+	return (result);
 }
 
 char	*ft_find_cmd_in_paths(char **paths_list, char *name)
