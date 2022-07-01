@@ -1,42 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipe.c                                             :+:      :+:    :+:   */
+/*   ft_free_tab.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbelarbi@student.42lausanne.ch             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/16 15:28:15 by Marco Belarbi     #+#    #+#             */
-/*   Updated: 2022/05/16 16:18:21 by Marco Belarbi    ###   ########.fr       */
+/*   Created: 2022/02/19 16:09:25 by Marco Belarbi     #+#    #+#             */
+/*   Updated: 2022/02/19 16:10:23 by Marco Belarbi    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "perso_marco.h"
 
-int	*ft_make_pipe(void)
+void	ft_free_tab_int(int **tab)
 {
-	int	*tube;
-
-	tube = ft_calloc(2, sizeof(int));
-	if (tube == NULL)
-		return (NULL);
-	pipe(tube);
-	return (tube);
-}
-
-int	**ft_make_pipe_list(int nb)
-{
-	int	**pipe_list;
 	int	i;
 
-	pipe_list = ft_calloc(nb, sizeof(int *));
-	if (pipe_list == NULL)
-		return (NULL);
 	i = 0;
-	while (i < nb - 1)
-	{
-		pipe_list[i] = ft_make_pipe();
-		i++;
-	}
-	pipe_list[i] = NULL;
-	return (pipe_list);
+	while (tab && tab[i])
+		free(tab[i++]);
+	if (tab)
+		free(tab);
 }
+
