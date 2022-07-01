@@ -12,6 +12,35 @@
 
 #include "minishell.h"
 
+int	*ft_make_pipe(void)
+{
+	int	*tube;
+
+	tube = ft_calloc(2, sizeof(int));
+	if (tube == NULL)
+		return (NULL);
+	pipe(tube);
+	return (tube);
+}
+
+int	**ft_make_pipe_list(int nb)
+{
+	int	**pipe_list;
+	int	i;
+
+	pipe_list = ft_calloc(nb, sizeof(int *));
+	if (pipe_list == NULL)
+		return (NULL);
+	i = 0;
+	while (i < nb - 1)
+	{
+		pipe_list[i] = ft_make_pipe();
+		i++;
+	}
+	pipe_list[i] = NULL;
+	return (pipe_list);
+}
+
 void	ft_init_cmd_in_out(t_cmd_table *cmd_table)
 {
 	int		i;
@@ -29,6 +58,7 @@ void	ft_init_cmd_in_out(t_cmd_table *cmd_table)
 		cmd_array[i].fd_in = pipe_list[i - 1][0];
 	}
 	cmd_array[i].fd_out = 1;
+	ft_free_tab_int(pipe_list);
 }
 
 //À pour but de créer les pipes et l'entrée et sortie pour les assigner à
