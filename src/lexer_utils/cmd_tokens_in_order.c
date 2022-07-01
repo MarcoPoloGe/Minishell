@@ -51,7 +51,7 @@ void	ft_move_redir_in(char ***token_tab, char ***ordered_token_tab)
 		}
 		else
 		{
-			i --;
+			i--;
 		}
 	}
 }
@@ -72,7 +72,7 @@ void	ft_move_redir_out(char ***token_tab, char ***ordered_token_tab)
 		}
 		else
 		{
-			i ++;
+			i++;
 		}
 	}
 }
@@ -109,7 +109,7 @@ void	ft_cmd_tokens_in_order(char ***token_tab)
 	ft_move_pipe_to_last(&ordered_token_tab);
 	if (ft_tablen(*token_tab) > 0)
 		ft_fatal_error("Not every token is taken care of.", NULL, *token_tab);
-	if (*token_tab != NULL)
+	if (*token_tab)
 		ft_free_tab(*token_tab);
 	*token_tab = ordered_token_tab;
 }

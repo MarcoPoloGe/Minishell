@@ -26,7 +26,7 @@ void	ft_tabdel(char **tab, int index)
 	{
 		if (i == index)
 		{
-			if (tab[i] == NULL)
+			if (tab[i])
 				free(tab[i]);
 			shift_flag = 1;
 		}
