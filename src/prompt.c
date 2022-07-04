@@ -19,6 +19,8 @@ char	*ft_prompt(void)
 	input = NULL;
 	while (ft_strlen(input) <= 0)
 	{
+		if(input)
+			free(input);
 		input = readline("minishell% ");
 		if (input == NULL)
 		{
