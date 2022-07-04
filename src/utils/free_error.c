@@ -42,6 +42,14 @@ void	ft_free_struct(t_cmd_table **table_adress)
 	*table_adress = NULL;
 }
 
+void ft_free_statics(void)
+{
+	ft_free_tab(ft_env(NULL));
+	ft_free_tab(ft_get_paths_env());
+	ft_free_big_tab(ft_get_redir_word_tab());
+	ft_free_big_tab(ft_get_meta_word_tab());
+}
+
 void	*ft_error(char *message, t_cmd_table **cmd_table, char **str_table)
 {
 	ft_printf_fd(2, "Error : %s\n", message);
@@ -55,5 +63,6 @@ void	ft_fatal_error(char *message, t_cmd_table **cmd_table, char **str_table)
 	ft_printf_fd(2, "Fatal Error : %s\n", message);
 	ft_free_struct(cmd_table);
 	ft_free_tab(str_table);
+	ft_free_statics();
 	exit(1);
 }
