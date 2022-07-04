@@ -16,15 +16,14 @@ void	ft_exit(int argc, char **argv, t_cmd_table *table)
 	int	x;
 
 	x = 0;
-	if (argc == 2)
+	if (argc <= 2)
 	{
-		if (ft_isalldigit(argv[1]))
+		if (argc == 2 && ft_isalldigit(argv[1]))
 			x = ft_atoi(argv[1]);
 		ft_free_struct(&table);
+		ft_free_statics();
 		exit(x);
 	}
-	else if (argc <= 1)
-		exit(x);
 	else
 		ft_error("Exit : too many arguments", &table, NULL);
 }

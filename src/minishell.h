@@ -77,6 +77,7 @@ int			ft_nb_cmd(char **tokens);
 int			ft_extract_fd(char *str);
 char		*ft_get_cmd_path(char *name);
 char		*ft_get_redir_path(char *name);
+char		***ft_get_redir_word_tab(void);
 void		ft_init_path_list(void);
 char		**ft_get_paths_env(void);
 // --- Expander ---
@@ -105,10 +106,12 @@ void		ft_display_cmd_table(t_cmd_table *cmd_table);
 void		ft_display_two_way_table(char ***tab);
 // --- Utils ---
 void		ft_free_struct(t_cmd_table **table);
+void		ft_free_statics(void);
 void		*ft_error(char *message, t_cmd_table **cmd_table, char **str_table);
 void		ft_fatal_error(char *message, t_cmd_table **cmd_table,
 				char **str_table);
 void		ft_check_config_files(void);
+char		***ft_get_meta_word_tab(void);
 int			ft_is_meta(char *input);
 char		*ft_get_meta_alias(char *input);
 int			ft_is_redir(char *token);
