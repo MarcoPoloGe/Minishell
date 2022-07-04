@@ -64,10 +64,13 @@ void	ft_cd(int argc, char **argv, t_cmd_table *table)
 			ft_error("cd: no such file or directory", &table, NULL);
 		else
 		{
-			ft_oldpwd();
-			ft_update_pwd(argv[1]);
-			chdir(argv[1]);
-			closedir(dir);
+			if (!ft_str_same(".", argv[1]))
+			{
+				ft_oldpwd();
+				ft_update_pwd(argv[1]);
+				chdir(argv[1]);
+				closedir(dir);
+			}
 		}
 	}
 	else if (argc > 2)

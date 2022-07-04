@@ -55,7 +55,7 @@ int	ft_nb_back_path(char *path)
 	count = 0;
 	while (path[i] && !ft_isalpha(path[i]))
 	{
-		if (ft_str_match(path + i, "../"))
+		if (ft_str_match(path + i, "../") || ft_str_match(path + i, ".."))
 			count++;
 		i++;
 	}
