@@ -48,7 +48,7 @@ int	ft_manage_cmd(t_cmd_table *table, char **tokens, int i, int *j)
 		ft_add_cmd_params(tokens, table, i, j);
 		return (0);
 	}
-	else if (access(tokens[*j], X_OK) == 0)
+	else if (access(tokens[*j], X_OK) == 0 && ft_is_dir(tokens[*j]) != 1)
 	{
 		table->cmd_array[i].cmd = tokens[(*j)++];
 		ft_add_cmd_params(tokens, table, i, j);

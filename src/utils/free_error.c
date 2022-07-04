@@ -32,7 +32,8 @@ void	ft_free_struct(t_cmd_table **table_adress)
 	i = 0;
 	while (table->cmd_array[i].cmd)
 	{
-		free(table->cmd_array[i].cmd);
+		if (table->cmd_array[i].cmd)
+			free(table->cmd_array[i].cmd);
 		if (table->cmd_array[i].args)
 			ft_free_tab(table->cmd_array[i].args);
 		i++;

@@ -25,4 +25,5 @@ int		ft_isalldigit(char *str);
 char	**ft_sort_str_tab(char **tab);
 char	**ft_delete_str_tab(char **tab, char *str);
 int		ft_count_char(char c, char *str);
+int		ft_is_dir(char *path);
 #endif
