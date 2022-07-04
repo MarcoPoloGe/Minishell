@@ -104,6 +104,8 @@ void		ft_display_lexer_tokens(char **tokens_tab);
 void		ft_display_table(char **tab);
 void		ft_display_cmd_table(t_cmd_table *cmd_table);
 void		ft_display_two_way_table(char ***tab);
+// --- Termios ---
+void 		ft_manage_raw_mode(int to_enable);
 // --- Utils ---
 void		ft_free_struct(t_cmd_table **table);
 void		ft_free_statics(void);

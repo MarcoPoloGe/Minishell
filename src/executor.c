@@ -44,6 +44,7 @@ int	ft_launch_cmd(t_cmd *cmd, t_cmd_table *cmd_table)
 {
 	int	pid;
 
+	ft_manage_raw_mode(0);
 	signals_fork();
 	if (ft_is_builtin(cmd->cmd))
 		ft_launch_special_builtins(cmd, cmd_table);

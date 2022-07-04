@@ -22,6 +22,7 @@ void	ft_exit(int argc, char **argv, t_cmd_table *table)
 			x = ft_atoi(argv[1]);
 		ft_free_struct(&table);
 		ft_free_statics();
+		ft_manage_raw_mode(0);
 		exit(x);
 	}
 	else
