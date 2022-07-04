@@ -73,7 +73,6 @@ void	ft_display_cmd_table(t_cmd_table *cmd_table)
 	i = 0;
 	ft_putstr("--- cmd_table_start ---\n");
 	ft_printf("cmd_count      :%i\n", cmd_table->cmd_count);
-
 	while (cmd_table->cmd_array[i].cmd != NULL)
 	{
 		ft_putchar('\n');

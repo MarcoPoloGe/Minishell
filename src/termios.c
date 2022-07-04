@@ -11,14 +11,14 @@
 /* ************************************************************************** */
 #include "minishell.h"
 
-void ft_enable_raw_mode(struct termios *raw)
+void	ft_enable_raw_mode(struct termios *raw)
 {
 	tcgetattr(STDIN_FILENO, raw);
 	raw->c_lflag &= ~(ECHOCTL);
 	tcsetattr(STDIN_FILENO, TCSAFLUSH, raw);
 }
 
-void ft_manage_raw_mode(int to_enable)
+void	ft_manage_raw_mode(int to_enable)
 {
 	static struct termios	orig_termios;
 	static struct termios	raw;

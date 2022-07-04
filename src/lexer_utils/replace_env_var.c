@@ -56,7 +56,7 @@ int	ft_get_env_var(char *str, char **new_str)
 		var_content = ft_getenv(ft_str_to_uppercase(var_name));
 		free(var_name);
 		ft_stradd(new_str, var_content);
-		if(var_content)
+		if (var_content)
 			free(var_content);
 		return (var_len + 1);
 	}

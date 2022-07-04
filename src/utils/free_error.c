@@ -42,7 +42,7 @@ void	ft_free_struct(t_cmd_table **table_adress)
 	*table_adress = NULL;
 }
 
-void ft_free_statics(void)
+void	ft_free_statics(void)
 {
 	ft_free_tab(ft_env(NULL));
 	ft_free_tab(ft_get_paths_env());

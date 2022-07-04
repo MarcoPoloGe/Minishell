@@ -12,14 +12,14 @@
 
 #include "minishell.h"
 
-void ft_init_prog(char **env)
+void	ft_init_prog(char **env)
 {
 	ft_check_config_files();
 	ft_update_env(env);
 	ft_init_path_list();
 }
 
-void ft_minishell(char *input)
+void	ft_minishell(char *input)
 {
 	char		**token_tab;
 	t_cmd_table	*cmd_table;
@@ -28,11 +28,11 @@ void ft_minishell(char *input)
 	cmd_table = NULL;
 	token_tab = ft_lexer(input);
 	cmd_table = ft_parser(token_tab);
-	if(token_tab)
+	if (token_tab)
 		ft_free_tab(token_tab);
 	ft_expander(cmd_table);
 	ft_executor(cmd_table);
-	if(cmd_table)
+	if (cmd_table)
 		ft_free_struct(&cmd_table);
 }
 
@@ -50,7 +50,7 @@ int	main(int argc, char **argv, char **env)
 		input = NULL;
 		input = ft_prompt();
 		ft_minishell(input);
-		if(input)
+		if (input)
 			free(input);
 	}
 }
