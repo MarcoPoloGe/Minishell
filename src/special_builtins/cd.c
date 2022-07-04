@@ -38,8 +38,8 @@ void	ft_update_pwd(char *path)
 		str = ft_strdup(path);
 	else
 		str = ft_pwd_without_back(str, path);
-	if (str[ft_strlen(str) - 1] == '/')
-		str[ft_strlen(str) - 1] = '\0';
+	/*if (ft_strlen(str) > 1 && ft_str_match(str + ft_strlen(str) - 2, "//"))
+		str[ft_strlen(str) - 1] = '\0';*/
 	ft_modify_env("PWD", str);
 	free(str);
 }
@@ -69,8 +69,8 @@ void	ft_cd(int argc, char **argv, t_cmd_table *table)
 				ft_oldpwd();
 				ft_update_pwd(argv[1]);
 				chdir(argv[1]);
-				closedir(dir);
 			}
+			closedir(dir);
 		}
 	}
 	else if (argc > 2)

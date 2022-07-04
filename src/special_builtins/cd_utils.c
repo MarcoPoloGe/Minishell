@@ -39,7 +39,8 @@ char	*ft_pwd_without_back(char *str, char *path)
 	char	*tmp;
 
 	str = ft_getenv("PWD");
-	str = ft_strcombine_char(str, '/');
+	if (str[ft_strlen(str) - 1] != '/')
+		str = ft_strcombine_char(str, '/');
 	tmp = str;
 	str = ft_strjoin(tmp, path);
 	free(tmp);
