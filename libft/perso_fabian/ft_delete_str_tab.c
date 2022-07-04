@@ -13,20 +13,17 @@
 
 char	**ft_delete_str_tab(char **tab, char *str)
 {
-	int		i;
-	int		y;
-	char	**ret;
-	int		strlen;
+	int	i;
+	int	len;
 
 	i = 0;
-	y = 0;
-	strlen = ft_strlen(str);
-	ret = ft_calloc(sizeof(char *), ft_tablen(tab) + 1);
+	len = ft_strlen(str);
 	while (tab[i])
 	{
-		if (!ft_str_match(tab[i], str) && tab[i][strlen + 1] != '=')
-			ret[y++] = tab[i];
+		if (ft_str_match(tab[i], str) && tab[i][len] == '=')
+			break ;
 		i++;
 	}
-	return (ret);
+	ft_tabdel(tab, i);
+	return (tab);
 }
