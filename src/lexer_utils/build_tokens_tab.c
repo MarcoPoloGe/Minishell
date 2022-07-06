@@ -54,7 +54,7 @@ int	ft_get_word(char *input, char ***token_tab)
 
 	i = 0;
 	while (input[i] && !ft_isspace(input[i])
-		&& input[0] != '\'' && input[0] != '\"'
+		&& input[0] != '\'' && input[i] != '\"'
 		&& !ft_is_meta(input + i))
 	{
 		i++;
