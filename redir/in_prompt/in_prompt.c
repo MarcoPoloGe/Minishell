@@ -60,7 +60,7 @@ int	main(int argc, char **argv)
 {
 	if (argc != 2)
 		ft_putstr_fd("Error: more or less than one arg for "
-			"redirection in_prompt.", 2);
+			"redirection in_prompt.\n", 2);
 	else
 		ft_in_prompt(argv[1]);
 	return (0);

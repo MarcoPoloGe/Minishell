@@ -1,14 +1,14 @@
-NAME = ../../bin/pwd
-SRC = pwd.c
+NAME = ../bin/echo
+SRC = echo.c
 
-LIB = ../../../libft/libft.a
-LDIR = ../../../libft
+LIB = ../../libft/libft.a
+LDIR = ../../libft
 
-INCL = ../../../src/minishell.h
+INCL = ../../src/minishell.h
 
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror #-g -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror
 
 all: $(NAME)
 

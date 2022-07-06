@@ -20,7 +20,6 @@
 # include <signal.h>
 # include <curses.h>
 # include <dirent.h>
-//# include <term.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <stdlib.h>
@@ -31,7 +30,6 @@
 # define REDIR_FOLDER "./redir/bin/"
 # define META_WORDS_FILE "./config_files/meta_words.txt"
 # define REDIR_WORDS_FILE "./config_files/redir_words.txt"
-# define ENV_FILE "./config_files/env.txt"
 
 //----- Special Builtins ID -----
 # define BUILTIN_EXIT "exit"
@@ -53,8 +51,6 @@ typedef struct s_cmd_table
 	int		cmd_count;
 }	t_cmd_table;
 
-//for testing (to be removed)
-
 // ----- Functions -----
 // --- Signaux ---
 void		signals(void);
@@ -71,10 +67,8 @@ void		ft_put_tokens_in_order(char ***token_tab);
 // --- Parser ---
 t_cmd_table	*ft_parser(char **tokens);
 // --- parser_utils ---
-char		*ft_check_str(char *str, char **env);
 t_cmd_table	*ft_init_table(int nb_cmd);
 int			ft_nb_cmd(char **tokens);
-int			ft_extract_fd(char *str);
 char		*ft_get_cmd_path(char *name);
 char		*ft_get_redir_path(char *name);
 char		***ft_get_redir_word_tab(void);
@@ -99,11 +93,6 @@ int			ft_nb_back_path(char *path);
 char		*ft_pwd_with_back(int nb_back, char *str, char *path);
 char		*ft_pwd_without_back(char *str, char *path);
 int			ft_is_absolute(char *path);
-// --- Display ---
-void		ft_display_lexer_tokens(char **tokens_tab);
-void		ft_display_table(char **tab);
-void		ft_display_cmd_table(t_cmd_table *cmd_table);
-void		ft_display_two_way_table(char ***tab);
 // --- Termios ---
 void		ft_manage_raw_mode(int to_enable);
 // --- Utils ---
@@ -129,5 +118,4 @@ void		ft_modify_env(char *var_name, char *var_value);
 char		***ft_env_expand(char **env);
 int 		ft_is_valid_var_env(char *str);
 char		*ft_getenv(char *var_name);
-
 #endif
