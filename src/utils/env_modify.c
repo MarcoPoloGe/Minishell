@@ -81,9 +81,9 @@ char	***ft_env_expand(char **env)
 	return (new);
 }
 
-int ft_is_valid_var_env(char *str)
+int	ft_is_valid_var_env(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i] && str[i] != '=')

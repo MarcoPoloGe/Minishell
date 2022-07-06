@@ -1,37 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: facolomb <facolomb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/09 11:31:57 by facolomb          #+#    #+#             */
-/*   Updated: 2022/06/09 11:31:57 by facolomb         ###   ########.fr       */
+/*   Created: 2022/07/06 15:32:50 by facolomb          #+#    #+#             */
+/*   Updated: 2022/07/06 15:32:50 by facolomb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minishell.h"
 
-void	ft_exit(int argc, char **argv, t_cmd_table *table)
+void	ft_check_config_files(void)
 {
-	int	x;
+	struct stat	buffer;
 
-	x = 0;
-	if (argc <= 1)
-		exit(0);
-	else if (argc == 2)
-	{
-		if (ft_isalldigit(argv[1]))
-		{
-			x = ft_atoi(argv[1]);
-			if (table)
-				ft_free_struct(&table);
-			ft_free_statics();
-			ft_manage_raw_mode(0);
-			exit(x);
-		}
-		else
-			ft_error("Exit : numeric argument required", NULL, NULL);
-	}
-	else if (argc > 2)
-		ft_error("Exit : too many arguments", NULL, NULL);
+	if (stat(REDIR_WORDS_FILE, &buffer) == -1
+		|| stat(META_WORDS_FILE, &buffer) == -1)
+		ft_fatal_error("can't find configuration files", NULL, NULL);
+}
+
+void	ft_check_builtins(void)
+{
+	if (access(BUILTIN_FOLDER, F_OK))
+		ft_fatal_error("builtins folder is missing", NULL, NULL);
 }

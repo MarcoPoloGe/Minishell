@@ -15,6 +15,7 @@
 void	ft_init_prog(char **env)
 {
 	ft_check_config_files();
+	ft_check_builtins();
 	ft_update_env(env);
 	ft_init_path_list();
 }

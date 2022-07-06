@@ -116,6 +116,6 @@ char		**ft_read_env(void);
 char		**ft_update_env(char **env);
 void		ft_modify_env(char *var_name, char *var_value);
 char		***ft_env_expand(char **env);
-int 		ft_is_valid_var_env(char *str);
+int			ft_is_valid_var_env(char *str);
 char		*ft_getenv(char *var_name);
 #endif

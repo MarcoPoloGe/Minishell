@@ -38,8 +38,6 @@ void	ft_update_pwd(char *path)
 		str = ft_strdup(path);
 	else
 		str = ft_pwd_without_back(str, path);
-	/*if (ft_strlen(str) > 1 && ft_str_match(str + ft_strlen(str) - 2, "//"))
-		str[ft_strlen(str) - 1] = '\0';*/
 	ft_modify_env("PWD", str);
 	free(str);
 }
