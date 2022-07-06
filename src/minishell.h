@@ -113,6 +113,7 @@ void		*ft_error(char *message, t_cmd_table **cmd_table, char **str_table);
 void		ft_fatal_error(char *message, t_cmd_table **cmd_table,
 				char **str_table);
 void		ft_check_config_files(void);
+void		ft_check_builtins(void);
 char		***ft_get_meta_word_tab(void);
 int			ft_is_meta(char *input);
 char		*ft_get_meta_alias(char *input);

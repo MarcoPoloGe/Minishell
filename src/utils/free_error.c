@@ -21,6 +21,12 @@ void	ft_check_config_files(void)
 		ft_fatal_error("can't find configuration files", NULL, NULL);
 }
 
+void ft_check_builtins(void)
+{
+	if(	access(BUILTIN_FOLDER, F_OK))
+		ft_fatal_error("builtins folder is missing", NULL, NULL);
+}
+
 void	ft_free_struct(t_cmd_table **table_adress)
 {
 	t_cmd_table	*table;

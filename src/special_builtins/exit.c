@@ -20,7 +20,8 @@ void	ft_exit(int argc, char **argv, t_cmd_table *table)
 	{
 		if (argc == 2 && ft_isalldigit(argv[1]))
 			x = ft_atoi(argv[1]);
-		ft_free_struct(&table);
+		if (table)
+			ft_free_struct(&table);
 		ft_free_statics();
 		ft_manage_raw_mode(0);
 		exit(x);
