@@ -27,7 +27,6 @@ char	*ft_here_doc(char *delimiter)
 		input = readline("heredoc> ");
 		if (input == NULL)
 		{
-			//todo control D termios remove ^D
 			ft_putchar('\n');
 			break ;
 		}
