@@ -9,7 +9,7 @@
 /*   Updated: 2022/04/28 14:43:12 by facolomb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../../../libft/libft.h"
+#include "../../libft/libft.h"
 
 void	ft_display_env(char **env)
 {

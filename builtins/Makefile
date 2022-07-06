@@ -4,7 +4,7 @@ B_NAME_PATH = $(foreach wrd,$(B_NAME),./bin/$(wrd))
 
 BIN_DIR = ./bin
 
-B_DIR = ./builtins_src/
+B_DIR = ./
 
 B_FOLDER:= $(foreach wrd,$(B_NAME),$(B_DIR)$(wrd))
 
@@ -26,4 +26,5 @@ clean:
 
 fclean: clean
 	$(B_MAKE_FCLEAN_COMMAND)
+
 re: fclean all

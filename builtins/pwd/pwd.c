@@ -1,48 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   echo.c                                             :+:      :+:    :+:   */
+/*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: facolomb <facolomb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/26 11:28:49 by facolomb          #+#    #+#             */
-/*   Updated: 2022/04/26 11:28:49 by facolomb         ###   ########.fr       */
+/*   Created: 2022/04/28 14:33:08 by facolomb          #+#    #+#             */
+/*   Updated: 2022/04/28 14:33:08 by facolomb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../libft/libft.h"
+#include "../../libft/libft.h"
 
-int	ft_is_nl(char *str)
+void	ft_display_pwd(char **env)
 {
-	if (ft_str_same(str, "-n"))
-		return (1);
-	else
-		return (0);
-}
+	int		i;
 
-void	ft_echo(int argc, char **args)
-{
-	int	i;
-	int	nl;
-
-	i = 1;
-	nl = ft_is_nl(args[i]);
-	if (nl)
-		i++;
-	while (i < argc)
+	i = 0;
+	while (env[i])
 	{
-		ft_putstr(args[i]);
-		if (i < argc - 1)
-			ft_putchar(' ');
+		if (ft_str_match(env[i], "PWD"))
+			ft_printf("%s\n", env[i] + 4);
 		i++;
 	}
-	if (nl == 0)
-		ft_putchar('\n');
 }
 
-int	main(int argc, char **argv)
+int	main(int argc, char **argv, char **env)
 {
-	if (argc >= 2)
-		ft_echo(argc, argv);
+	(void) argv;
+	if (argc != 1)
+		ft_printf_fd(2, "Error : Too many arguments for builtin pwd\n");
+	else
+		ft_display_pwd(env);
 	return (0);
 }

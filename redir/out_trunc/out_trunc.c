@@ -19,7 +19,7 @@ void	ft_out_trunc(char *str)
 
 	fd = open(str, O_CREAT | O_WRONLY | O_TRUNC, S_IRWXU);
 	if (fd < 0)
-		ft_putstr_fd("Error out_trunc: file opening or creation.", 2);
+		ft_putstr_fd("Error out_trunc: file opening or creation.\n", 2);
 	if (isatty(0))
 		file = NULL;
 	else
@@ -34,7 +34,7 @@ void	ft_out_trunc(char *str)
 int	main(int argc, char **argv)
 {
 	if (argc != 2)
-		ft_printf_fd(2, "Error : not one arg for redir out_append.");
+		ft_printf_fd(2, "Error : not one arg for redir out_append.\n");
 	else
 		ft_out_trunc(argv[1]);
 	return (0);

@@ -1,6 +1,6 @@
 NAME = minishell
 
-SRC = main.c display.c lexer.c parser.c executor.c expander.c prompt.c signals.c termios.c
+SRC = main.c lexer.c parser.c executor.c expander.c prompt.c signals.c termios.c
 SRC_LEXER_UTILS = put_tokens_in_order.c build_tokens_tab.c cmd_tokens_in_order.c replace_env_var.c
 SRC_PARSER_UTILS = get_cmd_path.c init_struct.c get_redir_path.c
 SRC_EXECUTOR_UTILS = close_dup_pipe.c
@@ -27,7 +27,7 @@ INCL = src/minishell.h
 
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror -lreadline -L$(HOME)/.brew/opt/readline/lib -I$(HOME)/.brew/opt/readline/include #-g -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -lreadline -L$(HOME)/.brew/opt/readline/lib -I$(HOME)/.brew/opt/readline/include
 
 all: $(NAME)
 

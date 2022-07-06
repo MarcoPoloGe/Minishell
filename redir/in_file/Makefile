@@ -8,7 +8,7 @@ INCL = ../../src/minishell.h
 
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror -lreadline -L ../../readline/8.1.2/lib -I ../../readline/8.1.2/include #-g -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -lreadline -L ../../readline/8.1.2/lib -I ../../readline/8.1.2/include
 
 all: $(NAME)
 

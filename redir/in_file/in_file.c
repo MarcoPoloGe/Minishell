@@ -27,7 +27,7 @@ int	main(int argc, char **argv)
 {
 	if (argc != 2)
 		ft_putstr_fd("Error: more or less than one arg for "
-			"redirection in_file.", 2);
+			"redirection in_file.\n", 2);
 	else
 		ft_in_file(argv[1]);
 	return (0);

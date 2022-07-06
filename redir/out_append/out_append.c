@@ -34,7 +34,7 @@ void	ft_out_apppend(char *file_name)
 int	main(int argc, char **argv)
 {
 	if (argc != 2)
-		ft_putstr_fd("Error : not one arg for redir out_append.", 2);
+		ft_putstr_fd("Error : not one arg for redir out_append.\n", 2);
 	else
 		ft_out_apppend(argv[1]);
 	return (0);
