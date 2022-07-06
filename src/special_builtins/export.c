@@ -35,6 +35,14 @@ void	ft_add_export(int size, int i, char **args)
 		free(value);
 }
 
+void	ft_check_export(int size, int i, char **args)
+{
+	if (ft_is_valid_var_env(args[i]))
+		ft_add_export(size, i, args);
+	else
+		ft_error("Export : not a valid identifier", NULL, NULL);
+}
+
 void	ft_manage_export(char **args)
 {
 	int	i;
@@ -44,7 +52,7 @@ void	ft_manage_export(char **args)
 	while (args[i])
 	{
 		size = ft_strlen_char(args[i], '=');
-		ft_add_export(size, i, args);
+		ft_check_export(size, i, args);
 		i++;
 	}
 }

@@ -20,7 +20,7 @@ void	ft_launch_special_builtins(t_cmd *cmd, t_cmd_table *cmd_table)
 	term_in = dup(0);
 	ft_dup_cmd_pipes(cmd);
 	if (ft_str_same(cmd->cmd, BUILTIN_CD))
-		ft_cd(ft_tablen(cmd->args), cmd->args, cmd_table);
+		ft_cd(ft_tablen(cmd->args), cmd->args);
 	else if (ft_str_same(cmd->cmd, BUILTIN_EXIT))
 		ft_exit(ft_tablen(cmd->args), cmd->args, cmd_table);
 	else if (ft_str_same(cmd->cmd, BUILTIN_EXPORT))

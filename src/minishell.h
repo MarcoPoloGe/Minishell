@@ -92,7 +92,7 @@ void		ft_close_unrelated_pipes(t_cmd *cmd, t_cmd_table *cmd_table);
 void		ft_export(int argc, char **argv);
 void		ft_unset(int argc, char **argv);
 void		ft_exit(int argc, char **argv, t_cmd_table *table);
-void		ft_cd(int argc, char **argv, t_cmd_table *table);
+void		ft_cd(int argc, char **argv);
 // --- CD Utils ---
 char		*ft_new_str_till_n_char(int n, char c, char *str);
 int			ft_nb_back_path(char *path);
@@ -126,7 +126,7 @@ char		**ft_read_env(void);
 char		**ft_update_env(char **env);
 void		ft_modify_env(char *var_name, char *var_value);
 char		***ft_env_expand(char **env);
-char		**ft_env_condense(char ***env);
+int 		ft_is_valid_var_env(char *str);
 char		*ft_getenv(char *var_name);
 
 #endif

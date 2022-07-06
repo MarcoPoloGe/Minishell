@@ -53,7 +53,7 @@ void	ft_oldpwd(void)
 	free(str);
 }
 
-void	ft_cd(int argc, char **argv, t_cmd_table *table)
+void	ft_cd(int argc, char **argv)
 {
 	DIR	*dir;
 
@@ -61,7 +61,7 @@ void	ft_cd(int argc, char **argv, t_cmd_table *table)
 	{
 		dir = opendir(argv[1]);
 		if (!dir)
-			ft_error("cd: no such file or directory", &table, NULL);
+			ft_error("cd: no such file or directory", NULL, NULL);
 		else
 		{
 			if (!ft_str_same(".", argv[1]))
@@ -74,7 +74,7 @@ void	ft_cd(int argc, char **argv, t_cmd_table *table)
 		}
 	}
 	else if (argc > 2)
-		ft_error("cd: string not in pwd", &table, NULL);
+		ft_error("cd: string not in pwd", NULL, NULL);
 	else
 		ft_go_to_home();
 }

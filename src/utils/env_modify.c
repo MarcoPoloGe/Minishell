@@ -48,10 +48,10 @@ void	ft_modify_env(char *var_name, char *var_value)
 	position = ft_get_position_var(env, var_name);
 	if (env[position] == NULL)
 		ft_tabadd(&env, "");
+	if (env[position])
+		free(env[position]);
 	if (var_value)
 	{
-		if (env[position])
-			free(env[position]);
 		env[position] = ft_strjoin(var_name, "=");
 		if (ft_strlen(var_value) == 0)
 			env[position] = ft_strcombine(env[position], "\"\"");
@@ -81,23 +81,16 @@ char	***ft_env_expand(char **env)
 	return (new);
 }
 
-char	**ft_env_condense(char ***env)
+int ft_is_valid_var_env(char *str)
 {
-	char	**new;
-	int		i;
+	int i;
 
-	if (env == NULL || *env == NULL)
-		return (NULL);
-	new = ft_calloc(ft_big_tablen(env) + 1, sizeof(char *));
 	i = 0;
-	while (env[i])
+	while (str[i] && str[i] != '=')
 	{
-		if (ft_strlen(env[i][1]) > 0)
-			new[i] = ft_strjoin(env[i][0], "=");
-		else
-			new[i] = ft_strdup(env[i][0]);
-		new[i] = ft_strcombine(new[i], env[i][1]);
+		if (!(ft_isalpha(str[i])) && str[i] != '_')
+			return (0);
 		i++;
 	}
-	return (new);
+	return (1);
 }
