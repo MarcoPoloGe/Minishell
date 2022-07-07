@@ -20,7 +20,8 @@ char	**ft_delete_str_tab(char **tab, char *str)
 	len = ft_strlen(str);
 	while (tab[i])
 	{
-		if (ft_str_match(tab[i], str) && tab[i][len] == '=')
+		if ((ft_str_match(tab[i], str)
+				&& (tab[i][len] == '=' || tab[i][len] == '\0')))
 			break ;
 		i++;
 	}
