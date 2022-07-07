@@ -14,12 +14,14 @@
 void	sig_fork_handler_int(int sig)
 {
 	ft_printf("\n");
+	ft_modify_env("LAST_EXIT_CODE", "130");
 	(void) sig;
 }
 
 void	sig_fork_handler_quit(int sig)
 {
 	ft_printf("Quit : %d\n", sig);
+	ft_modify_env("LAST_EXIT_CODE", "131");
 }
 
 void	sig_handler_int(int sig)
