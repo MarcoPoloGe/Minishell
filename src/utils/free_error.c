@@ -36,7 +36,7 @@ void	ft_free_struct(t_cmd_table **table_adress)
 void	ft_free_statics(void)
 {
 	ft_free_tab(ft_env(NULL));
-	ft_free_tab(ft_get_paths_env());
+	ft_get_paths_env(1);
 	ft_free_big_tab(ft_get_redir_word_tab());
 	ft_free_big_tab(ft_get_meta_word_tab());
 }
