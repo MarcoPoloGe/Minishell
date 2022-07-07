@@ -62,12 +62,14 @@ void	ft_cd(int argc, char **argv)
 			ft_error("cd: no such file or directory", NULL, NULL);
 		else
 		{
-			if (!ft_str_same(".", argv[1]))
+			if (!ft_str_same(".", argv[1]) && !ft_str_same("./", argv[1]))
 			{
 				ft_oldpwd();
 				ft_update_pwd(argv[1]);
 				chdir(argv[1]);
 			}
+			else
+				ft_oldpwd();
 			closedir(dir);
 		}
 	}
