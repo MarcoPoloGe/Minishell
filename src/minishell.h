@@ -73,7 +73,7 @@ char		*ft_get_cmd_path(char *name);
 char		*ft_get_redir_path(char *name);
 char		***ft_get_redir_word_tab(void);
 void		ft_init_path_list(void);
-char		**ft_get_paths_env(void);
+char		**ft_get_paths_env(int free);
 // --- Expander ---
 void		ft_expander(t_cmd_table *cmd_table);
 // --- Executor ---

@@ -14,28 +14,34 @@
 
 void	ft_init_path_list(void)
 {
-	ft_get_paths_env();
+	ft_get_paths_env(0);
 }
 
-char	**ft_get_paths_env(void)
+char	**ft_get_paths_env(int do_free)
 {
-	static char	**paths_list;
+	static char	*absolut_path_builtin;
+	char		**paths_list;
 	char		*temp;
-	char		*absolut_path;
 
-	if (paths_list == NULL)
+	paths_list = NULL;
+	if (do_free)
 	{
-		temp = ft_getenv("PATH");
-		if (temp == NULL)
-			ft_fatal_error("env PATH not found.", NULL, NULL);
+		free(absolut_path_builtin);
+		return (NULL);
+	}
+	if (absolut_path_builtin == NULL)
+	{
+		temp = ft_strdup(BUILTIN_FOLDER);
+		absolut_path_builtin = ft_strcombine(ft_getenv("PWD"), temp + 1);
+		free(temp);
+	}
+	temp = ft_getenv("PATH");
+	if (temp != NULL)
+	{
 		paths_list = ft_split(temp, ':');
 		free(temp);
-		temp = ft_strdup(BUILTIN_FOLDER);
-		absolut_path = ft_strcombine(ft_getenv("PWD"), temp + 1);
-		free(temp);
-		ft_tabadd_front(&paths_list, absolut_path);
-		free(absolut_path);
 	}
+	ft_tabadd_front(&paths_list, absolut_path_builtin);
 	return (paths_list);
 }
 
@@ -87,7 +93,7 @@ char	*ft_get_cmd_path(char *name)
 	char	**paths_list;
 	char	*cmd_path;
 
-	paths_list = ft_get_paths_env();
+	paths_list = ft_get_paths_env(0);
 	cmd_path = ft_find_cmd_in_paths(paths_list, name);
 	return (cmd_path);
 }
