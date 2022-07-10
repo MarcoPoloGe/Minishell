@@ -35,7 +35,7 @@ void	ft_display_pwd(char **env)
 int	main(int argc, char **argv, char **env)
 {
 	int	i;
-	int is_option;
+	int	is_option;
 
 	(void) argv;
 	if (argc > 1)
@@ -45,7 +45,7 @@ int	main(int argc, char **argv, char **env)
 		{
 			is_option = ft_is_option(argv[i]);
 			if (is_option == 1)
-				break;
+				break ;
 			i++;
 		}
 		if (!is_option)
