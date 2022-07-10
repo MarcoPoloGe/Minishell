@@ -82,6 +82,7 @@ int	ft_get_token(char *str, char ***token_tab)
 
 char	**ft_build_token_tab(char *str)
 {
+	int		old_i;
 	int		i;
 	int		token_len;
 	char	**token_tab;
@@ -90,8 +91,11 @@ char	**ft_build_token_tab(char *str)
 	i = 0;
 	while (str[i])
 	{
+		old_i = i;
 		i = ft_skip_spaces(str, i);
 		token_len = ft_get_token(str + i, &token_tab);
+		if (token_tab != NULL && old_i == i)
+			ft_combine_two_last(token_tab);
 		if (token_len == 0)
 			break ;
 		if (token_len == -1)

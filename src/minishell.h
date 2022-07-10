@@ -64,6 +64,7 @@ char		**ft_build_token_tab(char *str);
 char		*ft_replace_env_var(char **str);
 void		ft_cmd_tokens_in_order(char ***token_tab);
 void		ft_put_tokens_in_order(char ***token_tab);
+void		ft_combine_two_last(char **token_tab);
 // --- Parser ---
 t_cmd_table	*ft_parser(char **tokens);
 // --- parser_utils ---
