@@ -12,6 +12,13 @@
 
 #include "../../libft/libft.h"
 
+int	ft_is_option(char *str)
+{
+	if (str[0] == '-')
+		return (1);
+	return (0);
+}
+
 void	ft_display_pwd(char **env)
 {
 	int		i;
@@ -27,9 +34,25 @@ void	ft_display_pwd(char **env)
 
 int	main(int argc, char **argv, char **env)
 {
+	int	i;
+	int is_option;
+
 	(void) argv;
-	if (argc != 1)
-		ft_printf_fd(2, "Error : Too many arguments for builtin pwd\n");
+	if (argc > 1)
+	{
+		i = 1;
+		while (i < argc)
+		{
+			is_option = ft_is_option(argv[i]);
+			if (is_option == 1)
+				break;
+			i++;
+		}
+		if (!is_option)
+			ft_display_pwd(env);
+		else
+			ft_printf_fd(2, "Error : PWD : invalid option\n");
+	}
 	else
 		ft_display_pwd(env);
 	return (0);

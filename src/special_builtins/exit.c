@@ -17,7 +17,10 @@ void	ft_exit(int argc, char **argv, t_cmd_table *table)
 
 	x = 0;
 	if (argc <= 1)
+	{
+		ft_manage_raw_mode(0);
 		exit(0);
+	}
 	else if (argc == 2)
 	{
 		if (ft_isalldigit(argv[1]))
