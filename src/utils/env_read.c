@@ -34,7 +34,7 @@ char	**ft_env(char **updated_env)
 		return (env);
 	else
 	{
-		ft_printf_fd(2, "Error : env has not been initialized");
+		ft_printf_fd(2, "Error : env has not been initialized\n");
 		return (NULL);
 	}
 }

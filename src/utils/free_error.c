@@ -55,5 +55,6 @@ void	ft_fatal_error(char *message, t_cmd_table **cmd_table, char **str_table)
 	ft_free_struct(cmd_table);
 	ft_free_tab(str_table);
 	ft_free_statics();
+	ft_manage_raw_mode(0);
 	exit(1);
 }

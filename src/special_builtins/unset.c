@@ -14,16 +14,25 @@
 void	ft_unset(int argc, char **argv)
 {
 	char	**env;
+	int		i;
 
 	if (argc < 2)
 		return ;
-	if (ft_is_valid_var_env(argv[1]))
+	i = 1;
+	while (argv[i])
 	{
-		env = ft_read_env();
-		env = ft_delete_str_tab(env, argv[1]);
-		ft_update_env(env);
-		ft_free_tab(env);
+		if (ft_is_valid_var_env(argv[i]))
+		{
+			env = ft_read_env();
+			env = ft_delete_str_tab(env, argv[i]);
+			ft_update_env(env);
+			ft_free_tab(env);
+		}
+		else
+		{
+			ft_error("Unset : not a valid identifier", NULL, NULL);
+			break ;
+		}
+		i++;
 	}
-	else
-		ft_error("Unset : not a valid identifier", NULL, NULL);
 }
