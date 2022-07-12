@@ -14,17 +14,17 @@
 
 void	ft_dup_cmd_pipes(t_cmd *cmd)
 {
-	if (cmd->fd_in > -1)
+	if (cmd->fd_in > 0)
 		dup2(cmd->fd_in, 0);
-	if (cmd->fd_out > -1)
+	if (cmd->fd_out > 1)
 		dup2(cmd->fd_out, 1);
 }
 
 void	ft_close_cmd_pipes(t_cmd *cmd)
 {
-	if (cmd->fd_in > -1)
+	if (cmd->fd_in > 0)
 		close(cmd->fd_in);
-	if (cmd->fd_out > -1)
+	if (cmd->fd_out > 1)
 		close(cmd->fd_out);
 }
 
