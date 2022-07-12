@@ -51,7 +51,10 @@ int	main(int argc, char **argv, char **env)
 		if (!is_option)
 			ft_display_pwd(env);
 		else
+		{
 			ft_printf_fd(2, "Error : PWD : invalid option\n");
+			return (1);
+		}
 	}
 	else
 		ft_display_pwd(env);

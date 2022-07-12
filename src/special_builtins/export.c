@@ -40,7 +40,10 @@ void	ft_check_export(int size, int i, char **args)
 	if (ft_is_valid_var_env(args[i]))
 		ft_add_export(size, i, args);
 	else
+	{
 		ft_error("Export : not a valid identifier", NULL, NULL);
+		ft_modify_env("LAST_EXIT_CODE", "1");
+	}
 }
 
 void	ft_manage_export(char **args)

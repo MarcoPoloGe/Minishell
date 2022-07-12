@@ -26,4 +26,5 @@ char	**ft_sort_str_tab(char **tab);
 char	**ft_delete_str_tab(char **tab, char *str);
 int		ft_count_char(char c, char *str);
 int		ft_is_dir(char *path);
+int		ft_is_char_in_str(char *str, char c);
 #endif

@@ -15,8 +15,11 @@ void	ft_display_env(char **env)
 {
 	while (*env)
 	{
-		ft_putstr(*env);
-		ft_putchar('\n');
+		if (ft_is_char_in_str(*env, '='))
+		{
+			ft_putstr(*env);
+			ft_putchar('\n');
+		}
 		env++;
 	}
 }
@@ -25,7 +28,10 @@ int	main(int argc, char **argv, char **env)
 {
 	(void)argv;
 	if (argc > 1)
+	{
 		ft_printf_fd(2, "Error : ENV : invalid argument or option\n");
+		return (1);
+	}
 	else
 		ft_display_env(env);
 	return (0);

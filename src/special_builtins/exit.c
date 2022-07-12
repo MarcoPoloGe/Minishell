@@ -24,16 +24,17 @@ void	ft_exit(int argc, char **argv, t_cmd_table *table)
 	else if (argc == 2)
 	{
 		if (ft_isalldigit(argv[1]))
-		{
 			x = ft_atoi(argv[1]);
-			if (table)
-				ft_free_struct(&table);
-			ft_free_statics();
-			ft_manage_raw_mode(0);
-			exit(x);
-		}
 		else
+		{
 			ft_error("Exit : numeric argument required", NULL, NULL);
+			x = 255;
+		}
+		if (table)
+			ft_free_struct(&table);
+		ft_free_statics();
+		ft_manage_raw_mode(0);
+		exit(x);
 	}
 	else if (argc > 2)
 		ft_error("Exit : too many arguments", NULL, NULL);

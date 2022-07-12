@@ -14,7 +14,7 @@
 
 void	ft_init_path_list(void)
 {
-	ft_get_paths_env(0);
+	ft_free_tab(ft_get_paths_env(0));
 }
 
 char	**ft_get_paths_env(int do_free)
@@ -95,5 +95,6 @@ char	*ft_get_cmd_path(char *name)
 
 	paths_list = ft_get_paths_env(0);
 	cmd_path = ft_find_cmd_in_paths(paths_list, name);
+	ft_free_tab(paths_list);
 	return (cmd_path);
 }
