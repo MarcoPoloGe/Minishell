@@ -22,6 +22,8 @@ void	ft_combine_two_last(char **token_tab)
 	i = 0;
 	while (token_tab[i + 2] != NULL)
 		i++;
+	if (ft_is_meta(token_tab[i]) || ft_is_meta(token_tab[i + 1]))
+		return ;
 	temp = ft_strdup(token_tab[i]);
 	free(token_tab[i]);
 	token_tab[i] = ft_strcombine(temp, token_tab[i + 1]);
