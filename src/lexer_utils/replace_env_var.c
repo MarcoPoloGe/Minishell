@@ -32,7 +32,8 @@ int	ft_len_of_var(char *str)
 	if (str == NULL)
 		return (0);
 	var_len = 0;
-	while (str[var_len] && str[var_len] != ' ' && str[var_len] != '$')
+	while (str[var_len] && str[var_len] != ' ' && str[var_len] != '$' &&
+			!ft_isquote(str[var_len]))
 		var_len++;
 	return (var_len);
 }
