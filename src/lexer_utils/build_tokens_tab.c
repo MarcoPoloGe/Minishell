@@ -44,7 +44,7 @@ int	ft_get_quoted_word(char *input, char ***token_tab)
 		}
 		i++;
 	}
-	ft_error("Quote not closed.", NULL, *token_tab);
+	ft_error("Quote not closed.", NULL, NULL);
 	return (-1);
 }
 
@@ -99,7 +99,10 @@ char	**ft_build_token_tab(char *str)
 		if (token_len == 0)
 			break ;
 		if (token_len == -1)
+		{
+			ft_free_tab(token_tab);
 			return (NULL);
+		}
 		i += token_len;
 	}
 	return (token_tab);
