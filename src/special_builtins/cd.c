@@ -55,11 +55,14 @@ void	ft_cd(int argc, char **argv)
 {
 	DIR	*dir;
 
-	if (argc == 2)
+	if (argc >= 2)
 	{
 		dir = opendir(argv[1]);
 		if (!dir)
+		{
 			ft_error("cd: no such file or directory", NULL, NULL);
+			ft_modify_env("LAST_EXIT_CODE", "1");
+		}
 		else
 		{
 			if (!ft_str_same(".", argv[1]) && !ft_str_same("./", argv[1]))
@@ -73,8 +76,6 @@ void	ft_cd(int argc, char **argv)
 			closedir(dir);
 		}
 	}
-	else if (argc > 2)
-		ft_error("cd: string not in pwd", NULL, NULL);
 	else
 		ft_go_to_home();
 }

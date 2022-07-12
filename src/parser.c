@@ -58,6 +58,7 @@ int	ft_manage_cmd(t_cmd_table *table, char **tokens, int i, int *j)
 	{
 		ft_printf_fd(2, "Error: %s: Command not found\n", tokens[*j]);
 		ft_free_struct(&table);
+		ft_modify_env("LAST_EXIT_CODE", "127");
 		return (1);
 	}
 }

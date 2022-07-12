@@ -43,5 +43,7 @@ int	main(int argc, char **argv)
 {
 	if (argc >= 2)
 		ft_echo(argc, argv);
+	else
+		ft_putchar('\n');
 	return (0);
 }

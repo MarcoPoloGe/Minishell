@@ -1,39 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   unset.c                                            :+:      :+:    :+:   */
+/*   ft_is_char_in_str.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: facolomb <facolomb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/13 14:40:45 by facolomb          #+#    #+#             */
-/*   Updated: 2022/06/13 14:40:45 by facolomb         ###   ########.fr       */
+/*   Created: 2022/07/12 11:49:46 by facolomb          #+#    #+#             */
+/*   Updated: 2022/07/12 11:49:46 by facolomb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../minishell.h"
+#include "perso_fabian.h"
 
-void	ft_unset(int argc, char **argv)
+int	ft_is_char_in_str(char *str, char c)
 {
-	char	**env;
-	int		i;
+	int	i;
 
-	if (argc < 2)
-		return ;
-	i = 1;
-	while (argv[i])
+	i = 0;
+	while (str[i])
 	{
-		if (ft_is_valid_var_env(argv[i]))
-		{
-			env = ft_read_env();
-			env = ft_delete_str_tab(env, argv[i]);
-			ft_update_env(env);
-			ft_free_tab(env);
-		}
-		else
-		{
-			ft_error("Unset : not a valid identifier", NULL, NULL);
-			ft_modify_env("LAST_EXIT_CODE", "1");
-			break ;
-		}
+		if (str[i] == c)
+			return (1);
 		i++;
 	}
+	return (0);
 }
